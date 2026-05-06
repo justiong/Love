@@ -2,18 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin Forever App 💖</title>
+<title>💖 Liya x Justin Forever Love App 💖</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+
+/* GLOBAL FIX (IMPORTANT FOR LAPTOP SCROLL) */
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
 font-family:Arial;
-overflow-y:auto;
 overflow-x:hidden;
+overflow-y:auto;
 background:black;
 color:white;
+height:auto;
 }
 
 /* LOCK SCREEN */
@@ -29,7 +36,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-backdrop-filter:blur(10px);
 z-index:9999;
 }
 
@@ -51,15 +57,16 @@ border-radius:40px;
 cursor:pointer;
 }
 
-/* MAIN APP */
+/* APP */
 #app{
 display:none;
 padding:20px;
 background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
 min-height:100vh;
+overflow-y:auto;
 }
 
-/* CARDS */
+/* CARD */
 .card{
 background:rgba(255,255,255,0.12);
 backdrop-filter:blur(15px);
@@ -123,31 +130,30 @@ padding:20px;
 border-radius:20px;
 margin:10px;
 color:#ffb6d9;
-box-shadow:0 0 20px rgba(255,20,147,0.5);
 }
 
-/* HEARTS */
+/* HEART ANIMATION */
 .heart{
 position:fixed;
 font-size:20px;
-animation:floatHeart 6s linear infinite;
+animation:float 6s linear infinite;
 z-index:9998;
 }
 
-@keyframes floatHeart{
+@keyframes float{
 0%{transform:translateY(100vh);}
 100%{transform:translateY(-120vh);}
 }
 
-/* CATS */
+/* CAT ANIMATION */
 .cat{
 position:fixed;
 font-size:35px;
-animation:floatCat 8s linear infinite;
+animation:catMove 8s linear infinite;
 z-index:9999;
 }
 
-@keyframes floatCat{
+@keyframes catMove{
 0%{transform:translateY(100vh);}
 100%{transform:translateY(-120vh);}
 }
@@ -173,12 +179,10 @@ z-index:9999;
 <div class="card">
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="152"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
+width="100%" height="152"></iframe>
 </div>
 
-<!-- MEMORY GALLERY -->
+<!-- GALLERY -->
 <div class="card">
 <h3>📸 Our Memories</h3>
 <div class="gallery">
@@ -192,16 +196,9 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 <!-- PROFILE -->
 <div class="card">
 <p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9;">
-
-💗 <b>Liya</b> — 20 ✨<br>
-📍 Kelantan | KPM Perak<br>
-🏹 Archery Queen 💖<br><br>
-
-💙 <b>Justin</b> — 22 ✨<br>
-📍 Penang | UTP Perak<br>
-🎾 Tennis Player 💫<br><br>
-
-💞 <i>"Two lives, one forever story."</i>
+💗 Liya — 20 ✨<br>
+💙 Justin — 22 ✨<br>
+💞 "One forever story"
 </p>
 </div>
 
@@ -210,15 +207,14 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 <h2>💌 Love Letter</h2>
 <p>
 My sayang 💖<br><br>
-Every moment with you is my happiness 🥺✨<br>
-You are my peace, my home, my everything 💞<br><br>
-No matter what happens, I will always choose you 💕<br><br>
+You are my peace, my home, my happiness 🥺✨<br><br>
+I will always choose you no matter what 💞<br><br>
 Forever yours,<br>
 💖 Justin
 </p>
 </div>
 
-<!-- XP SYSTEM -->
+<!-- XP -->
 <div class="card">
 <p id="days"></p>
 <div class="xpBar"><div class="xpFill"></div></div>
@@ -242,6 +238,7 @@ updateTime();
 function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
+document.body.style.overflowY="auto";
 }
 
 /* DAYS */
@@ -251,26 +248,24 @@ let diff=Math.floor((now-start)/(1000*60*60*24));
 document.getElementById("days").innerHTML="💞 Together for " + diff + " days";
 
 /* HEARTS */
-function spawnHearts(){
+setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML=["💖","💕","✨","🌸"][Math.floor(Math.random()*4)];
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-}
-setInterval(spawnHearts,400);
+},400);
 
 /* CATS */
-function spawnCats(){
+setInterval(()=>{
 let c=document.createElement("div");
 c.className="cat";
-c.innerHTML=["🐱","😻","🐱‍👤","😺"][Math.floor(Math.random()*4)];
+c.innerHTML=["🐱","😻","😺","🐱‍👤"][Math.floor(Math.random()*4)];
 c.style.left=Math.random()*100+"vw";
 document.body.appendChild(c);
 setTimeout(()=>c.remove(),8000);
-}
-setInterval(spawnCats,2000);
+},2000);
 
 </script>
 
