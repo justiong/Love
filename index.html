@@ -2,161 +2,120 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin FULL GAME MODE 💖</title>
+<title>💖 Liya x Justin Ultra Love Game 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  <div style="text-align:center;">
 
-  <img src = "6.jpg"
-       style="
-       width:120px;
-       height:120px;
-       border-radius:50%;
-       object-fit:cover;
-       border:3px solid #ff3f88;
-       box-shadow:0 0 20px #ff3f88;
-       margin-bottom:10px;
-       ">
-
-  <h3>💞 TikTok Style Profile</h3>
-
-</div>
-  .btn{
-padding:10px 14px;
-margin:5px;
-border:none;
-border-radius:20px;
-background:linear-gradient(90deg,#ff3f88,#ff69b4);
-color:white;
-cursor:pointer;
-z-index:5;
-}
-  .section{
-position:relative;
-z-index:5;
-}
-
-.card{
-position:relative;
-z-index:5;
-}
-
-#bgVideo{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-3;
-}
-
-.darkOverlay{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
-z-index:-2;
-}
-  body{
-background:black;
-color:white;
-}
-
-.darkOverlay{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:radial-gradient(circle,rgba(0,0,0,0.2),rgba(0,0,0,0.8));
-z-index:-1;
-}
+/* ===== BACKGROUND ===== */
 body{
 margin:0;
 font-family:Arial;
-overflow-x:hidden;
 background:black;
 color:white;
+overflow-x:hidden;
 }
 
-/* CINEMATIC BACKGROUND */
+/* VIDEO */
 #bgVideo{
 position:fixed;
 top:0;left:0;
-width:100%;height:100%;
+width:100%;
+height:100%;
 object-fit:cover;
 z-index:-2;
-opacity:0.35;
+opacity:0.25;
 }
 
-/* LOGIN */
-#login{
+/* DARK OVERLAY */
+.overlay{
 position:fixed;
-width:100%;height:100%;
-background:linear-gradient(135deg,#ff3f88,#ffb6e6);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:9999;
+top:0;left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle,rgba(0,0,0,0.2),rgba(0,0,0,0.85));
+z-index:-1;
 }
 
-input{
-padding:12px;
-border-radius:10px;
-border:none;
-outline:none;
-}
-
-.btn{
-padding:10px 14px;
-margin:5px;
-border-radius:20px;
-background:#ff3f88;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-header{
-background:rgba(255,63,136,0.9);
-padding:12px;
-text-align:center;
-font-weight:bold;
-position:relative;
-z-index:10;
-}
-
-.section{padding:10px;position:relative;z-index:10;}
-
+/* ===== CARD ===== */
 .card{
 background:rgba(255,255,255,0.92);
 color:black;
 padding:15px;
-margin:10px 0;
+margin:10px;
 border-radius:20px;
+box-shadow:0 0 15px rgba(255,63,136,0.3);
 }
 
-input.msg{
-width:70%;
-padding:10px;
+/* ===== FANCY BUTTONS ===== */
+button{
+padding:12px 16px;
+margin:6px;
+border:none;
+border-radius:25px;
+background:linear-gradient(135deg,#ff2e93,#ff6bd6,#ffb3e6);
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 12px rgba(255,63,136,0.4);
+transition:0.3s;
+position:relative;
+overflow:hidden;
 }
 
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px rgba(255,63,136,0.8);
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+/* ===== PROFILE ===== */
+.profile{
+text-align:center;
+}
+
+.profile img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #ff3f88;
+box-shadow:0 0 15px #ff3f88;
+}
+
+/* ===== CHAT ===== */
 #chatBox{
-height:160px;
+height:150px;
 overflow-y:auto;
-background:#fafafa;
+background:#fff;
+color:black;
 padding:10px;
+border-radius:10px;
 }
 
-.msg{padding:8px;margin:5px;border-radius:10px;max-width:70%;}
-.me{background:#ff3f88;color:white;margin-left:auto;}
+.msg{
+margin:5px;
+padding:5px;
+border-radius:10px;
+background:#eee;
+}
 
-.gallery{display:flex;overflow-x:auto;gap:5px;}
-.gallery img{width:90px;height:90px;border-radius:10px;object-fit:cover;}
+/* ===== FLOATERS ===== */
+.heart,.flower,.cat{
+position:fixed;
+font-size:25px;
+animation:floatUp 6s linear;
+}
 
-/* GAME UI */
+@keyframes floatUp{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);}
+}
+
+/* ===== LEVEL BAR ===== */
 .levelBar{
 width:100%;
 height:12px;
@@ -172,266 +131,187 @@ background:linear-gradient(90deg,#ff3f88,#ff69b4);
 transition:0.5s;
 }
 
-.stat{
-font-weight:bold;
-color:#ff3f88;
-}
-
-/* FLOATERS */
-.heart,.cat,.flower{
-position:fixed;
-animation:floatUp 6s linear infinite;
-z-index:9999;
-}
-
-@keyframes floatUp{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
 </style>
 </head>
 
 <body>
-  <div id="loveLetterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:9999;">
-  
-  <div style="background:white;padding:20px;border-radius:20px;width:80%;max-width:400px;">
-    <h2>💌 Motivation Letter</h2>
-    <p id="typedText"></p>
-    <button onclick="closeLetter()">Close 💖</button>
-  </div>
 
-</div>
-  <video id="bgVideo" autoplay muted loop>
-  <source src = "2.mp3" type="video/mp4">
-</video>
-<div class="darkOverlay"></div>
-
-  <div class="card">
-  <h3>🎵 Spotify Playlist</h3>
-
-  <iframe style="border-radius:12px"
-    src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-    width="100%" height="152"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
-</div>
-<!-- LOGIN -->
-<div id="login">
-<h2>💖 Enter Name</h2>
-<input id="name" placeholder="Justin / Liya">
-<br><br>
-<button class="btn" onclick="startGame()">Start Game 💕</button>
-</div>
-
-<!-- VIDEO BACKGROUND (optional) -->
+<!-- BACKGROUND -->
 <video id="bgVideo" autoplay muted loop>
 <source src="bg.mp4" type="video/mp4">
 </video>
-
-<header>💖 FULL GAME MODE 💖</header>
+<div class="overlay"></div>
 
 <audio id="bgMusic" loop>
 <source src="2.mp3" type="audio/mpeg">
 </audio>
-<div class="card">
-  <h3>💞 Real Profile</h3>
 
-  💗 <b>Liya</b> — 20 ✨<br>
-  📍 Born in Kelantan | Studying in KPM Perak<br>
-  🏹 Archery Queen | 🌸 Soft Heart, Strong Soul<br>
-  🎂 Birthday: 1 April<br><br>
-
-  💙 <b>Justin</b> — 22 ✨<br>
-  📍 Born in Penang | Studying in UTP Perak<br>
-  🎾 Tennis Player | 💫 Always Thinking of You<br>
-  🎂 Birthday: 12 October<br><br>
-
-  💞 <i>"Two different lives, one forever story."</i>
+<!-- LOGIN -->
+<div id="login" class="card" style="text-align:center;">
+<h2>💖 Enter Name</h2>
+<input id="name" placeholder="Justin / Liya">
+<br><br>
+<button onclick="startGame()">Start Love Game 💕</button>
 </div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+
+<!-- HEADER -->
+<div class="card" style="text-align:center;">
+<h2>💖 Liya x Justin Ultra Love Game</h2>
+</div>
+
+<!-- PROFILE -->
+<div class="card profile">
+<img src="6.jpg">
+<h3>💞 TikTok Profile</h3>
+💗 Liya | 💙 Justin
+</div>
+
+<!-- SPOTIFY -->
+<div class="card">
+<h3>🎵 Spotify</h3>
+<iframe width="100%" height="152"
+src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
+</div>
+
+<!-- LEVEL -->
 <div class="card">
 <h3>💍 Relationship Level</h3>
-<div class="stat" id="levelText">Level 1 Love Beginner 💖</div>
-<div class="levelBar"><div class="levelFill" id="bar"></div></div>
+<div id="levelText">Level 1</div>
+<div class="levelBar">
+<div id="bar" class="levelFill"></div>
+</div>
 </div>
 
+<!-- DAYS -->
 <div class="card">
 <h3>📅 Days Together</h3>
 <div id="days"></div>
 </div>
 
+<!-- XP -->
 <div class="card">
-<h3>⚡ Love XP</h3>
-<div id="xpText">0 / 100 XP</div>
-</div>
+<h3>⚡ XP</h3>
+<div id="xpText"></div>
 </div>
 
-<div class="section">
+<!-- CHAT -->
 <div class="card">
 <h3>💬 Live Chat</h3>
 <div id="chatBox"></div>
-<input class="msg" id="msg" placeholder="Say love 💖">
-<button class="btn" onclick="sendMsg()">Send</button>
+<input id="msg">
+<button onclick="sendMsg()">Send</button>
 </div>
-<div class="card" style="text-align:center;">
 
-  <h3>🎮 Love Menu</h3>
+<!-- MENU BUTTONS -->
+<div class="card">
+<h3>🎮 Menu</h3>
 
 <button onclick="spawnFlower()">🌸 Flower</button>
-<button onclick="openLetter()">💌 Motivation Letter</button>
-  <button onclick="window.location.href='archery.html'">🏹 Archery</button>
-  <button onclick="window.location.href='school.html'">🏫 School</button>
-  <button onclick="window.location.href='virtual_cat.html'">🐱 Cat</button>
+<button onclick="spawnHeart()">💖 Heart</button>
+<button onclick="openLetter()">💌 Motivation</button>
+<button onclick="window.location.href='virtual_cat.html'">🐱 Cat</button>
+<button onclick="window.location.href='school.html'">🏫 School</button>
+<button onclick="window.location.href='archery.html'">🏹 Archery</button>
 
 </div>
 
+<!-- LETTER -->
+<div id="letterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
+<div class="card" style="width:80%;max-width:400px;">
+<h3>💌 Motivation Letter</h3>
+<p id="typedText"></p>
+<button onclick="closeLetter()">Close</button>
+</div>
 </div>
 
-<div class="section">
-<div class="card">
-<h3>📸 Memories</h3>
-<div class="gallery">
-<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg">
-<img src="6.jpg"><img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg">
-<img src="11.jpg"><img src="12.jpg"><img src="13.jpg"><img src="14.jpg"><img src="15.jpg">
-<img src="16.jpg"><img src="17.jpg"><img src="18.jpg"><img src="19.jpg"><img src="20.jpg">
-</div>
-</div>
 </div>
 
 <script>
-  // HEARTS
-setInterval(()=>{
-let h=document.createElement("div");
-h.innerHTML="💖";
-h.style.position="fixed";
-h.style.left=Math.random()*100+"vw";
-h.style.top="100vh";
-h.style.fontSize="20px";
-h.style.animation="floatUp 6s linear";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
 
-// CATS
-setInterval(()=>{
-let c=document.createElement("div");
-c.innerHTML="🐱";
-c.style.position="fixed";
-c.style.left=Math.random()*100+"vw";
-c.style.top="100vh";
-c.style.fontSize="25px";
-c.style.animation="floatUp 7s linear";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),7000);
-},2000);
 let user="";
-let xp=0;
 
 function startGame(){
 user=document.getElementById("name").value;
-if(!user) return;
-document.getElementById("login").style.display="none";
-initGame();
-}
+if(!user)return;
 
-function initGame(){
+document.getElementById("login").style.display="none";
+document.getElementById("app").style.display="block";
+
+/* DAYS */
 let start=new Date("2025-10-21");
 let now=new Date();
 let days=Math.floor((now-start)/86400000);
 
 document.getElementById("days").innerText=days+" days 💖";
 
+/* LEVEL */
 let level=Math.min(100,Math.floor(days/2)+1);
-let percent=(days%2)*50;
+document.getElementById("levelText").innerText="Level "+level;
+document.getElementById("bar").style.width=level+"%";
 
-// UI
-let bar=document.getElementById("bar");
-bar.style.width=level+"%";
+/* XP */
+document.getElementById("xpText").innerText=days*3+" / 100 XP";
 
-document.getElementById("levelText").innerText="Level "+level+" Love Growth 💖";
-
-// XP SYSTEM
-xp=days*3;
-if(xp>100)xp=100;
-document.getElementById("xpText").innerText=xp+" / 100 XP";
-
-let a=document.getElementById("bgMusic");
-a.volume=0.5;
-a.play().catch(()=>{});
+/* MUSIC */
+document.getElementById("bgMusic").play().catch(()=>{});
 }
 
+/* CHAT */
 function sendMsg(){
 let m=document.getElementById("msg").value;
 if(!m)return;
+
 let d=document.createElement("div");
-d.className="msg me";
+d.className="msg";
 d.innerText=user+": "+m;
 document.getElementById("chatBox").appendChild(d);
+
 document.getElementById("msg").value="";
 }
 
-// FLOATERS
-setInterval(()=>{
+/* FLOWER */
+function spawnFlower(){
+for(let i=0;i<10;i++){
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),5000);
+}
+}
+
+/* HEART */
+function spawnHeart(){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💖";
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
-function spawnFlower(){
-  for(let i=0;i<12;i++){
-    let f=document.createElement("div");
-    f.innerHTML="🌸";
-    f.style.position="fixed";
-    f.style.left=Math.random()*100+"vw";
-    f.style.top="100vh";
-    f.style.fontSize="25px";
-    f.style.animation="floatUp 5s linear";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),5000);
-  }
-}
-}
-
-function spawnHeart(){
-let h=document.createElement("div");
-h.innerHTML="💖";
-h.style.position="fixed";
-h.style.left=Math.random()*100+"vw";
-h.style.top="100vh";
-h.style.fontSize="25px";
-document.body.appendChild(h);
 setTimeout(()=>h.remove(),5000);
 }
 
+/* LETTER */
 function openLetter(){
-document.getElementById("loveLetterBox").style.display="flex";
+document.getElementById("letterBox").style.display="flex";
 
-let text = `💌 My sayang,
+document.getElementById("typedText").innerText=
+`💌 My sayang,
 
-I know your assignment feels heavy sometimes 🥺
+You are strong 💖
+Never give up 🌸
 
-But I want you to remember this:
-You are stronger than what you think 💖
-Every small step you take is still progress 🌸
-
-Even when you're tired,
-even when it feels hard…
-I'm still proud of you 💞
-
-Don’t pressure yourself too much.
-Just do your best, slowly, calmly 💫
-
-I believe in you always 🏹✨
-Forever love you sayang 
-
-Forever your husby ,
-💖 Justin`;
-
-document.getElementById("typedText").innerText = text;
+I believe in you always ✨
+- Justin`;
 }
+
+function closeLetter(){
+document.getElementById("letterBox").style.display="none";
+}
+
 </script>
 
 </body>
