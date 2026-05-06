@@ -13,7 +13,7 @@ overflow:hidden;
 text-align:center;
 }
 
-/* INTRO SCREEN */
+/* INTRO */
 #intro{
 position:fixed;
 width:100%;
@@ -49,7 +49,7 @@ display:none;
 z-index:5;
 }
 
-/* GAME AREA */
+/* GAME */
 #game{
 width:100%;
 height:100vh;
@@ -74,7 +74,7 @@ transform:translateX(-50%);
 font-size:60px;
 }
 
-/* VIDEO POPUP */
+/* VIDEO POPUP (IMPORTANT FIX) */
 #videoBox{
 position:fixed;
 top:0;
@@ -82,13 +82,14 @@ left:0;
 width:100%;
 height:100%;
 background:black;
-display:none;
+display:none; /* IMPORTANT: hidden at start */
 justify-content:center;
 align-items:center;
 flex-direction:column;
 z-index:9999;
 }
 
+/* VIDEO STYLE */
 #videoBox video{
 width:75%;
 border-radius:15px;
@@ -112,13 +113,13 @@ z-index:10000;
 
 <body>
 
-<!-- BACK -->
+<!-- BACK BUTTON -->
 <a href="index.html" id="backBtn">⬅ Back</a>
 
 <!-- INTRO -->
 <div id="intro">
 <h1>🏹 10s Love Archery 💖</h1>
-<p>💖 Just enjoy the game sayang 💕<br>⏱️ Only 10 seconds</p>
+<p>Just enjoy sayang 💕</p>
 <button onclick="startGame()">Start 💖</button>
 </div>
 
@@ -133,7 +134,7 @@ z-index:10000;
 <div id="bow">🏹</div>
 </div>
 
-<!-- VIDEO END POPUP -->
+<!-- VIDEO END (ONLY SHOW AFTER GAME) -->
 <div id="videoBox">
 <h2 style="color:white;">💖 For You Sayang 💖</h2>
 
@@ -216,13 +217,19 @@ function endGame(){
 
 game = false;
 
+// hide game UI
 document.getElementById("game").style.display="none";
 document.getElementById("ui").style.display="none";
 
+// show video ONLY now
 document.getElementById("videoBox").style.display="flex";
 
 let video = document.getElementById("endVideo");
+
+// IMPORTANT FIX: reset before play
+video.pause();
 video.currentTime = 0;
+
 video.play();
 }
 
