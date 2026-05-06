@@ -13,6 +13,7 @@ overflow:hidden;
 text-align:center;
 }
 
+/* INTRO SCREEN */
 #intro{
 position:fixed;
 width:100%;
@@ -22,6 +23,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#ffb6e6,#fff);
+z-index:10;
 }
 
 button{
@@ -35,6 +37,7 @@ cursor:pointer;
 margin-top:10px;
 }
 
+/* UI */
 #ui{
 position:fixed;
 top:10px;
@@ -43,8 +46,10 @@ background:rgba(255,255,255,0.8);
 padding:10px;
 border-radius:15px;
 display:none;
+z-index:5;
 }
 
+/* GAME AREA */
 #game{
 width:100%;
 height:100vh;
@@ -53,12 +58,14 @@ display:none;
 overflow:hidden;
 }
 
+/* TARGET */
 .target{
 position:absolute;
 font-size:50px;
 cursor:pointer;
 }
 
+/* BOW */
 #bow{
 position:absolute;
 bottom:20px;
@@ -67,8 +74,11 @@ transform:translateX(-50%);
 font-size:60px;
 }
 
+/* VIDEO POPUP */
 #videoBox{
 position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
 background:black;
@@ -79,19 +89,37 @@ flex-direction:column;
 z-index:9999;
 }
 
-video{
-width:80%;
+#videoBox video{
+width:75%;
 border-radius:15px;
+}
+
+/* BACK BUTTON */
+#backBtn{
+position:fixed;
+bottom:20px;
+left:20px;
+padding:12px 18px;
+background:#ff3f88;
+color:white;
+text-decoration:none;
+border-radius:25px;
+font-weight:bold;
+z-index:10000;
 }
 </style>
 </head>
 
 <body>
 
+<!-- BACK -->
+<a href="index.html" id="backBtn">⬅ Back</a>
+
 <!-- INTRO -->
 <div id="intro">
 <h1>🏹 10s Love Archery 💖</h1>
-<button onclick="startGame()">Start 💕</button>
+<p>💖 Just enjoy the game sayang 💕<br>⏱️ Only 10 seconds</p>
+<button onclick="startGame()">Start 💖</button>
 </div>
 
 <!-- UI -->
@@ -105,11 +133,11 @@ border-radius:15px;
 <div id="bow">🏹</div>
 </div>
 
-<!-- VIDEO -->
+<!-- VIDEO END POPUP -->
 <div id="videoBox">
 <h2 style="color:white;">💖 For You Sayang 💖</h2>
 
-<video id="endVideo" autoplay controls>
+<video id="endVideo" controls>
 <source src="1.mp4" type="video/mp4">
 </video>
 
@@ -136,7 +164,7 @@ game = true;
 
 document.getElementById("score").innerText = score;
 
-/* TIMER ONLY (NO LOSS CONDITION) */
+/* TIMER */
 let timer = setInterval(()=>{
 
 time--;
@@ -150,11 +178,11 @@ endGame();
 },1000);
 
 /* SPAWN TARGETS */
-spawnTargets();
+spawn();
 }
 
-/* SPAWN TARGETS (SAFE EVEN IF MISSED) */
-function spawnTargets(){
+/* SPAWN TARGETS */
+function spawn(){
 
 if(!game) return;
 
@@ -174,15 +202,13 @@ document.getElementById("score").innerText = score;
 target.remove();
 };
 
-/* AUTO REMOVE (MISS DOES NOTHING) */
+/* AUTO REMOVE (NO GAME OVER) */
 setTimeout(()=>{
-if(target.parentNode){
-target.remove(); // just disappear, NO GAME OVER
-}
+target.remove();
 },1500);
 
 /* LOOP */
-setTimeout(spawnTargets,400);
+setTimeout(spawn,400);
 }
 
 /* END GAME → SHOW VIDEO ONLY */
@@ -195,13 +221,12 @@ document.getElementById("ui").style.display="none";
 
 document.getElementById("videoBox").style.display="flex";
 
-document.getElementById("endVideo").play();
+let video = document.getElementById("endVideo");
+video.currentTime = 0;
+video.play();
 }
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
