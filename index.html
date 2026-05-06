@@ -6,6 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+  <div style="text-align:center;">
+
+  <img src = "6.jpg"
+       style="
+       width:120px;
+       height:120px;
+       border-radius:50%;
+       object-fit:cover;
+       border:3px solid #ff3f88;
+       box-shadow:0 0 20px #ff3f88;
+       margin-bottom:10px;
+       ">
+
+  <h3>💞 TikTok Style Profile</h3>
+
+</div>
   .btn{
 padding:10px 14px;
 margin:5px;
@@ -248,18 +264,18 @@ z-index:9999;
 <input class="msg" id="msg" placeholder="Say love 💖">
 <button class="btn" onclick="sendMsg()">Send</button>
 </div>
+<div class="card" style="text-align:center;">
+
+  <h3>🎮 Love Menu</h3>
+
+  <button onclick="spawnFlower()">🌸 Flower</button>
+  <button onclick="spawnHeart()">💖 Heart</button>
+  <button onclick="openLetter()">💌 Motivation Letter</button>
+  <button onclick="window.location.href='archery.html'">🏹 Archery</button>
+  <button onclick="window.location.href='school.html'">🏫 School</button>
+  <button onclick="window.location.href='virtual_cat.html'">🐱 Cat</button>
+
 </div>
-  <div class="section">
-
-  <div class="card">
-    <h3>🎮 Menu Buttons</h3>
-
-    <button class="btn" onclick="spawnFlower()">🌸 Flower</button>
-    <button class="btn" onclick="openLetter()">💌 Letter</button>
-    <button class="btn" onclick="spawnHeart()">💖 Heart</button>
-    <button class="btn" onclick="spawnCat()">🐱 Cat</button>
-
-  </div>
 
 </div>
 
@@ -356,6 +372,56 @@ h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },400);
+  function spawnFlower(){
+for(let i=0;i<10;i++){
+let f=document.createElement("div");
+f.innerHTML="🌸";
+f.style.position="fixed";
+f.style.left=Math.random()*100+"vw";
+f.style.top="100vh";
+f.style.fontSize="25px";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),5000);
+}
+}
+
+function spawnHeart(){
+let h=document.createElement("div");
+h.innerHTML="💖";
+h.style.position="fixed";
+h.style.left=Math.random()*100+"vw";
+h.style.top="100vh";
+h.style.fontSize="25px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+}
+
+function openLetter(){
+document.getElementById("loveLetterBox").style.display="flex";
+
+let text = `💌 My sayang,
+
+I know your assignment feels heavy sometimes 🥺
+
+But I want you to remember this:
+You are stronger than what you think 💖
+Every small step you take is still progress 🌸
+
+Even when you're tired,
+even when it feels hard…
+I'm still proud of you 💞
+
+Don’t pressure yourself too much.
+Just do your best, slowly, calmly 💫
+
+I believe in you always 🏹✨
+Forever love you sayang 
+
+Forever your husby ,
+💖 Justin`;
+
+document.getElementById("typedText").innerText = text;
+}
 </script>
 
 </body>
