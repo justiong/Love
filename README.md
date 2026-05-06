@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forever Love Sayang 💖</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body{
+margin:0;
+padding:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9ecf,#ffcce5,#ffe6f2);
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:30px;
+box-shadow:0 0 30px rgba(255,105,180,0.5);
+text-align:center;
+animation:pop 1s ease;
+position:relative;
+z-index:2;
+}
+
+h1{
+font-size:40px;
+color:#ff1493;
+margin-bottom:10px;
+animation:glow 2s infinite alternate;
+}
+
+p{
+font-size:20px;
+color:#ff4fa3;
+margin-bottom:20px;
+}
+
+#qrcode{
+margin-top:20px;
+display:flex;
+justify-content:center;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:50px;
+background:#ff1493;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff69b4;
+}
+
+.hearts{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+top:0;
+left:0;
+z-index:1;
+}
+
+.heart{
+position:absolute;
+color:#ff1493;
+font-size:25px;
+animation:float 6s linear infinite;
+}
+
+.cat{
+font-size:70px;
+animation:bounce 2s infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:1;
+}
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 10px pink;
+}
+to{
+text-shadow:0 0 30px hotpink;
+}
+}
+
+@keyframes pop{
+from{
+transform:scale(0.5);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@keyframes bounce{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+}
+
+.lovePage{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff69b4,#ff1493,#ffb6c1);
+color:white;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+animation:fadeIn 1s ease;
+z-index:5;
+}
+
+.lovePage h2{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.lovePage p{
+font-size:24px;
+max-width:700px;
+line-height:1.8;
+color:white;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+<div class="cat">🐱💖</div>
+<h1>Forever Love Sayang</h1>
+<p>Scan this QR code for a surprise 💕</p>
+
+<div id="qrcode"></div>
+
+<br>
+<button onclick="openLove()">Open Love Surprise 💌</button>
+</div>
+
+<div class="lovePage" id="lovePage">
+<h2>💖 Forever Love You Sayang 💖</h2>
+<p>
+You are my cutest person forever 🥺💕<br><br>
+No matter what happens,
+I will always love you,
+care for you,
+and stay beside you 💞<br><br>
+You are my happiness,
+my comfort,
+my forever champion 🐱✨<br><br>
+Forever and always,
+I LOVE YOU SAYANG 💖
+</p>
+
+<div style="font-size:80px; animation:bounce 2s infinite;">
+🐱💕✨
+</div>
+</div>
+
+<script>
+const surpriseLink = window.location.href + "#love";
+
+new QRCode(document.getElementById("qrcode"), {
+text: surpriseLink,
+width:220,
+height:220,
+colorDark:"#ff1493",
+colorLight:"#ffffff"
+});
+
+function openLove(){
+document.getElementById("lovePage").style.display="flex";
+}
+
+if(window.location.hash === "#love"){
+openLove();
+}
+
+function createHearts(){
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "💖";
+heart.style.left = Math.random()*100 + "vw";
+heart.style.animationDuration = (Math.random()*3+3)+"s";
+heart.style.fontSize = (Math.random()*30+20)+"px";
+
+document.getElementById("hearts").appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+}
+
+setInterval(createHearts,300);
+</script>
+
+</body>
+</html>
+```
+
+---
