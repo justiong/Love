@@ -123,7 +123,7 @@ let score = 0;
 let time = 10;
 let game = false;
 
-/* START */
+/* START GAME */
 function startGame(){
 
 document.getElementById("intro").style.display="none";
@@ -136,23 +136,25 @@ game = true;
 
 document.getElementById("score").innerText = score;
 
-/* TIMER */
-let t = setInterval(()=>{
+/* TIMER ONLY (NO LOSS CONDITION) */
+let timer = setInterval(()=>{
+
 time--;
 document.getElementById("time").innerText = time;
 
 if(time <= 0){
-clearInterval(t);
+clearInterval(timer);
 endGame();
 }
+
 },1000);
 
-/* SPAWN */
-spawn();
+/* SPAWN TARGETS */
+spawnTargets();
 }
 
-/* TARGET SPAWN */
-function spawn(){
+/* SPAWN TARGETS (SAFE EVEN IF MISSED) */
+function spawnTargets(){
 
 if(!game) return;
 
@@ -172,14 +174,18 @@ document.getElementById("score").innerText = score;
 target.remove();
 };
 
-/* REMOVE */
-setTimeout(()=>target.remove(),1500);
+/* AUTO REMOVE (MISS DOES NOTHING) */
+setTimeout(()=>{
+if(target.parentNode){
+target.remove(); // just disappear, NO GAME OVER
+}
+},1500);
 
 /* LOOP */
-setTimeout(spawn,500);
+setTimeout(spawnTargets,400);
 }
 
-/* END GAME (ONLY VIDEO) */
+/* END GAME → SHOW VIDEO ONLY */
 function endGame(){
 
 game = false;
@@ -193,6 +199,9 @@ document.getElementById("endVideo").play();
 }
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
