@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Easy Love Archery Game</title>
+<title>💖 Easy Love Archery</title>
 
 <style>
 body{
@@ -60,7 +60,7 @@ overflow:hidden;
 
 .target{
 position:absolute;
-font-size:45px;
+font-size:50px;
 cursor:pointer;
 }
 
@@ -73,7 +73,7 @@ transform:translateX(-50%);
 font-size:60px;
 }
 
-/* VIDEO POPUP */
+/* VIDEO */
 #videoBox{
 position:fixed;
 width:100%;
@@ -114,7 +114,7 @@ z-index:100000;
 <!-- INTRO -->
 <div id="intro">
 <h1>🏹 EASY LOVE ARCHERY</h1>
-<p>💖 Just click targets<br>⏱️ 10 seconds only</p>
+<p>💖 Just click targets for 10 seconds</p>
 <button onclick="startGame()">Start 💕</button>
 </div>
 
@@ -129,9 +129,9 @@ z-index:100000;
 <div id="bow">🏹</div>
 </div>
 
-<!-- WIN VIDEO -->
+<!-- VIDEO END -->
 <div id="videoBox">
-<h2 style="color:white;">💖 You Win Sayang 💖</h2>
+<h2 style="color:white;">💖 Sayang You Finished 💖</h2>
 
 <video id="endVideo" controls>
 <source src="1.mp4" type="video/mp4">
@@ -156,7 +156,7 @@ let time = 10;
 let game = false;
 let loop;
 
-/* START GAME */
+/* START */
 function startGame(){
 
 document.getElementById("intro").style.display="none";
@@ -178,16 +178,17 @@ document.getElementById("time").innerText = time;
 
 if(time <= 0){
 clearInterval(t);
-endGame(true); // WIN when time ends
+endGame(); // ALWAYS WIN
 }
 
 },1000);
 
-spawnTarget();
+/* SPAWN */
+spawn();
 }
 
-/* TARGET SPAWN */
-function spawnTarget(){
+/* TARGETS */
+function spawn(){
 
 if(!game) return;
 
@@ -200,27 +201,21 @@ target.style.top = Math.random()*70 + "vh";
 
 document.getElementById("game").appendChild(target);
 
-/* HIT */
+/* CLICK */
 target.onclick = ()=>{
 score += 10;
 document.getElementById("score").innerText = score;
 target.remove();
 };
 
-/* MISS = LOSE */
-setTimeout(()=>{
-if(target.parentNode){
-target.remove();
-endGame(false);
-}
-},1500);
+setTimeout(()=>target.remove(),2000);
 
 /* LOOP */
-loop = setTimeout(spawnTarget,800);
+loop = setTimeout(spawn,600);
 }
 
-/* END GAME */
-function endGame(win){
+/* END GAME → ALWAYS SHOW VIDEO */
+function endGame(){
 
 game = false;
 clearTimeout(loop);
@@ -228,17 +223,11 @@ clearTimeout(loop);
 document.getElementById("game").style.display="none";
 document.getElementById("ui").style.display="none";
 
-if(win){
 document.getElementById("videoBox").style.display="flex";
 
 let video = document.getElementById("endVideo");
 video.currentTime = 0;
 video.play();
-
-}else{
-alert("💔 Game Over Sayang!");
-location.reload();
-}
 
 }
 
