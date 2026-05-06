@@ -301,28 +301,30 @@ document.getElementById("msg").value="";
 }
 
 /* FLOWER */
-function spawnFlower(){
-for(let i=0;i<12;i++){
-let f=document.createElement("div");
-f.className="flower";
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-f.style.top="100vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),5000);
+let i = 0;
+let typingInterval;
 
+function spawnFlower(){
+for(let f=0; f<12; f++){
+let el=document.createElement("div");
+el.className="flower";
+el.innerHTML="🌸";
+el.style.left=Math.random()*100+"vw";
+el.style.top="100vh";
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),5000);
+}
 }
 
 function spawnHeart(){
-for(let i=0;i<10;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-h.style.top="100vh";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-}
+for(let h=0; h<10; h++){
+let el=document.createElement("div");
+el.className="heart";
+el.innerHTML="💖";
+el.style.left=Math.random()*100+"vw";
+el.style.top="100vh";
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),6000);
 }
 }
 /* LETTER */
