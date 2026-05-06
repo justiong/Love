@@ -8,243 +8,85 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#ffb6e6,#ffe0f0,#fff);
-text-align:center;
-padding:20px;
-}
-
-h1{
-color:#ff3f88;
-}
-
-.card{
-background:white;
-padding:20px;
-margin:10px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,105,180,0.3);
-}
-
-a{
-display:inline-block;
-padding:12px 18px;
-margin:10px;
-border-radius:25px;
-background:#ff3f88;
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-
-
-body{
-<audio id="bgMusic" loop>
-  <source src="2.mp3" type="audio/mpeg">
-</audio>
-margin:0;
-font-family:Arial;
-overflow-x:hidden;
-overflow-y:auto;
 background:black;
 color:white;
+overflow-x:hidden;
 }
 
-/* LOCK SCREEN */
+/* LOCK */
 #lock{
 position:fixed;
 width:100%;
 height:100%;
 background:url('1.jpg');
 background-size:cover;
-background-position:center;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
 z-index:9999;
 }
 
-#time{
-font-size:60px;
-font-weight:bold;
-text-shadow:0 0 20px pink;
-}
-
-#date{
-font-size:18px;
-margin-bottom:20px;
-}
-
+#time{font-size:60px;text-shadow:0 0 20px pink;}
+#date{margin:10px;}
 #swipe{
 padding:15px 25px;
-background:rgba(255,20,147,0.8);
-border-radius:40px;
+background:#ff3f88;
+border-radius:30px;
 cursor:pointer;
 }
 
 /* APP */
-#app{
-display:none;
-padding:20px;
-background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-min-height:100vh;
-}
+#app{display:none;padding:15px;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;}
 
-/* CARD */
-.card{
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:20px;
-margin:10px;
-}
+h1{text-align:center;color:#ff4fd8;}
 
-/* TITLE */
-h1{
-text-align:center;
-color:#ff4fd8;
-}
-
-/* BUTTON */
+/* BUTTONS */
 .petBtn{
 display:inline-block;
-padding:12px 20px;
-margin:8px;
+padding:12px 18px;
+margin:6px;
 border-radius:25px;
 background:linear-gradient(90deg,#ff1493,#ff69b4);
 color:white;
 text-decoration:none;
-font-weight:bold;
 border:none;
 cursor:pointer;
+}
+
+/* CARDS */
+.card{
+background:rgba(255,255,255,0.1);
+padding:15px;
+margin:10px;
+border-radius:15px;
 }
 
 /* GALLERY */
-.gallery{
-display:flex;
-overflow-x:auto;
-}
+.gallery{display:flex;overflow-x:auto;}
+.gallery img{width:120px;height:120px;margin:5px;border-radius:10px;}
 
-.gallery img{
-width:120px;
-height:120px;
-margin:5px;
-border-radius:15px;
-object-fit:cover;
-}
-
-/* XP */
-.xpBar{
-width:90%;
-height:15px;
-background:#333;
-border-radius:20px;
-margin:10px auto;
-overflow:hidden;
-}
-
-.xpFill{
-width:70%;
-height:100%;
-background:linear-gradient(90deg,#ff1493,#ff69b4);
-}
-
-/* HEART */
+/* HEARTS */
 .heart{
 position:fixed;
-font-size:20px;
 animation:floatUp 6s linear infinite;
-z-index:9998;
 }
+@keyframes floatUp{0%{transform:translateY(100vh);}100%{transform:translateY(-120vh);}}
 
-@keyframes floatUp{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
-
-/* CAT */
-.cat{
-position:fixed;
-font-size:35px;
-animation:catMove 8s linear infinite;
-z-index:9999;
-}
-
-@keyframes catMove{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
-
-/* FLOWER */
-.flower{
-position:fixed;
-font-size:25px;
-animation:floatUp 5s linear forwards;
-z-index:9999;
-}
-  #loveLetterBox{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.75);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999999;
-}
-
-.letterCard{
-background:white;
-padding:20px;
-border-radius:20px;
-width:85%;
-max-width:400px;
-text-align:center;
-box-shadow:0 0 25px pink;
-animation:pop 0.3s ease;
-}
-
-.letterCard h2{
-color:#ff3f88;
-}
-
-#typedText{
-font-size:15px;
-line-height:1.6;
-color:#333;
-min-height:120px;
-white-space:pre-wrap;
-}
-
-.letterCard button{
-margin-top:15px;
-padding:10px 18px;
-border:none;
-border-radius:20px;
-background:#ff3f88;
-color:white;
-cursor:pointer;
-}
-
-@keyframes pop{
-from{transform:scale(0);}
-to{transform:scale(1);}
-}
-
+/* CHAT */
+#chatBox{height:200px;overflow-y:auto;background:#111;padding:10px;border-radius:10px;}
+.msg{padding:8px;margin:5px;border-radius:10px;max-width:70%;}
+.me{background:#ff3f88;margin-left:auto;}
+.her{background:white;color:black;}
 </style>
 </head>
 
 <body>
 
-
 <!-- LOCK -->
 <div id="lock">
 <div id="time">00:00</div>
-<div id="date">Loading date...</div>
+<div id="date"></div>
 <div id="swipe" onclick="unlock()">Swipe Up 💖</div>
 </div>
 
@@ -256,152 +98,96 @@ to{transform:scale(1);}
 <!-- BUTTONS -->
 <div class="card" style="text-align:center;">
 
-<a href="virtual_cat.html" class="petBtn">🐱 Virtual Cat</a>
-
+<a href="virtual_cat.html" class="petBtn">🐱 Cat</a>
 <button class="petBtn" onclick="spawnFlower()">🌸 Flower</button>
+<button class="petBtn" onclick="openLetter()">💌 Letter</button>
+<a href="archery.html" class="petBtn">🏹 Game</a>
+<button class="petBtn" onclick="toggleChat()">💬 Chat</button>
 
-<button class="petBtn" onclick="openSchool()">🏫 School Slide</button>
-  <button class="petBtn" onclick="openLetter()">💌 Motivation Letter</button>
-
-<a href="archery.html" class="petBtn">🏹 Archery Game</a>
-<audio id="bgMusic" loop>
-  <source src="2.mp3" type="audio/mpeg">
-</audio>
+</div>
 
 <!-- SPOTIFY -->
 <div class="card">
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
+<iframe src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
 width="100%" height="152"></iframe>
 </div>
 
+<!-- PROFILE -->
 <div class="card">
-
-<h3 style="text-align:center;color:#ff4fd8;">💞 Real Profile</h3>
-
-<p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9; text-shadow:0 0 10px rgba(255,105,180,0.4);">
-
-💗 <b>Liya</b> — 20 ✨<br>
-📍 Born in Kelantan | Studying in KPM Perak<br>
-🏹 Archery Queen | 🌸 Soft Heart, Strong Soul<br>
-🎂 Birthday: <span style="color:white;">1 April</span><br><br>
-
-💙 <b>Justin</b> — 22 ✨<br>
-📍 Born in Penang | Studying in UTP Perak<br>
-🎾 Tennis Player | 💫 Always Thinking of You<br>
-🎂 Birthday: <span style="color:white;">12 October</span><br><br>
-
-💞 <i>"Two different lives, one forever story."</i>
-
-</p>
-
+<h3>💞 Real Profile</h3>
+💗 Liya — Archery Queen<br>
+💙 Justin — Tennis Player<br>
+<i>Forever story 💞</i>
 </div>
 
-<!-- GALLERY -->
+<!-- MEMORIES -->
 <div class="card">
-<h3>📸 Our Memories</h3>
+<h3>📸 Memories</h3>
 <div class="gallery">
-<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg">
-<img src="6.jpg"><img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg">
-<img src="11.jpg"><img src="12.jpg"><img src="13.jpg"><img src="14.jpg"><img src="15.jpg">
-<img src="16.jpg"><img src="17.jpg"><img src="18.jpg"><img src="19.jpg"><img src="20.jpg">
+<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
 </div>
 </div>
 
-<!-- LOVE LETTER -->
+<!-- LETTER -->
 <div class="card">
 <h3>💌 Love Letter</h3>
-<p>
-My sayang 💖<br><br>
-You are my peace, my home, my everything 🥺✨<br><br>
-Forever yours,<br>
-💖 Justin
-</p>
+<p>You are my everything 💖</p>
 </div>
 
-<!-- XP -->
-<div class="card">
-<p id="days"></p>
-<div class="xpBar"><div class="xpFill"></div></div>
-</div>
-  <div class="card">
-
-<h3 style="text-align:center;color:#ff4fd8;">🎵 Our Forever Playlist</h3>
-
-<div style="display:flex;justify-content:center;align-items:center;flex-direction:column;">
-
-<iframe style="border-radius:16px;box-shadow:0 0 20px rgba(255,20,147,0.4);"
-src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ?utm_source=generator"
-width="100%" height="160"
-frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-loading="lazy">
-</iframe>
-
-<a href="https://open.spotify.com/playlist/6AnczgR8DnY1mSPGAIb2aJ" target="_blank"
-style="margin-top:10px;padding:10px 18px;border-radius:20px;
-background:linear-gradient(90deg,#1DB954,#1ed760);
-color:white;text-decoration:none;font-weight:bold;">
-🎧 Open in Spotify
-</a>
-
+<!-- CHAT -->
+<div class="card" id="chatSection" style="display:none;">
+<h3>💬 Live Chat</h3>
+<div id="chatBox"></div>
+<input id="msgInput" placeholder="Message...">
+<button onclick="sendMsg()">Send</button>
 </div>
 
 </div>
-  <!-- 💌 LOVE LETTER POPUP -->
-<div id="loveLetterBox" style="display:none;">
-  <div class="letterCard">
-    <h2>💌 Love Letter For You 💖</h2>
 
-    <p id="typedText"></p>
-
-    <button onclick="closeLetter()">Close 💕</button>
-  </div>
-</div>
-
-</div>
+<!-- FIREBASE (OPTIONAL - FILL YOUR KEY) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
 
 <script>
-let musicStarted = false;
+const firebaseConfig = {
+apiKey:"YOUR_KEY",
+databaseURL:"YOUR_URL"
+};
 
-function startMusic(){
-if(musicStarted) return;
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-let audio = document.getElementById("bgMusic");
-audio.volume = 0.5;
+let user = prompt("Justin / Liya");
 
-audio.play().then(()=>{
-musicStarted = true;
-}).catch(()=>{
-console.log("User has not interacted yet");
-});
+// CHAT
+function sendMsg(){
+let msg=document.getElementById("msgInput").value;
+if(!msg) return;
+
+db.ref("chat").push({user:user,text:msg});
+document.getElementById("msgInput").value="";
 }
 
-/* START MUSIC ON FIRST CLICK ANYWHERE */
-document.addEventListener("click", startMusic);
-document.addEventListener("touchstart", startMusic);
+db.ref("chat").on("child_added",snap=>{
+let d=snap.val();
+let div=document.createElement("div");
+div.className="msg "+(d.user==user?"me":"her");
+div.innerHTML=d.user+": "+d.text;
+document.getElementById("chatBox").appendChild(div);
+});
 
-/* ALSO START WHEN UNLOCK */
+function toggleChat(){
+let c=document.getElementById("chatSection");
+c.style.display=c.style.display==="none"?"block":"none";
+}
+
+// LOCK
 function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
-startMusic();
 }
 
-/* MUSIC */
-function playMusic(){
-if(!musicStarted){
-let audio = document.getElementById("bgMusic");
-audio.volume = 0.5;
-audio.play().catch(()=>{});
-musicStarted = true;
-}
-}
-
-/* START MUSIC ON FIRST CLICK */
-document.addEventListener("click", playMusic);
-
-/* CLOCK */
+// CLOCK
 setInterval(()=>{
 let d=new Date();
 document.getElementById("time").innerText=
@@ -409,86 +195,16 @@ String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
 document.getElementById("date").innerText=d.toDateString();
 },1000);
 
-/* DAYS */
-let start=new Date("2025-10-21");
-let now=new Date();
-let diff=Math.floor((now-start)/(1000*60*60*24));
-document.getElementById("days").innerHTML="💞 Together for " + diff + " days";
-
-/* HEARTS */
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML=["💖","💕","✨","💗"][Math.floor(Math.random()*4)];
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},500);
-
-/* CATS */
-setInterval(()=>{
-let c=document.createElement("div");
-c.className="cat";
-c.innerHTML=["🐱","😻","🐾"][Math.floor(Math.random()*3)];
-c.style.left=Math.random()*100+"vw";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),8000);
-},2000);
-
-/* FLOWER */
+// FLOWER
 function spawnFlower(){
 for(let i=0;i<10;i++){
 let f=document.createElement("div");
-f.className="flower";
+f.className="heart";
 f.innerHTML="🌸";
 f.style.left=Math.random()*100+"vw";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),5000);
 }
-}
-
-/* SCHOOL */
-function openSchool(){
-window.location.href="school.html";
-}
-let fullText = `
-My sayang 💖
-
-I know your assignment feels heavy sometimes 🥺
-But I want you to remember this…
-You are capable of more than you think 💫
-Every effort you make matters,
-even the small ones you don’t notice 🌸
-Keep going step by step…
-don’t rush… don’t give up 💞
-I believe in you,
-and I’m always cheering for you 🏹✨
-You’ve got this sayang 💖
-
-Forever yours,
-💖 Your sayang
-`;
-
-let i = 0;
-let speed = 40;
-
-function openLetter(){
-document.getElementById("loveLetterBox").style.display="flex";
-document.getElementById("typedText").innerHTML="";
-i = 0;
-typeWriter();
-}
-
-function typeWriter(){
-if(i < fullText.length){
-document.getElementById("typedText").innerHTML += fullText.charAt(i);
-i++;
-setTimeout(typeWriter, speed);
-}
-}
-
-function closeLetter(){
-document.getElementById("loveLetterBox").style.display="none";
 }
 </script>
 
