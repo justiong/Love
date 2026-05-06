@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Pet World 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:Arial;
+background:linear-gradient(135deg,#ffe0f0,#fff0f8);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* floating items */
+.floatItem{
+position:absolute;
+font-size:20px;
+animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);}
+}
+
+/* main box */
+.box{
+width:360px;
+background:white;
+border-radius:30px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 30px rgba(255,105,180,0.3);
+position:relative;
+}
+
+/* pet */
+.pet{
+font-size:110px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.pet:hover{
+transform:scale(1.1);
+}
+
+h1{
+color:#ff3f88;
+}
+
+/* bars */
+.bar{
+width:100%;
+height:15px;
+background:#ffd6e8;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.fill{
+height:100%;
+width:100%;
+background:linear-gradient(90deg,#ff3f88,#ff86b5);
+transition:0.3s;
+}
+
+/* buttons */
+button, select{
+margin:5px;
+padding:10px 15px;
+border:none;
+border-radius:20px;
+background:#ff3f88;
+color:white;
+cursor:pointer;
+}
+
+/* game area */
+#gameArea{
+margin-top:10px;
+height:80px;
+position:relative;
+}
+
+.food{
+position:absolute;
+font-size:22px;
+cursor:pointer;
+}
+
+.small{
+font-size:13px;
+color:#a34b70;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<!-- PET -->
+<div class="pet" id="pet" onclick="petAction()">🐱</div>
+
+<h1 id="petName">Mochi</h1>
+
+<!-- CUSTOMIZE -->
+<select onchange="changePet(this.value)">
+<option value="🐱">Cat 🐱</option>
+<option value="🐶">Dog 🐶</option>
+<option value="🦊">Fox 🦊</option>
+<option value="🐼">Panda 🐼</option>
+</select>
+
+<select onchange="changeShirt(this.value)">
+<option value="white">Shirt: White</option>
+<option value="pink">Shirt: Pink</option>
+<option value="blue">Shirt: Blue</option>
+<option value="black">Shirt: Black</option>
+</select>
+
+<!-- STATUS -->
+<p class="small">Hunger 🍖</p>
+<div class="bar"><div class="fill" id="hungerBar"></div></div>
+
+<p class="small">Love 💖</p>
+<div class="bar"><div class="fill" id="loveBar"></div></div>
+
+<p class="small">Energy ⚡</p>
+<div class="bar"><div class="fill" id="energyBar"></div></div>
+
+<!-- BUTTONS -->
+<button onclick="feed()">🍖 Feed</button>
+<button onclick="love()">💖 Love</button>
+<button onclick="sleep()">😴 Sleep</button>
+<button onclick="spawnFood()">🍔 Drop Food</button>
+
+<!-- GAME AREA -->
+<div id="gameArea"></div>
+
+<p class="small">Tap food to feed your pet 💖</p>
+
+</div>
+
+<script>
+
+let pet="🐱";
+
+let hunger=100;
+let love=100;
+let energy=100;
+
+/* UPDATE */
+function update(){
+document.getElementById("hungerBar").style.width=hunger+"%";
+document.getElementById("loveBar").style.width=love+"%";
+document.getElementById("energyBar").style.width=energy+"%";
+}
+
+/* PET CHANGE */
+function changePet(val){
+pet=val;
+document.getElementById("pet").innerHTML=val;
+}
+
+/* SHIRT CHANGE */
+function changeShirt(color){
+document.getElementById("pet").style.filter=
+color==="black"?"grayscale(1)":
+color==="blue"?"hue-rotate(180deg)":
+color==="pink"?"hue-rotate(320deg)":"none";
+}
+
+/* ACTIONS */
+function feed(){
+hunger=Math.min(100,hunger+20);
+update();
+}
+
+function love(){
+love=Math.min(100,love+20);
+update();
+}
+
+function sleep(){
+energy=Math.min(100,energy+25);
+update();
+}
+
+/* PET ACTION */
+function petAction(){
+love=Math.min(100,love+5);
+document.getElementById("pet").innerHTML="😻";
+setTimeout(()=>document.getElementById("pet").innerHTML=pet,800);
+update();
+}
+
+/* FOOD GAME */
+function spawnFood(){
+
+let food=document.createElement("div");
+food.className="food";
+food.innerHTML=["🍖","🍟","🍔","🍗"][Math.floor(Math.random()*4)];
+food.style.left=Math.random()*300+"px";
+food.style.top="0px";
+
+food.onclick=()=>{
+hunger=Math.min(100,hunger+10);
+food.remove();
+update();
+};
+
+document.getElementById("gameArea").appendChild(food);
+
+setTimeout(()=>food.remove(),4000);
+}
+
+/* FLOATING EFFECTS */
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="floatItem";
+f.innerHTML=["💖","✨","🐾"][Math.floor(Math.random()*3)];
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),6000);
+},800);
+
+/* decay */
+setInterval(()=>{
+hunger=Math.max(0,hunger-2);
+love=Math.max(0,love-1);
+energy=Math.max(0,energy-1);
+update();
+},3000);
+
+update();
+
+</script>
+
+</body>
+</html>
