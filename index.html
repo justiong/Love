@@ -303,42 +303,26 @@ document.getElementById("msg").value="";
 /* FLOWER */
 function spawnFlower(){
 for(let i=0;i<12;i++){
-
-let f = document.createElement("div");
-f.className = "flower";
-f.innerHTML = "🌸";
-
-f.style.left = Math.random() * 100 + "vw";
-f.style.top = "100vh";
-f.style.fontSize = (20 + Math.random()*20) + "px";
-
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+f.style.top="100vh";
 document.body.appendChild(f);
+setTimeout(()=>f.remove(),5000);
 
-setTimeout(() => {
-f.remove();
-}, 5000);
-}
-}
 }
 
-/* HEART */
 function spawnHeart(){
-for(let i = 0; i < 10; i++){
-
-let h = document.createElement("div");
-h.className = "heart";
-h.innerHTML = "💖";
-
-h.style.left = Math.random() * 100 + "vw";
-h.style.top = "100vh";
-h.style.fontSize = (18 + Math.random()*20) + "px";
-
+for(let i=0;i<10;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.top="100vh";
 document.body.appendChild(h);
-
-setTimeout(() => {
-h.remove();
-}, 6000);
-
+setTimeout(()=>h.remove(),6000);
+}
 }
 }
 /* LETTER */
