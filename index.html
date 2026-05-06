@@ -10,6 +10,7 @@ body{
 <audio id="bgMusic" loop>
   <source src="2.mp3" type="audio/mpeg">
 </audio>
+  
 margin:0;
 font-family:Arial;
 overflow-x:hidden;
@@ -267,32 +268,28 @@ color:white;text-decoration:none;font-weight:bold;">
 </div>
 
 <script>
- function unlock(){
-document.getElementById("lock").style.display="none";
-document.getElementById("app").style.display="block";
-
-/* PLAY MUSIC */
-let audio = document.getElementById("bgMusic");
-audio.volume = 0.5;
-audio.play().catch(err=>{
-console.log("Autoplay blocked until user interaction");
-});
-}
-let audio = document.getElementById("bgMusic");
-audio.volume = 0.5;
-audio.play().catch(err=>{
-console.log("Autoplay blocked until user interacts");
-});
-}
-/* Start music when user interacts */
-document.addEventListener("click", startMusic);
-document.addEventListener("touchstart", startMusic);
+let musicStarted = false;
 
 /* UNLOCK */
 function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
+
+playMusic();
 }
+
+/* MUSIC */
+function playMusic(){
+if(!musicStarted){
+let audio = document.getElementById("bgMusic");
+audio.volume = 0.5;
+audio.play().catch(()=>{});
+musicStarted = true;
+}
+}
+
+/* START MUSIC ON FIRST CLICK */
+document.addEventListener("click", playMusic);
 
 /* CLOCK */
 setInterval(()=>{
@@ -302,7 +299,7 @@ String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
 document.getElementById("date").innerText=d.toDateString();
 },1000);
 
-/* DAYS (21 OCT 2025) */
+/* DAYS */
 let start=new Date("2025-10-21");
 let now=new Date();
 let diff=Math.floor((now-start)/(1000*60*60*24));
