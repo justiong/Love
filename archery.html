@@ -2,51 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🏹 Love Archery Game</title>
+<title>💖 10s Love Archery Game</title>
 
 <style>
+  #backBtn{
+position:fixed;
+bottom:20px;
+left:20px;
+padding:12px 18px;
+background:#ff3f88;
+color:white;
+text-decoration:none;
+border-radius:25px;
+font-weight:bold;
+z-index:100000;
+}
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#ffe0f0,#ffd6ff,#fff);
+background:linear-gradient(135deg,#ffe0f0,#fff,#ffd6ff);
 overflow:hidden;
 text-align:center;
-}
-
-/* UI */
-#ui{
-position:fixed;
-top:10px;
-left:10px;
-background:rgba(255,255,255,0.8);
-padding:10px;
-border-radius:15px;
-display:none;
-z-index:999;
-}
-
-/* GAME */
-#game{
-width:100%;
-height:100vh;
-position:relative;
-display:none;
-}
-
-/* TARGET */
-.target{
-position:absolute;
-font-size:50px;
-cursor:pointer;
-}
-
-/* BOW */
-#bow{
-position:absolute;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-font-size:60px;
 }
 
 /* INTRO */
@@ -73,55 +49,94 @@ cursor:pointer;
 margin-top:10px;
 }
 
-#countdown{
-font-size:80px;
-color:#ff3f88;
+/* GAME UI */
+#ui{
+position:fixed;
+top:10px;
+left:10px;
+background:rgba(255,255,255,0.8);
+padding:10px;
+border-radius:15px;
 display:none;
+z-index:999;
 }
 
-/* BACK BUTTON */
-.backBtn{
-position:fixed;
+/* GAME AREA */
+#game{
+width:100%;
+height:100vh;
+position:relative;
+display:none;
+overflow:hidden;
+}
+
+/* TARGET */
+.target{
+position:absolute;
+font-size:50px;
+cursor:pointer;
+animation:pop 0.3s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+/* BOW */
+#bow{
+position:absolute;
 bottom:20px;
-left:20px;
-padding:12px 18px;
-background:#ff3f88;
-color:white;
-text-decoration:none;
-border-radius:25px;
-font-weight:bold;
+left:50%;
+transform:translateX(-50%);
+font-size:60px;
+}
+
+/* MISS FLASH */
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:red;
+opacity:0.3;
+pointer-events:none;
 z-index:9999;
 }
-</style>
 
+/* VIDEO POPUP */
+#videoBox{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+video{
+width:80%;
+border-radius:15px;
+}
+</style>
 </head>
 
 <body>
-
-<!-- BACK -->
-<a href="index.html" class="backBtn">⬅ Back</a>
+  
 
 <!-- INTRO -->
 <div id="intro">
-
-<h1>🏹 Archery Game 💖</h1>
-
-<p>
-🎯 Shoot targets to score points<br>
-⏱️ 30 seconds challenge<br>
-💖 “You got this sayang!”
-</p>
-
-<button onclick="startIntro()">Start Game</button>
-
-<div id="countdown">3</div>
-
+<h1>🏹 10 SEC LOVE ARCHERY</h1>
+<p>💖 Hit targets fast or you lose instantly<br>⏱️ Only 10 seconds!</p>
+<button onclick="startGame()">Start Game 💕</button>
 </div>
 
 <!-- UI -->
 <div id="ui">
 🏆 Score: <span id="score">0</span><br>
-⏱️ Time: <span id="time">30</span>
+⏱️ Time: <span id="time">10</span>
 </div>
 
 <!-- GAME -->
@@ -129,30 +144,20 @@ z-index:9999;
 <div id="bow">🏹</div>
 </div>
 
+<!-- VIDEO END -->
+<div id="videoBox">
+<h2 style="color:white;">💖 YOU WON SAYANG 💖</h2>
+<video id="endVideo" controls autoplay>
+<source src="1.mp4" type="video/mp4">
+</video>
+</div>
+<a href="index.html" id="backBtn">⬅ Back</a>
 <script>
 
-let score=0;
-let time=30;
-let game=false;
-
-/* START INTRO */
-function startIntro(){
-
-let c=3;
-document.getElementById("countdown").style.display="block";
-
-let cd=setInterval(()=>{
-
-document.getElementById("countdown").innerText=c;
-
-if(c===0){
-clearInterval(cd);
-startGame();
-}
-c--;
-
-},1000);
-}
+let score = 0;
+let time = 10;
+let game = false;
+let spawnLoop;
 
 /* START GAME */
 function startGame(){
@@ -161,83 +166,109 @@ document.getElementById("intro").style.display="none";
 document.getElementById("game").style.display="block";
 document.getElementById("ui").style.display="block";
 
-game=true;
-score=0;
-time=30;
+score = 0;
+time = 10;
+game = true;
 
-document.getElementById("score").innerText=score;
+document.getElementById("score").innerText = score;
+document.getElementById("time").innerText = time;
 
 /* TIMER */
-let t=setInterval(()=>{
+let t = setInterval(()=>{
 
 time--;
-document.getElementById("time").innerText=time;
+document.getElementById("time").innerText = time;
 
-if(time<=0){
+if(time <= 0){
 clearInterval(t);
-game=false;
-alert("Game Over 💖 Score: " + score);
+endGame(true);
 }
 
 },1000);
 
-spawn();
+/* SPAWN TARGETS */
+spawnTargets();
+
 }
 
-/* TARGETS */
-function spawn(){
+/* SPAWN */
+function spawnTargets(){
 
 if(!game) return;
 
-let target=document.createElement("div");
+let target = document.createElement("div");
 target.className="target";
 target.innerHTML="🎯";
 
-target.style.left=Math.random()*90+"vw";
-target.style.top=Math.random()*70+"vh";
+target.style.left = Math.random()*90 + "vw";
+target.style.top = Math.random()*70 + "vh";
 
 document.getElementById("game").appendChild(target);
 
-target.onclick=()=>{
-score+=10;
-document.getElementById("score").innerText=score;
+/* CLICK HIT */
+target.onclick = ()=>{
+score += 10;
+document.getElementById("score").innerText = score;
 target.remove();
 };
 
-setTimeout(()=>target.remove(),3000);
+/* IF MISS = GAME OVER */
+setTimeout(()=>{
 
-setTimeout(spawn,700);
+if(target.parentNode){
+target.remove();
+endGame(false);
+}
+
+},1200);
+
+/* LOOP */
+spawnLoop = setTimeout(spawnTargets,400);
+}
+
+/* END GAME */
+function endGame(win){
+
+game = false;
+clearTimeout(spawnLoop);
+
+if(!win){
+alert("💔 You Missed! Game Over Sayang!");
+location.reload();
+return;
+}
+
+/* WIN */
+document.getElementById("videoBox").style.display="flex";
+document.getElementById("endVideo").play();
+
 }
 
 /* SHOOT EFFECT */
-document.addEventListener("click",function(){
+document.addEventListener("click",function(e){
 
 if(!game) return;
 
-let arrow=document.createElement("div");
+let arrow = document.createElement("div");
 arrow.innerHTML="🏹";
 arrow.style.position="absolute";
-arrow.style.left="50%";
-arrow.style.bottom="60px";
-arrow.style.fontSize="30px";
+arrow.style.left = e.clientX + "px";
+arrow.style.top = e.clientY + "px";
+arrow.style.fontSize="25px";
 
 document.getElementById("game").appendChild(arrow);
 
-let y=60;
-
-let move=setInterval(()=>{
-
-y+=10;
-arrow.style.bottom=y+"px";
-
-if(y>window.innerHeight){
-arrow.remove();
-clearInterval(move);
-}
-
-},30);
+setTimeout(()=>arrow.remove(),500);
 
 });
+
+/* FLASH ON MISS */
+function flash(){
+let f=document.createElement("div");
+f.className="flash";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),200);
+}
 
 </script>
 
