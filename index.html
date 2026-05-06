@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,8 @@
 body{
 margin:0;
 font-family:Arial;
-overflow:hidden;
+overflow-y:auto;
+overflow-x:hidden;
 background:black;
 color:white;
 }
@@ -30,6 +30,7 @@ justify-content:center;
 align-items:center;
 text-align:center;
 backdrop-filter:blur(10px);
+z-index:9999;
 }
 
 #time{
@@ -58,6 +59,7 @@ background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
 min-height:100vh;
 }
 
+/* CARDS */
 .card{
 background:rgba(255,255,255,0.12);
 backdrop-filter:blur(15px);
@@ -66,11 +68,13 @@ padding:20px;
 margin:10px;
 }
 
+/* TITLE */
 h1{
 text-align:center;
 color:#ff4fd8;
 }
 
+/* BUTTON */
 button{
 padding:10px 15px;
 margin:5px;
@@ -78,18 +82,19 @@ border:none;
 border-radius:20px;
 background:#ff1493;
 color:white;
+cursor:pointer;
 }
 
 /* GALLERY */
 .gallery{
 display:flex;
-overflow-x:scroll;
+overflow-x:auto;
+gap:8px;
 }
 
 .gallery img{
 width:120px;
 height:120px;
-margin:5px;
 border-radius:15px;
 object-fit:cover;
 }
@@ -110,6 +115,43 @@ height:100%;
 background:linear-gradient(90deg,#ff1493,#ff69b4);
 }
 
+/* LOVE LETTER */
+.loveLetter{
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:20px;
+margin:10px;
+color:#ffb6d9;
+box-shadow:0 0 20px rgba(255,20,147,0.5);
+}
+
+/* HEARTS */
+.heart{
+position:fixed;
+font-size:20px;
+animation:floatHeart 6s linear infinite;
+z-index:9998;
+}
+
+@keyframes floatHeart{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);}
+}
+
+/* CATS */
+.cat{
+position:fixed;
+font-size:35px;
+animation:floatCat 8s linear infinite;
+z-index:9999;
+}
+
+@keyframes floatCat{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);}
+}
+
 </style>
 </head>
 
@@ -122,7 +164,7 @@ background:linear-gradient(90deg,#ff1493,#ff69b4);
 <div id="swipe" onclick="unlock()">Swipe Up 💖</div>
 </div>
 
-<!-- APP -->
+<!-- MAIN APP -->
 <div id="app">
 
 <h1>💖 Liya x Justin Forever 💖</h1>
@@ -131,52 +173,48 @@ background:linear-gradient(90deg,#ff1493,#ff69b4);
 <div class="card">
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="152"></iframe>
+width="100%" height="152"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 </div>
 
 <!-- MEMORY GALLERY -->
 <div class="card">
 <h3>📸 Our Memories</h3>
 <div class="gallery">
-<img src="1.jpg">
-<img src="2.jpg">
-<img src="3.jpg">
-<img src="4.jpg">
-<img src="5.jpg">
-<img src="6.jpg">
-<img src="7.jpg">
-<img src="8.jpg">
-<img src="9.jpg">
-<img src="10.jpg">
-<img src="11.jpg">
-<img src="12.jpg">
-<img src="13.jpg">
-<img src="14.jpg">
-<img src="15.jpg">
-<img src="16.jpg">
-<img src="17.jpg">
-<img src="18.jpg">
-<img src="19.jpg">
-<img src="20.jpg">
+<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg">
+<img src="6.jpg"><img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg">
+<img src="11.jpg"><img src="12.jpg"><img src="13.jpg"><img src="14.jpg"><img src="15.jpg">
+<img src="16.jpg"><img src="17.jpg"><img src="18.jpg"><img src="19.jpg"><img src="20.jpg">
 </div>
 </div>
 
 <!-- PROFILE -->
 <div class="card">
-<p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9; text-shadow:0 0 10px rgba(255,105,180,0.6);">
+<p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9;">
 
 💗 <b>Liya</b> — 20 ✨<br>
-📍 Born in Kelantan | Studying in KPM Perak<br>
-🏹 Archery Queen | 🌸 Soft Heart, Strong Soul<br>
-🎂 Birthday: <span style="color:#fff;">1 April</span><br><br>
+📍 Kelantan | KPM Perak<br>
+🏹 Archery Queen 💖<br><br>
 
 💙 <b>Justin</b> — 22 ✨<br>
-📍 Born in Penang | Studying in UTP Perak<br>
-🎾 Tennis Player | 💫 Always Thinking of You<br>
-🎂 Birthday: <span style="color:#fff;">12 October</span><br><br>
+📍 Penang | UTP Perak<br>
+🎾 Tennis Player 💫<br><br>
 
-💞 <i>"Two different lives, one forever story."</i>
+💞 <i>"Two lives, one forever story."</i>
+</p>
+</div>
 
+<!-- LOVE LETTER -->
+<div class="card loveLetter">
+<h2>💌 Love Letter</h2>
+<p>
+My sayang 💖<br><br>
+Every moment with you is my happiness 🥺✨<br>
+You are my peace, my home, my everything 💞<br><br>
+No matter what happens, I will always choose you 💕<br><br>
+Forever yours,<br>
+💖 Justin
 </p>
 </div>
 
@@ -190,7 +228,7 @@ width="100%" height="152"></iframe>
 
 <script>
 
-// CLOCK
+/* CLOCK */
 function updateTime(){
 let d=new Date();
 document.getElementById("time").innerText=
@@ -200,21 +238,41 @@ document.getElementById("date").innerText=d.toDateString();
 setInterval(updateTime,1000);
 updateTime();
 
-// UNLOCK
+/* UNLOCK */
 function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
 }
 
-// DAYS COUNTER
+/* DAYS */
 let start=new Date("2024-01-01");
 let now=new Date();
 let diff=Math.floor((now-start)/(1000*60*60*24));
 document.getElementById("days").innerHTML="💞 Together for " + diff + " days";
 
+/* HEARTS */
+function spawnHearts(){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=["💖","💕","✨","🌸"][Math.floor(Math.random()*4)];
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(spawnHearts,400);
+
+/* CATS */
+function spawnCats(){
+let c=document.createElement("div");
+c.className="cat";
+c.innerHTML=["🐱","😻","🐱‍👤","😺"][Math.floor(Math.random()*4)];
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),8000);
+}
+setInterval(spawnCats,2000);
+
 </script>
 
 </body>
 </html>
-```
-
