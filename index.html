@@ -192,6 +192,15 @@ z-index:9999;
 </head>
 
 <body>
+  <div id="loveLetterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:9999;">
+  
+  <div style="background:white;padding:20px;border-radius:20px;width:80%;max-width:400px;">
+    <h2>💌 Motivation Letter</h2>
+    <p id="typedText"></p>
+    <button onclick="closeLetter()">Close 💖</button>
+  </div>
+
+</div>
   <video id="bgVideo" autoplay muted loop>
   <source src = "2.mp3" type="video/mp4">
 </video>
@@ -268,9 +277,8 @@ z-index:9999;
 
   <h3>🎮 Love Menu</h3>
 
-  <button onclick="spawnFlower()">🌸 Flower</button>
-  <button onclick="spawnHeart()">💖 Heart</button>
-  <button onclick="openLetter()">💌 Motivation Letter</button>
+<button onclick="spawnFlower()">🌸 Flower</button>
+<button onclick="openLetter()">💌 Motivation Letter</button>
   <button onclick="window.location.href='archery.html'">🏹 Archery</button>
   <button onclick="window.location.href='school.html'">🏫 School</button>
   <button onclick="window.location.href='virtual_cat.html'">🐱 Cat</button>
@@ -372,16 +380,18 @@ h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },400);
-  function spawnFlower(){
-for(let i=0;i<10;i++){
-let f=document.createElement("div");
-f.innerHTML="🌸";
-f.style.position="fixed";
-f.style.left=Math.random()*100+"vw";
-f.style.top="100vh";
-f.style.fontSize="25px";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),5000);
+function spawnFlower(){
+  for(let i=0;i<12;i++){
+    let f=document.createElement("div");
+    f.innerHTML="🌸";
+    f.style.position="fixed";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top="100vh";
+    f.style.fontSize="25px";
+    f.style.animation="floatUp 5s linear";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),5000);
+  }
 }
 }
 
