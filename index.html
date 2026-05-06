@@ -314,7 +314,7 @@ el.style.top="100vh";
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),5000);
 }
-}
+
 
 function spawnHeart(){
 for(let h=0; h<10; h++){
@@ -326,7 +326,7 @@ el.style.top="100vh";
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),6000);
 }
-}
+
 /* LETTER */
 let letterText = `💌 My sayang,
 
@@ -367,7 +367,6 @@ if(i < letterText.length){
 document.getElementById("typedText").innerHTML += letterText.charAt(i);
 i++;
 typingInterval = setTimeout(typeWriter, speed);
-}
 }
 
 function closeLetter(){
