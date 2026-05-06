@@ -103,11 +103,23 @@ background:#eee;
 border-radius:10px;
 }
 
-/* FLOATERS */
-.heart,.flower{
-position:fixed;
-font-size:25px;
-animation:floatUp 6s linear;
+@keyframes floatUp {
+0% {
+transform: translateY(100vh);
+opacity: 1;
+}
+100% {
+transform: translateY(-120vh);
+opacity: 0;
+}
+}
+
+.heart {
+position: fixed;
+font-size: 22px;
+z-index: 9999;
+animation: floatUp 6s linear forwards;
+pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -321,14 +333,24 @@ f.remove();
 
 /* HEART */
 function spawnHeart(){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),5000);
-}
+for(let i = 0; i < 10; i++){
 
+let h = document.createElement("div");
+h.className = "heart";
+h.innerHTML = "💖";
+
+h.style.left = Math.random() * 100 + "vw";
+h.style.top = "100vh";
+h.style.fontSize = (18 + Math.random()*20) + "px";
+
+document.body.appendChild(h);
+
+setTimeout(() => {
+h.remove();
+}, 6000);
+
+}
+}
 /* LETTER */
 let letterText = `💌 My sayang,
 
