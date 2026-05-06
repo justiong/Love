@@ -10,6 +10,7 @@ body{
 margin:0;
 font-family:Arial;
 overflow-x:hidden;
+overflow-y:auto;
 background:black;
 color:white;
 }
@@ -65,6 +66,7 @@ padding:20px;
 margin:10px;
 }
 
+/* TITLE */
 h1{
 text-align:center;
 color:#ff4fd8;
@@ -74,12 +76,14 @@ color:#ff4fd8;
 .petBtn{
 display:inline-block;
 padding:12px 20px;
-margin:10px;
+margin:8px;
 border-radius:25px;
 background:linear-gradient(90deg,#ff1493,#ff69b4);
 color:white;
 text-decoration:none;
 font-weight:bold;
+border:none;
+cursor:pointer;
 }
 
 /* GALLERY */
@@ -96,7 +100,7 @@ border-radius:15px;
 object-fit:cover;
 }
 
-/* XP BAR */
+/* XP */
 .xpBar{
 width:90%;
 height:15px;
@@ -112,7 +116,7 @@ height:100%;
 background:linear-gradient(90deg,#ff1493,#ff69b4);
 }
 
-/* FLOAT HEART */
+/* HEART */
 .heart{
 position:fixed;
 font-size:20px;
@@ -125,7 +129,7 @@ z-index:9998;
 100%{transform:translateY(-120vh);}
 }
 
-/* FLOAT CAT */
+/* CAT */
 .cat{
 position:fixed;
 font-size:35px;
@@ -151,7 +155,7 @@ z-index:9999;
 
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- LOCK -->
 <div id="lock">
 <div id="time">00:00</div>
 <div id="date">Loading date...</div>
@@ -170,6 +174,8 @@ z-index:9999;
 
 <button class="petBtn" onclick="spawnFlower()">🌸 Flower</button>
 
+<button class="petBtn" onclick="openSchool()">🏫 School Slide</button>
+
 </div>
 
 <!-- SPOTIFY -->
@@ -179,12 +185,20 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
 width="100%" height="152"></iframe>
 </div>
 
-<!-- PROFILE -->
+<!-- PROFILE (RESTORED) -->
 <div class="card">
 <p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9;">
-💗 Liya — 20 ✨<br>
-💙 Justin — 22 ✨<br>
-💞 “One forever story”
+
+💗 <b>Liya</b> — 20 ✨<br>
+📍 Kelantan | KPM Perak<br>
+🏹 Archery Queen 💖<br><br>
+
+💙 <b>Justin</b> — 22 ✨<br>
+📍 Penang | UTP Perak<br>
+🎾 Tennis Player 💫<br><br>
+
+💞 <i>"Two lives, one forever story."</i>
+
 </p>
 </div>
 
@@ -210,10 +224,34 @@ Forever yours,<br>
 </p>
 </div>
 
-<!-- DAYS -->
+<!-- XP -->
 <div class="card">
 <p id="days"></p>
 <div class="xpBar"><div class="xpFill"></div></div>
+</div>
+  <div class="card">
+
+<h3 style="text-align:center;color:#ff4fd8;">🎵 Our Forever Playlist</h3>
+
+<div style="display:flex;justify-content:center;align-items:center;flex-direction:column;">
+
+<iframe style="border-radius:16px;box-shadow:0 0 20px rgba(255,20,147,0.4);"
+src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ?utm_source=generator"
+width="100%" height="160"
+frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+loading="lazy">
+</iframe>
+
+<a href="https://open.spotify.com/playlist/6AnczgR8DnY1mSPGAIb2aJ" target="_blank"
+style="margin-top:10px;padding:10px 18px;border-radius:20px;
+background:linear-gradient(90deg,#1DB954,#1ed760);
+color:white;text-decoration:none;font-weight:bold;">
+🎧 Open in Spotify
+</a>
+
+</div>
+
 </div>
 
 </div>
@@ -234,13 +272,13 @@ String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
 document.getElementById("date").innerText=d.toDateString();
 },1000);
 
-/* DAYS */
+/* DAYS (21 OCT 2025) */
 let start=new Date("2025-10-21");
 let now=new Date();
 let diff=Math.floor((now-start)/(1000*60*60*24));
 document.getElementById("days").innerHTML="💞 Together for " + diff + " days";
 
-/* HEART ANIMATION */
+/* HEARTS */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -248,29 +286,33 @@ h.innerHTML=["💖","💕","✨","💗"][Math.floor(Math.random()*4)];
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},400);
+},500);
 
-/* CAT ANIMATION */
+/* CATS */
 setInterval(()=>{
 let c=document.createElement("div");
 c.className="cat";
-c.innerHTML=["🐱","😻","🐾","🐱‍👤"][Math.floor(Math.random()*4)];
+c.innerHTML=["🐱","😻","🐾"][Math.floor(Math.random()*3)];
 c.style.left=Math.random()*100+"vw";
 document.body.appendChild(c);
 setTimeout(()=>c.remove(),8000);
 },2000);
 
-/* FLOWER BUTTON */
+/* FLOWER */
 function spawnFlower(){
 for(let i=0;i<10;i++){
 let f=document.createElement("div");
 f.className="flower";
 f.innerHTML="🌸";
 f.style.left=Math.random()*100+"vw";
-f.style.top="80vh";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),5000);
 }
+}
+
+/* SCHOOL */
+function openSchool(){
+window.location.href="school.html";
 }
 
 </script>
