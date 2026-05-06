@@ -8,24 +8,19 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#ffb6e6,#ffe0f0,#fff);
+background:linear-gradient(135deg,#ffb6e6,#fff,#ffd6ff);
 }
 
-/* HEADER */
 header{
 background:#ff3f88;
 color:white;
-padding:15px;
+padding:12px;
 text-align:center;
 font-weight:bold;
 }
 
-/* LAYOUT */
-.container{
-padding:10px;
-}
+.section{padding:10px;}
 
-/* CARDS */
 .card{
 background:white;
 padding:15px;
@@ -34,27 +29,24 @@ border-radius:20px;
 box-shadow:0 0 15px rgba(255,105,180,0.2);
 }
 
-/* BUTTONS */
 .btn{
 display:inline-block;
-padding:10px 15px;
+padding:10px 14px;
 margin:5px;
 border-radius:20px;
 background:#ff3f88;
 color:white;
-text-decoration:none;
 border:none;
 cursor:pointer;
+text-decoration:none;
 }
 
-/* CHAT */
 #chatBox{
 height:250px;
 overflow-y:auto;
 border:1px solid #ddd;
 padding:10px;
 border-radius:10px;
-background:#fff;
 }
 
 .msg{
@@ -63,23 +55,45 @@ margin:5px;
 border-radius:10px;
 max-width:70%;
 }
-
 .me{background:#ff3f88;color:white;margin-left:auto;}
 .her{background:#eee;}
 
-/* INPUT */
-#inputArea{
-display:flex;
-margin-top:10px;
-}
-
-#msgInput{
-flex:1;
+input{
+width:70%;
 padding:10px;
-border-radius:20px;
+border-radius:10px;
 border:1px solid #ccc;
 }
 
+.gallery{
+display:flex;
+overflow-x:auto;
+gap:5px;
+}
+
+.gallery img{
+width:120px;
+height:120px;
+border-radius:10px;
+object-fit:cover;
+}
+
+#loveLetterBox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.letterCard{
+background:white;
+padding:20px;
+border-radius:15px;
+width:80%;
+}
 </style>
 </head>
 
@@ -87,147 +101,115 @@ border:1px solid #ccc;
 
 <header>💖 Liya x Justin Forever App 💖</header>
 
-<div class="container">
+<!-- PROFILE + DAYS -->
+<div class="section">
+  <div class="card">
+    <h3>💞 Profile</h3>
+    💗 Liya — Born 1 April<br>
+    💙 Justin — Born 12 October
+  </div>
 
-<!-- PROFILE -->
-<div class="card">
-<h3>💞 Real Profile</h3>
-
-💗 <b>Liya</b> — 20<br>
-📍 Kelantan | KPM Perak<br>
-🏹 Archery Queen<br>
-🎂 1 April<br><br>
-
-💙 <b>Justin</b> — 22<br>
-📍 Penang | UTP Perak<br>
-🎾 Tennis Player<br>
-🎂 12 October<br>
-
-<br><i>"Two lives, one forever story 💞"</i>
-</div>
-
-<!-- DAYS -->
-<div class="card">
-<p id="days"></p>
+  <div class="card">
+    <h3>📅 Days Together</h3>
+    <p id="days"></p>
+  </div>
 </div>
 
 <!-- BUTTONS -->
-<div class="card">
-<button class="btn" onclick="openLetter()">💌 Motivation Letter</button>
-<a class="btn" href="virtual_cat.html">🐱 Cat</a>
-<a class="btn" href="archery.html">🏹 Game</a>
+<div class="section">
+  <div class="card">
+    <h3>🎮 Menu</h3>
+
+    <button class="btn" onclick="spawnFlower()">🌸 Flower</button>
+    <button class="btn" onclick="openSchool()">🏫 School</button>
+    <button class="btn" onclick="openLetter()">💌 Motivation</button>
+
+    <a class="btn" href="virtual_cat.html">🐱 Cat</a>
+    <a class="btn" href="archery.html">🏹 Game</a>
+  </div>
 </div>
 
-<!-- SPOTIFY -->
-<div class="card">
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="150"></iframe>
+<!-- MEMORIES -->
+<div class="section">
+  <div class="card">
+    <h3>📸 Memories (18)</h3>
+    <div class="gallery">
+      <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg">
+      <img src="6.jpg"><img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg">
+      <img src="11.jpg"><img src="12.jpg"><img src="13.jpg"><img src="14.jpg"><img src="15.jpg">
+      <img src="16.jpg"><img src="17.jpg"><img src="18.jpg">
+    </div>
+  </div>
 </div>
 
 <!-- CHAT -->
-<div class="card">
-<h3>💬 Live Chat</h3>
-
-<div id="chatBox"></div>
-
-<div id="inputArea">
-<input id="msgInput" placeholder="Type message 💖">
-<button class="btn" onclick="sendMsg()">Send</button>
-</div>
+<div class="section">
+  <div class="card">
+    <h3>💬 Live Chat</h3>
+    <div id="chatBox"></div><br>
+    <input id="msg" placeholder="Type message">
+    <button class="btn" onclick="sendMsg()">Send</button>
+  </div>
 </div>
 
-</div>
-
-<!-- LETTER POPUP -->
-<div id="letterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
-  <div style="background:white;padding:20px;border-radius:20px;width:80%;">
+<!-- LOVE LETTER -->
+<div id="loveLetterBox">
+  <div class="letterCard">
     <h3>💌 Motivation Letter</h3>
     <p>
-My sayang 💖<br><br>
-
-This assignment is hard sometimes 🥺<br>
-But I believe in you always 💫<br>
-Keep going step by step 🌸<br>
-You are stronger than you think 🏹✨<br><br>
-
-I’m always proud of you 💞<br><br>
-
-Forever yours,<br>
-Justin 💖
+      My sayang 💖<br><br>
+      You are strong, don’t give up on your assignment 🥺✨<br>
+      I always believe in you 💫<br><br>
+      Forever yours 💖
     </p>
-
     <button class="btn" onclick="closeLetter()">Close</button>
   </div>
 </div>
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
 <script>
-
-/* DAYS */
-let start = new Date("2025-10-21");
-let now = new Date();
-let diff = Math.floor((now-start)/(1000*60*60*24));
-document.getElementById("days").innerHTML =
-"💞 Together for " + diff + " days";
-
-/* LETTER */
-function openLetter(){
-document.getElementById("letterBox").style.display="flex";
-}
-function closeLetter(){
-document.getElementById("letterBox").style.display="none";
-}
-
-/* FIREBASE (PUT YOUR CONFIG) */
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "YOUR_DB_URL",
-  projectId: "YOUR_ID",
+  apiKey:"YOUR_KEY",
+  authDomain:"YOUR_DOMAIN",
+  databaseURL:"YOUR_DB",
+  projectId:"YOUR_ID"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-let user = prompt("Enter name: Justin / Liya");
+let user = prompt("Justin or Liya?");
 
-/* SEND */
 function sendMsg(){
-let msg = document.getElementById("msgInput").value;
-if(msg==="") return;
-
-db.ref("messages").push({
-user:user,
-text:msg
-});
-
-document.getElementById("msgInput").value="";
+let m=document.getElementById("msg").value;
+if(!m) return;
+db.ref("chat").push({user:user,text:m});
+document.getElementById("msg").value="";
 }
 
-/* RECEIVE */
-db.ref("messages").on("child_added", snap=>{
-let data = snap.val();
-
-let div = document.createElement("div");
+db.ref("chat").on("child_added",snap=>{
+let d=snap.val();
+let div=document.createElement("div");
 div.classList.add("msg");
-
-if(data.user === user){
-div.classList.add("me");
-div.innerHTML = "You: "+data.text;
-}else{
-div.classList.add("her");
-div.innerHTML = data.user+": "+data.text;
-}
-
+div.classList.add(d.user===user?"me":"her");
+div.innerHTML=d.user+": "+d.text;
 document.getElementById("chatBox").appendChild(div);
-document.getElementById("chatBox").scrollTop =
-document.getElementById("chatBox").scrollHeight;
 });
 
-</script>
+// DAYS
+let start=new Date("2025-10-21");
+let now=new Date();
+let diff=Math.floor((now-start)/(1000*60*60*24));
+document.getElementById("days").innerText=diff+" days 💖";
 
-</body>
-</html>
+function openSchool(){alert("School page");}
+function spawnFlower(){alert("🌸🌸🌸");}
+function openLetter(){document.getElementById("loveLetterBox").style.display="flex";}
+function closeLetter(){document.getElementById("loveLetterBox").style.display="none";}
+</script>
 
 </body>
 </html>
