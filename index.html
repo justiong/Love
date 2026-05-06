@@ -8,96 +8,53 @@
 body{
 margin:0;
 font-family:Arial;
-background:black;
-color:white;
-overflow-x:hidden;
+background:linear-gradient(135deg,#ffb6e6,#ffe0f0,#fff);
 }
 
-/* LOCK */
-#lock{
-position:fixed;
-width:100%;
-height:100%;
-background:url('1.jpg');
-background-size:cover;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-#time{
-font-size:60px;
-text-shadow:0 0 20px pink;
-}
-
-#date{margin:10px;}
-
-#swipe{
-padding:15px 25px;
+/* HEADER */
+header{
 background:#ff3f88;
-border-radius:30px;
-cursor:pointer;
-}
-
-/* APP */
-#app{
-display:none;
+color:white;
 padding:15px;
-background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-min-height:100vh;
+text-align:center;
+font-weight:bold;
 }
 
-h1{text-align:center;color:#ff4fd8;}
+/* LAYOUT */
+.container{
+padding:10px;
+}
+
+/* CARDS */
+.card{
+background:white;
+padding:15px;
+margin:10px 0;
+border-radius:20px;
+box-shadow:0 0 15px rgba(255,105,180,0.2);
+}
 
 /* BUTTONS */
-.petBtn{
+.btn{
 display:inline-block;
-padding:12px 18px;
-margin:6px;
-border-radius:25px;
-background:linear-gradient(90deg,#ff1493,#ff69b4);
+padding:10px 15px;
+margin:5px;
+border-radius:20px;
+background:#ff3f88;
 color:white;
 text-decoration:none;
 border:none;
 cursor:pointer;
 }
 
-/* CARD */
-.card{
-background:rgba(255,255,255,0.1);
-padding:15px;
-margin:10px;
-border-radius:15px;
-}
-
-/* GALLERY */
-.gallery{
-display:flex;
-overflow-x:auto;
-}
-.gallery img{
-width:120px;height:120px;margin:5px;border-radius:10px;
-}
-
-/* HEARTS */
-.heart{
-position:fixed;
-animation:floatUp 6s linear infinite;
-}
-@keyframes floatUp{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
-
 /* CHAT */
 #chatBox{
 height:250px;
 overflow-y:auto;
-background:#111;
+border:1px solid #ddd;
 padding:10px;
 border-radius:10px;
+background:#fff;
 }
 
 .msg{
@@ -107,137 +64,170 @@ border-radius:10px;
 max-width:70%;
 }
 
-.me{background:#ff3f88;margin-left:auto;}
-.her{background:white;color:black;}
+.me{background:#ff3f88;color:white;margin-left:auto;}
+.her{background:#eee;}
 
-input{
-width:70%;
+/* INPUT */
+#inputArea{
+display:flex;
+margin-top:10px;
+}
+
+#msgInput{
+flex:1;
 padding:10px;
 border-radius:20px;
-border:none;
+border:1px solid #ccc;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- LOCK SCREEN -->
-<div id="lock">
-<div id="time">00:00</div>
-<div id="date"></div>
-<div id="swipe" onclick="unlock()">Swipe Up 💖</div>
-</div>
+<header>💖 Liya x Justin Forever App 💖</header>
 
-<!-- APP -->
-<div id="app">
-
-<h1>💖 Liya x Justin Forever 💖</h1>
-
-<!-- BUTTONS -->
-<div class="card" style="text-align:center;">
-
-<a href="virtual_cat.html" class="petBtn">🐱 Cat</a>
-<button class="petBtn" onclick="spawnFlower()">🌸 Flower</button>
-<button class="petBtn" onclick="openLetter()">💌 Letter</button>
-<a href="archery.html" class="petBtn">🏹 Game</a>
-<button class="petBtn" onclick="toggleChat()">💬 Live Chat</button>
-
-</div>
-
-<!-- SPOTIFY -->
-<div class="card">
-<iframe src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="152"></iframe>
-</div>
+<div class="container">
 
 <!-- PROFILE -->
 <div class="card">
 <h3>💞 Real Profile</h3>
-💗 Liya 20 KPM KELANTAN— Archery Queen<br>
-💙 Justin 22 UTP PENANG — Tennis Player<br>
-<i>Forever story 💞</i>
+
+💗 <b>Liya</b> — 20<br>
+📍 Kelantan | KPM Perak<br>
+🏹 Archery Queen<br>
+🎂 1 April<br><br>
+
+💙 <b>Justin</b> — 22<br>
+📍 Penang | UTP Perak<br>
+🎾 Tennis Player<br>
+🎂 12 October<br>
+
+<br><i>"Two lives, one forever story 💞"</i>
 </div>
 
-<!-- MEMORIES -->
+<!-- DAYS -->
 <div class="card">
-<h3>📸 Memories</h3>
-<div class="gallery">
-<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
-</div>
+<p id="days"></p>
 </div>
 
-<!-- LETTER -->
+<!-- BUTTONS -->
 <div class="card">
-<h3>💌 Love Letter</h3>
-<p>You are my peace, my home, my everything 💖</p>
+<button class="btn" onclick="openLetter()">💌 Motivation Letter</button>
+<a class="btn" href="virtual_cat.html">🐱 Cat</a>
+<a class="btn" href="archery.html">🏹 Game</a>
+</div>
+
+<!-- SPOTIFY -->
+<div class="card">
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
+width="100%" height="150"></iframe>
 </div>
 
 <!-- CHAT -->
-<div class="card" id="chatSection" style="display:none;">
+<div class="card">
 <h3>💬 Live Chat</h3>
 
 <div id="chatBox"></div>
 
-<input id="msgInput" placeholder="Type message...">
-<button class="petBtn" onclick="sendMsg()">Send</button>
+<div id="inputArea">
+<input id="msgInput" placeholder="Type message 💖">
+<button class="btn" onclick="sendMsg()">Send</button>
+</div>
 </div>
 
+</div>
+
+<!-- LETTER POPUP -->
+<div id="letterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
+  <div style="background:white;padding:20px;border-radius:20px;width:80%;">
+    <h3>💌 Motivation Letter</h3>
+    <p>
+My sayang 💖<br><br>
+
+This assignment is hard sometimes 🥺<br>
+But I believe in you always 💫<br>
+Keep going step by step 🌸<br>
+You are stronger than you think 🏹✨<br><br>
+
+I’m always proud of you 💞<br><br>
+
+Forever yours,<br>
+Justin 💖
+    </p>
+
+    <button class="btn" onclick="closeLetter()">Close</button>
+  </div>
 </div>
 
 <script>
-// LOCK
-function unlock(){
-document.getElementById("lock").style.display="none";
-document.getElementById("app").style.display="block";
+
+/* DAYS */
+let start = new Date("2025-10-21");
+let now = new Date();
+let diff = Math.floor((now-start)/(1000*60*60*24));
+document.getElementById("days").innerHTML =
+"💞 Together for " + diff + " days";
+
+/* LETTER */
+function openLetter(){
+document.getElementById("letterBox").style.display="flex";
+}
+function closeLetter(){
+document.getElementById("letterBox").style.display="none";
 }
 
-// CLOCK
-setInterval(()=>{
-let d=new Date();
-document.getElementById("time").innerText=
-String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
-document.getElementById("date").innerText=d.toDateString();
-},1000);
+/* FIREBASE (PUT YOUR CONFIG) */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "YOUR_DB_URL",
+  projectId: "YOUR_ID",
+};
 
-// FLOWER
-function spawnFlower(){
-for(let i=0;i<10;i++){
-let f=document.createElement("div");
-f.className="heart";
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),5000);
-}
-}
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// CHAT TOGGLE
-function toggleChat(){
-let c=document.getElementById("chatSection");
-c.style.display = (c.style.display==="none")?"block":"none";
-}
+let user = prompt("Enter name: Justin / Liya");
 
-// SIMPLE LOCAL CHAT (WORKING WITHOUT FIREBASE)
+/* SEND */
 function sendMsg(){
-let msg=document.getElementById("msgInput").value;
-if(!msg) return;
+let msg = document.getElementById("msgInput").value;
+if(msg==="") return;
 
-let div=document.createElement("div");
-div.className="msg me";
-div.innerHTML="You: "+msg;
+db.ref("messages").push({
+user:user,
+text:msg
+});
+
+document.getElementById("msgInput").value="";
+}
+
+/* RECEIVE */
+db.ref("messages").on("child_added", snap=>{
+let data = snap.val();
+
+let div = document.createElement("div");
+div.classList.add("msg");
+
+if(data.user === user){
+div.classList.add("me");
+div.innerHTML = "You: "+data.text;
+}else{
+div.classList.add("her");
+div.innerHTML = data.user+": "+data.text;
+}
 
 document.getElementById("chatBox").appendChild(div);
-document.getElementById("msgInput").value="";
+document.getElementById("chatBox").scrollTop =
+document.getElementById("chatBox").scrollHeight;
+});
 
-// fake reply
-setTimeout(()=>{
-let r=document.createElement("div");
-r.className="msg her";
-r.innerHTML="Liya: 💖 I saw your message";
-document.getElementById("chatBox").appendChild(r);
-},1000);
-}
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
