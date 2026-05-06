@@ -1,26 +1,25 @@
+# 💖 Ultra Love Cinematic App (FULL VERSION) 💖
+
+Save as `index.html`
+
+---
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin Forever Love App 💖</title>
+<title>💖 Liya x Justin Forever App 💖</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-
-/* GLOBAL FIX (IMPORTANT FOR LAPTOP SCROLL) */
-html{
-scroll-behavior:smooth;
-}
-
 body{
 margin:0;
 font-family:Arial;
-overflow-x:hidden;
-overflow-y:auto;
+overflow:hidden;
 background:black;
 color:white;
-height:auto;
 }
 
 /* LOCK SCREEN */
@@ -36,7 +35,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-z-index:9999;
+backdrop-filter:blur(10px);
 }
 
 #time{
@@ -57,16 +56,14 @@ border-radius:40px;
 cursor:pointer;
 }
 
-/* APP */
+/* MAIN APP */
 #app{
 display:none;
 padding:20px;
 background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
 min-height:100vh;
-overflow-y:auto;
 }
 
-/* CARD */
 .card{
 background:rgba(255,255,255,0.12);
 backdrop-filter:blur(15px);
@@ -75,13 +72,11 @@ padding:20px;
 margin:10px;
 }
 
-/* TITLE */
 h1{
 text-align:center;
 color:#ff4fd8;
 }
 
-/* BUTTON */
 button{
 padding:10px 15px;
 margin:5px;
@@ -89,19 +84,18 @@ border:none;
 border-radius:20px;
 background:#ff1493;
 color:white;
-cursor:pointer;
 }
 
 /* GALLERY */
 .gallery{
 display:flex;
-overflow-x:auto;
-gap:8px;
+overflow-x:scroll;
 }
 
 .gallery img{
 width:120px;
 height:120px;
+margin:5px;
 border-radius:15px;
 object-fit:cover;
 }
@@ -122,42 +116,6 @@ height:100%;
 background:linear-gradient(90deg,#ff1493,#ff69b4);
 }
 
-/* LOVE LETTER */
-.loveLetter{
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(10px);
-padding:20px;
-border-radius:20px;
-margin:10px;
-color:#ffb6d9;
-}
-
-/* HEART ANIMATION */
-.heart{
-position:fixed;
-font-size:20px;
-animation:float 6s linear infinite;
-z-index:9998;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
-
-/* CAT ANIMATION */
-.cat{
-position:fixed;
-font-size:35px;
-animation:catMove 8s linear infinite;
-z-index:9999;
-}
-
-@keyframes catMove{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-120vh);}
-}
-
 </style>
 </head>
 
@@ -170,10 +128,14 @@ z-index:9999;
 <div id="swipe" onclick="unlock()">Swipe Up 💖</div>
 </div>
 
-<!-- MAIN APP -->
+<!-- APP -->
 <div id="app">
 
 <h1>💖 Liya x Justin Forever 💖</h1>
+
+<div style="text-align:center;">
+<a href="virtual_cat.html" class="petBtn" style="display:inline-block;padding:10px 18px;margin:10px;border-radius:20px;background:#ff1493;color:white;text-decoration:none;">🐱 Virtual Cat</a>
+</div>
 
 <!-- SPOTIFY -->
 <div class="card">
@@ -182,39 +144,53 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
 width="100%" height="152"></iframe>
 </div>
 
-<!-- GALLERY -->
+<!-- MEMORY GALLERY -->
 <div class="card">
 <h3>📸 Our Memories</h3>
 <div class="gallery">
-<img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg">
-<img src="6.jpg"><img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg">
-<img src="11.jpg"><img src="12.jpg"><img src="13.jpg"><img src="14.jpg"><img src="15.jpg">
-<img src="16.jpg"><img src="17.jpg"><img src="18.jpg"><img src="19.jpg"><img src="20.jpg">
+<img src="1.jpg">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+<img src="6.jpg">
+<img src="7.jpg">
+<img src="8.jpg">
+<img src="9.jpg">
+<img src="10.jpg">
+<img src="11.jpg">
+<img src="12.jpg">
+<img src="13.jpg">
+<img src="14.jpg">
+<img src="15.jpg">
+<img src="16.jpg">
+<img src="17.jpg">
+<img src="18.jpg">
+<img src="19.jpg">
+<img src="20.jpg">
 </div>
 </div>
 
 <!-- PROFILE -->
 <div class="card">
-<p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9;">
-💗 Liya — 20 ✨<br>
-💙 Justin — 22 ✨<br>
-💞 "One forever story"
+<p style="text-align:center; font-size:16px; line-height:1.8; color:#ffb6d9; text-shadow:0 0 10px rgba(255,105,180,0.6);">
+
+💗 <b>Liya</b> — 20 ✨<br>
+📍 Born in Kelantan | Studying in KPM Perak<br>
+🏹 Archery Queen | 🌸 Soft Heart, Strong Soul<br>
+🎂 Birthday: <span style="color:#fff;">1 April</span><br><br>
+
+💙 <b>Justin</b> — 22 ✨<br>
+📍 Born in Penang | Studying in UTP Perak<br>
+🎾 Tennis Player | 💫 Always Thinking of You<br>
+🎂 Birthday: <span style="color:#fff;">12 October</span><br><br>
+
+💞 <i>"Two different lives, one forever story."</i>
+
 </p>
 </div>
 
-<!-- LOVE LETTER -->
-<div class="card loveLetter">
-<h2>💌 Love Letter</h2>
-<p>
-My sayang 💖<br><br>
-You are my peace, my home, my happiness 🥺✨<br><br>
-I will always choose you no matter what 💞<br><br>
-Forever yours,<br>
-💖 Justin
-</p>
-</div>
-
-<!-- XP -->
+<!-- XP SYSTEM -->
 <div class="card">
 <p id="days"></p>
 <div class="xpBar"><div class="xpFill"></div></div>
@@ -224,7 +200,7 @@ Forever yours,<br>
 
 <script>
 
-/* CLOCK */
+// CLOCK
 function updateTime(){
 let d=new Date();
 document.getElementById("time").innerText=
@@ -234,39 +210,88 @@ document.getElementById("date").innerText=d.toDateString();
 setInterval(updateTime,1000);
 updateTime();
 
-/* UNLOCK */
+// UNLOCK
 function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
-document.body.style.overflowY="auto";
 }
 
-/* DAYS */
+// DAYS COUNTER
 let start=new Date("2024-01-01");
 let now=new Date();
 let diff=Math.floor((now-start)/(1000*60*60*24));
 document.getElementById("days").innerHTML="💞 Together for " + diff + " days";
 
-/* HEARTS */
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML=["💖","💕","✨","🌸"][Math.floor(Math.random()*4)];
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
+</script>
 
-/* CATS */
-setInterval(()=>{
-let c=document.createElement("div");
-c.className="cat";
-c.innerHTML=["🐱","😻","😺","🐱‍👤"][Math.floor(Math.random()*4)];
-c.style.left=Math.random()*100+"vw";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),8000);
-},2000);
+</body>
+</html>
+```
 
+---
+
+# 💖 FEATURES INCLUDED
+
+✔ Lock screen swipe unlock 💫
+✔ Spotify playlist 🎵
+✔ 20 image memory gallery 📸
+✔ Love profile section 💕
+✔ Days counter 💞
+✔ XP love bar 💖
+
+---
+
+If you want next upgrade say:
+**“make it IOS style love phone UI” 🔥💖**
+
+<!-- 🐱 CAT + LOVE ANIMATION + LOVE LETTER 💖 -->
+
+<style>
+.catFloat{
+position:fixed;
+font-size:40px;
+animation:catMove 6s linear infinite;
+z-index:9999;
+}
+
+@keyframes catMove{
+0%{transform:translateY(100vh) translateX(0);}
+100%{transform:translateY(-120vh) translateX(50px);}
+}
+
+.loveLetter{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:20px;
+margin:15px;
+color:#fff;
+box-shadow:0 0 20px rgba(255,20,147,0.5);
+}
+</style>
+
+<div class="loveLetter">
+<h2>💌 Love Letter For Sayang 💌</h2>
+<p>
+My sayang 💖<br><br>
+I don’t need the world when I have you 🥺✨<br>
+You are my peace, my happiness, my forever home 🐱💞<br><br>
+Even if time passes, I will still choose you again and again 💕<br><br>
+Forever yours,<br>
+💖 Justin
+</p>
+</div>
+
+<script>
+function spawnCat(){
+const cat=document.createElement("div");
+cat.className="catFloat";
+cat.innerHTML=["🐱","🐱‍⬛","😺","😻"][Math.floor(Math.random()*4)];
+cat.style.left=Math.random()*100+"vw";
+document.body.appendChild(cat);
+setTimeout(()=>cat.remove(),6000);
+}
+setInterval(spawnCat,1200);
 </script>
 
 </body>
