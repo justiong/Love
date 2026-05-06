@@ -265,8 +265,12 @@ let typingInterval;
 
 /* START */
 function startGame(){
-user=document.getElementById("name").value;
-if(!user)return;
+let user=document.getElementById("name").value;
+
+if(user.trim()===""){
+alert("Please enter name 💖");
+return;
+}
 
 document.getElementById("login").style.display="none";
 document.getElementById("app").style.display="block";
@@ -287,10 +291,12 @@ document.getElementById("bar").style.width=level+"%";
 document.getElementById("xp").innerText=days*3+"/100 XP";
 
 /* MUSIC */
-document.getElementById("bgMusic").play().catch(()=>{});
+let audio=document.getElementById("bgMusic");
+audio.volume=0.5;
+audio.play().catch(()=>{});
 }
 
-/* CHAT */
+/* CHAT */cument.get
 function sendMsg(){
 let m=document.getElementById("msg").value;
 if(!m)return;
