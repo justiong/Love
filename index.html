@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin Ultra Love Game 💖</title>
+<title>💖 Liya x Justin Love Game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -16,10 +16,11 @@ color:white;
 overflow-x:hidden;
 }
 
-/* VIDEO */
+/* VIDEO BACKGROUND */
 #bgVideo{
 position:fixed;
-top:0;left:0;
+top:0;
+left:0;
 width:100%;
 height:100%;
 object-fit:cover;
@@ -30,24 +31,25 @@ opacity:0.25;
 /* DARK OVERLAY */
 .overlay{
 position:fixed;
-top:0;left:0;
+top:0;
+left:0;
 width:100%;
 height:100%;
 background:radial-gradient(circle,rgba(0,0,0,0.2),rgba(0,0,0,0.85));
 z-index:-1;
 }
 
-/* ===== CARD ===== */
+/* CARD UI */
 .card{
 background:rgba(255,255,255,0.92);
 color:black;
 padding:15px;
 margin:10px;
 border-radius:20px;
-box-shadow:0 0 15px rgba(255,63,136,0.3);
+box-shadow:0 0 20px rgba(255,63,136,0.3);
 }
 
-/* ===== FANCY BUTTONS ===== */
+/* FANCY BUTTONS */
 button{
 padding:12px 16px;
 margin:6px;
@@ -57,10 +59,8 @@ background:linear-gradient(135deg,#ff2e93,#ff6bd6,#ffb3e6);
 color:white;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 12px rgba(255,63,136,0.4);
-transition:0.3s;
-position:relative;
-overflow:hidden;
+transition:0.25s;
+box-shadow:0 0 10px rgba(255,63,136,0.4);
 }
 
 button:hover{
@@ -72,7 +72,7 @@ button:active{
 transform:scale(0.95);
 }
 
-/* ===== PROFILE ===== */
+/* PROFILE */
 .profile{
 text-align:center;
 }
@@ -81,12 +81,12 @@ text-align:center;
 width:110px;
 height:110px;
 border-radius:50%;
-object-fit:cover;
 border:3px solid #ff3f88;
 box-shadow:0 0 15px #ff3f88;
+object-fit:cover;
 }
 
-/* ===== CHAT ===== */
+/* CHAT */
 #chatBox{
 height:150px;
 overflow-y:auto;
@@ -97,14 +97,14 @@ border-radius:10px;
 }
 
 .msg{
+padding:6px;
 margin:5px;
-padding:5px;
-border-radius:10px;
 background:#eee;
+border-radius:10px;
 }
 
-/* ===== FLOATERS ===== */
-.heart,.flower,.cat{
+/* FLOATERS */
+.heart,.flower{
 position:fixed;
 font-size:25px;
 animation:floatUp 6s linear;
@@ -115,7 +115,7 @@ animation:floatUp 6s linear;
 100%{transform:translateY(-120vh);}
 }
 
-/* ===== LEVEL BAR ===== */
+/* LEVEL BAR */
 .levelBar{
 width:100%;
 height:12px;
@@ -131,70 +131,81 @@ background:linear-gradient(90deg,#ff3f88,#ff69b4);
 transition:0.5s;
 }
 
+/* LOGIN SCREEN */
+#login{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff3f88,#ffb6e6);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+outline:none;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- BACKGROUND VIDEO -->
 <video id="bgVideo" autoplay muted loop>
 <source src="bg.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
 <source src="2.mp3" type="audio/mpeg">
 </audio>
 
 <!-- LOGIN -->
-<div id="login" class="card" style="text-align:center;">
+<div id="login">
 <h2>💖 Enter Name</h2>
 <input id="name" placeholder="Justin / Liya">
 <br><br>
-<button onclick="startGame()">Start Love Game 💕</button>
+<button onclick="startGame()">Start Game 💕</button>
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none;">
 
-<!-- HEADER -->
-<div class="card" style="text-align:center;">
-<h2>💖 Liya x Justin Ultra Love Game</h2>
-</div>
-
-<!-- PROFILE -->
 <div class="card profile">
 <img src="6.jpg">
 <h3>💞 TikTok Profile</h3>
 💗 Liya | 💙 Justin
 </div>
 
-<!-- SPOTIFY -->
 <div class="card">
 <h3>🎵 Spotify</h3>
 <iframe width="100%" height="152"
 src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 </div>
 
-<!-- LEVEL -->
 <div class="card">
-<h3>💍 Relationship Level</h3>
+<h3>💍 Level</h3>
 <div id="levelText">Level 1</div>
-<div class="levelBar">
-<div id="bar" class="levelFill"></div>
-</div>
+<div class="levelBar"><div id="bar" class="levelFill"></div></div>
 </div>
 
-<!-- DAYS -->
 <div class="card">
 <h3>📅 Days Together</h3>
 <div id="days"></div>
 </div>
 
-<!-- XP -->
 <div class="card">
 <h3>⚡ XP</h3>
-<div id="xpText"></div>
+<div id="xp"></div>
 </div>
 
 <!-- CHAT -->
@@ -205,7 +216,7 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 <button onclick="sendMsg()">Send</button>
 </div>
 
-<!-- MENU BUTTONS -->
+<!-- BUTTONS -->
 <div class="card">
 <h3>🎮 Menu</h3>
 
@@ -222,7 +233,7 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 <div id="letterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
 <div class="card" style="width:80%;max-width:400px;">
 <h3>💌 Motivation Letter</h3>
-<p id="typedText"></p>
+<p id="letterText"></p>
 <button onclick="closeLetter()">Close</button>
 </div>
 </div>
@@ -253,7 +264,7 @@ document.getElementById("levelText").innerText="Level "+level;
 document.getElementById("bar").style.width=level+"%";
 
 /* XP */
-document.getElementById("xpText").innerText=days*3+" / 100 XP";
+document.getElementById("xp").innerText=days*3+"/100 XP";
 
 /* MUSIC */
 document.getElementById("bgMusic").play().catch(()=>{});
@@ -298,14 +309,33 @@ setTimeout(()=>h.remove(),5000);
 function openLetter(){
 document.getElementById("letterBox").style.display="flex";
 
-document.getElementById("typedText").innerText=
+document.getElementById("letterText").innerText=
 `💌 My sayang,
 
-You are strong 💖
-Never give up 🌸
+I know your assignment feels heavy sometimes 🥺
+But I want you to remember this…
 
-I believe in you always ✨
-- Justin`;
+You are not alone in this journey 💖
+Even when things feel difficult, I’m always cheering for you from here ✨
+
+You are capable, smart, and stronger than you think 🌸
+Every small effort you make is already a step closer to success 📚
+
+Don’t pressure yourself too much…
+Just take it slowly, one step at a time 💫
+
+Even if you feel tired, confused, or stressed —
+I still believe in you 100% 🏹💖
+
+You are doing better than you think,
+and I’m really proud of you, sayang 💞
+
+So keep going okay?
+Your future is waiting for you 🌷
+Forever love you sayang 
+
+Forever yours,
+💖 husby
 }
 
 function closeLetter(){
