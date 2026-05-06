@@ -8,22 +8,22 @@
 
 body{
 margin:0;
-height:100vh;
-overflow-x:hidden;
-overflow-y:auto;
 font-family:Arial;
 background:linear-gradient(135deg,#ffe0f0,#fff0f8);
+min-height:100vh;
+overflow-x:hidden;
+overflow-y:auto;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 }
 
-/* floating items */
+/* FLOATING ITEMS */
 .floatItem{
-position:absolute;
+position:fixed;
 font-size:20px;
 animation:floatUp 6s linear infinite;
+z-index:999;
 }
 
 @keyframes floatUp{
@@ -31,7 +31,7 @@ animation:floatUp 6s linear infinite;
 100%{transform:translateY(-120vh);}
 }
 
-/* main box */
+/* MAIN BOX */
 .box{
 width:360px;
 background:white;
@@ -42,22 +42,25 @@ box-shadow:0 0 30px rgba(255,105,180,0.3);
 position:relative;
 }
 
-/* pet */
+/* PET 3D */
 .pet{
-font-size:110px;
+font-size:120px;
 cursor:pointer;
+animation:floatPet 3s ease-in-out infinite;
 transition:0.3s;
 }
 
-.pet:hover{
-transform:scale(1.1);
+@keyframes floatPet{
+0%{transform:translateY(0px) rotateY(0deg);}
+50%{transform:translateY(-10px) rotateY(25deg);}
+100%{transform:translateY(0px) rotateY(0deg);}
 }
 
 h1{
 color:#ff3f88;
 }
 
-/* bars */
+/* BARS */
 .bar{
 width:100%;
 height:15px;
@@ -74,7 +77,16 @@ background:linear-gradient(90deg,#ff3f88,#ff86b5);
 transition:0.3s;
 }
 
-/* buttons */
+/* INPUT */
+input{
+padding:8px;
+border-radius:10px;
+border:none;
+margin:5px;
+outline:none;
+}
+
+/* BUTTONS */
 button, select{
 margin:5px;
 padding:10px 15px;
@@ -85,11 +97,12 @@ color:white;
 cursor:pointer;
 }
 
-/* game area */
+/* GAME AREA */
 #gameArea{
 margin-top:10px;
-height:80px;
+height:90px;
 position:relative;
+overflow:hidden;
 }
 
 .food{
@@ -98,26 +111,30 @@ font-size:22px;
 cursor:pointer;
 }
 
+/* SMALL TEXT */
 .small{
 font-size:13px;
 color:#a34b70;
 }
 
-/* BACK BUTTON */
+/* BACK BUTTON (FIXED) */
 .backBtn{
-display:inline-block;
-margin-top:15px;
-padding:10px 18px;
-border-radius:25px;
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+padding:12px 20px;
+border-radius:30px;
 background:#ff3f88;
 color:white;
 text-decoration:none;
 font-weight:bold;
-transition:0.3s;
+box-shadow:0 0 15px rgba(255,105,180,0.6);
+z-index:9999;
 }
 
 .backBtn:hover{
-transform:scale(1.1);
+transform:translateX(-50%) scale(1.1);
 background:#ff69b4;
 }
 
@@ -133,7 +150,11 @@ background:#ff69b4;
 
 <h1 id="petName">Mochi</h1>
 
-<!-- CUSTOMIZE -->
+<!-- NAME -->
+<input id="nameInput" placeholder="Enter pet name">
+<button onclick="changeName()">Rename 💖</button>
+
+<!-- PET TYPE -->
 <select onchange="changePet(this.value)">
 <option value="🐱">Cat 🐱</option>
 <option value="🐶">Dog 🐶</option>
@@ -141,11 +162,12 @@ background:#ff69b4;
 <option value="🐼">Panda 🐼</option>
 </select>
 
+<!-- SHIRT -->
 <select onchange="changeShirt(this.value)">
-<option value="white">Shirt: White</option>
-<option value="pink">Shirt: Pink</option>
-<option value="blue">Shirt: Blue</option>
-<option value="black">Shirt: Black</option>
+<option value="white">White</option>
+<option value="pink">Pink</option>
+<option value="blue">Blue</option>
+<option value="black">Black</option>
 </select>
 
 <!-- STATUS -->
@@ -164,20 +186,19 @@ background:#ff69b4;
 <button onclick="sleep()">😴 Sleep</button>
 <button onclick="spawnFood()">🍔 Drop Food</button>
 
-<!-- GAME AREA -->
+<!-- GAME -->
 <div id="gameArea"></div>
 
 <p class="small">Tap food to feed your pet 💖</p>
 
+</div>
+
 <!-- BACK BUTTON -->
 <a href="index.html" class="backBtn">⬅ Back Home</a>
-
-</div>
 
 <script>
 
 let pet="🐱";
-
 let hunger=100;
 let loveVal=100;
 let energy=100;
@@ -189,13 +210,21 @@ document.getElementById("loveBar").style.width=loveVal+"%";
 document.getElementById("energyBar").style.width=energy+"%";
 }
 
-/* PET CHANGE */
+/* NAME */
+function changeName(){
+let name=document.getElementById("nameInput").value;
+if(name.trim()!==""){
+document.getElementById("petName").innerText=name;
+}
+}
+
+/* PET */
 function changePet(val){
 pet=val;
 document.getElementById("pet").innerHTML=val;
 }
 
-/* SHIRT CHANGE */
+/* SHIRT */
 function changeShirt(color){
 document.getElementById("pet").style.filter=
 color==="black"?"grayscale(1)":
@@ -203,17 +232,19 @@ color==="blue"?"hue-rotate(180deg)":
 color==="pink"?"hue-rotate(320deg)":"none";
 }
 
-/* ACTIONS */
+/* FEED */
 function feed(){
-hunger=Math.min(100,hunger+20);
+hunger=Math.min(100,hunger+25);
 update();
 }
 
+/* LOVE */
 function loveUp(){
 loveVal=Math.min(100,loveVal+20);
 update();
 }
 
+/* SLEEP */
 function sleep(){
 energy=Math.min(100,energy+25);
 update();
@@ -223,7 +254,7 @@ update();
 function petAction(){
 loveVal=Math.min(100,loveVal+5);
 document.getElementById("pet").innerHTML="😻";
-setTimeout(()=>document.getElementById("pet").innerHTML=pet,800);
+setTimeout(()=>document.getElementById("pet").innerHTML=pet,700);
 update();
 }
 
@@ -232,12 +263,12 @@ function spawnFood(){
 
 let food=document.createElement("div");
 food.className="food";
-food.innerHTML=["🍖","🍟","🍔","🍗"][Math.floor(Math.random()*4)];
+food.innerHTML=["🍖","🍔","🍟","🍗"][Math.floor(Math.random()*4)];
 food.style.left=Math.random()*300+"px";
 food.style.top="0px";
 
 food.onclick=()=>{
-hunger=Math.min(100,hunger+10);
+hunger=Math.min(100,hunger+15);
 food.remove();
 update();
 };
@@ -247,7 +278,7 @@ document.getElementById("gameArea").appendChild(food);
 setTimeout(()=>food.remove(),4000);
 }
 
-/* FLOATING EFFECTS */
+/* FLOATING */
 setInterval(()=>{
 let f=document.createElement("div");
 f.className="floatItem";
@@ -255,15 +286,15 @@ f.innerHTML=["💖","✨","🐾"][Math.floor(Math.random()*3)];
 f.style.left=Math.random()*100+"vw";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),6000);
-},800);
+},900);
 
-/* decay */
+/* DECAY (SMOOTH) */
 setInterval(()=>{
-hunger=Math.max(0,hunger-2);
-loveVal=Math.max(0,loveVal-1);
-energy=Math.max(0,energy-1);
+hunger=Math.max(0,hunger-1);
+loveVal=Math.max(0,loveVal-0.5);
+energy=Math.max(0,energy-0.5);
 update();
-},3000);
+},5000);
 
 update();
 
