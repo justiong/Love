@@ -275,6 +275,15 @@ color:white;text-decoration:none;font-weight:bold;">
 </div>
 
 <script>
+  function unlock(){
+document.getElementById("lock").style.display="none";
+document.getElementById("app").style.display="block";
+
+/* START MUSIC */
+let audio = document.getElementById("bgMusic");
+audio.volume = 0.5;
+audio.play().catch(()=>{});
+}
   let musicStarted = false;
 
 function startMusic(){
