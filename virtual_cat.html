@@ -5,10 +5,12 @@
 <title>Virtual Pet World 💖</title>
 
 <style>
+
 body{
 margin:0;
 height:100vh;
-overflow:hidden;
+overflow-x:hidden;
+overflow-y:auto;
 font-family:Arial;
 background:linear-gradient(135deg,#ffe0f0,#fff0f8);
 display:flex;
@@ -100,6 +102,25 @@ cursor:pointer;
 font-size:13px;
 color:#a34b70;
 }
+
+/* BACK BUTTON */
+.backBtn{
+display:inline-block;
+margin-top:15px;
+padding:10px 18px;
+border-radius:25px;
+background:#ff3f88;
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.backBtn:hover{
+transform:scale(1.1);
+background:#ff69b4;
+}
+
 </style>
 </head>
 
@@ -139,7 +160,7 @@ color:#a34b70;
 
 <!-- BUTTONS -->
 <button onclick="feed()">🍖 Feed</button>
-<button onclick="love()">💖 Love</button>
+<button onclick="loveUp()">💖 Love</button>
 <button onclick="sleep()">😴 Sleep</button>
 <button onclick="spawnFood()">🍔 Drop Food</button>
 
@@ -148,6 +169,9 @@ color:#a34b70;
 
 <p class="small">Tap food to feed your pet 💖</p>
 
+<!-- BACK BUTTON -->
+<a href="index.html" class="backBtn">⬅ Back Home</a>
+
 </div>
 
 <script>
@@ -155,13 +179,13 @@ color:#a34b70;
 let pet="🐱";
 
 let hunger=100;
-let love=100;
+let loveVal=100;
 let energy=100;
 
 /* UPDATE */
 function update(){
 document.getElementById("hungerBar").style.width=hunger+"%";
-document.getElementById("loveBar").style.width=love+"%";
+document.getElementById("loveBar").style.width=loveVal+"%";
 document.getElementById("energyBar").style.width=energy+"%";
 }
 
@@ -185,8 +209,8 @@ hunger=Math.min(100,hunger+20);
 update();
 }
 
-function love(){
-love=Math.min(100,love+20);
+function loveUp(){
+loveVal=Math.min(100,loveVal+20);
 update();
 }
 
@@ -197,7 +221,7 @@ update();
 
 /* PET ACTION */
 function petAction(){
-love=Math.min(100,love+5);
+loveVal=Math.min(100,loveVal+5);
 document.getElementById("pet").innerHTML="😻";
 setTimeout(()=>document.getElementById("pet").innerHTML=pet,800);
 update();
@@ -236,7 +260,7 @@ setTimeout(()=>f.remove(),6000);
 /* decay */
 setInterval(()=>{
 hunger=Math.max(0,hunger-2);
-love=Math.max(0,love-1);
+loveVal=Math.max(0,loveVal-1);
 energy=Math.max(0,energy-1);
 update();
 },3000);
