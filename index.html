@@ -179,17 +179,9 @@ z-index:9999;
 
 <button class="petBtn" onclick="openSchool()">🏫 School Slide</button>
 
-</div>
-  <div class="card">
-
-<h3 style="text-align:center;color:#ff4fd8;">🎵 My Sayang Song</h3>
-
-<audio id="bgSong" controls loop style="width:100%;">
-<source src="song2.mp3" type="audio/mpeg">
-Your browser does not support audio.
+<audio id="bgMusic" loop>
+  <source src="2.mp3" type="audio/mpeg">
 </audio>
-
-</div>
 
 <!-- SPOTIFY -->
 <div class="card">
@@ -275,26 +267,23 @@ color:white;text-decoration:none;font-weight:bold;">
 </div>
 
 <script>
-  function unlock(){
+ function unlock(){
 document.getElementById("lock").style.display="none";
 document.getElementById("app").style.display="block";
 
-/* START MUSIC */
+/* PLAY MUSIC */
 let audio = document.getElementById("bgMusic");
 audio.volume = 0.5;
-audio.play().catch(()=>{});
+audio.play().catch(err=>{
+console.log("Autoplay blocked until user interaction");
+});
 }
-  let musicStarted = false;
-
-function startMusic(){
-  if(!musicStarted){
-    let audio = document.getElementById("bgMusic");
-    audio.volume = 0.5;
-    audio.play().catch(()=>{});
-    musicStarted = true;
-  }
+let audio = document.getElementById("bgMusic");
+audio.volume = 0.5;
+audio.play().catch(err=>{
+console.log("Autoplay blocked until user interacts");
+});
 }
-
 /* Start music when user interacts */
 document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
