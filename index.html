@@ -260,7 +260,10 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 <script>
 
 let user="";
+let i=0;
+let typingInterval;
 
+/* START */
 function startGame(){
 user=document.getElementById("name").value;
 if(!user)return;
@@ -296,14 +299,10 @@ let d=document.createElement("div");
 d.className="msg";
 d.innerText=user+": "+m;
 document.getElementById("chatBox").appendChild(d);
-
 document.getElementById("msg").value="";
 }
 
-/* FLOWER */
-let i = 0;
-let typingInterval;
-
+/* 🌸 FLOWER */
 function spawnFlower(){
 for(let f=0; f<12; f++){
 let el=document.createElement("div");
@@ -314,8 +313,9 @@ el.style.top="100vh";
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),5000);
 }
+}
 
-
+/* 💖 HEART */
 function spawnHeart(){
 for(let h=0; h<10; h++){
 let el=document.createElement("div");
@@ -326,47 +326,38 @@ el.style.top="100vh";
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),6000);
 }
+}
 
-/* LETTER */
+/* 💌 LETTER */
 let letterText = `💌 My sayang,
 
 I know your assignment feels heavy sometimes 🥺
 But I want you to remember this…
 
-You are not alone in this journey 💖
-Even when things feel difficult, I’m always cheering for you ✨
+You are strong 💖
+You are capable 🌸
+You are not alone ✨
 
-You are capable, smart, and stronger than you think 🌸
-Every small effort you make is already progress 📚
+Take it slowly step by step 💫
+I believe in you 🏹
+Forever love you sayang
 
-Don’t pressure yourself too much…
-Just take it slowly, one step at a time 💫
-
-Even if you feel tired or stressed —
-I still believe in you 100% 🏹💖
-
-So keep going okay?
-Your future is waiting for you 🌷
-Forever love you sayang 
-
-Forever yours husby,
+Forever your husby,
 💖 Justin`;
-
-let i = 0;
-let speed = 25;
-let typingInterval;
 
 function openLetter(){
 document.getElementById("letterBox").style.display="flex";
 document.getElementById("typedText").innerText="";
-i = 0;
-
+i=0;
+typeWriter();
+}
 
 function typeWriter(){
 if(i < letterText.length){
 document.getElementById("typedText").innerHTML += letterText.charAt(i);
 i++;
-typingInterval = setTimeout(typeWriter, speed);
+typingInterval=setTimeout(typeWriter,25);
+}
 }
 
 function closeLetter(){
