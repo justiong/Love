@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Easy Love Archery</title>
+<title>💖 10s Love Archery Game</title>
 
 <style>
 body{
@@ -42,11 +42,10 @@ margin-top:10px;
 position:fixed;
 top:10px;
 left:10px;
-background:rgba(255,255,255,0.85);
+background:rgba(255,255,255,0.8);
 padding:10px;
 border-radius:15px;
 display:none;
-z-index:999;
 }
 
 /* GAME */
@@ -58,6 +57,7 @@ display:none;
 overflow:hidden;
 }
 
+/* TARGET */
 .target{
 position:absolute;
 font-size:50px;
@@ -78,7 +78,7 @@ font-size:60px;
 position:fixed;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.95);
+background:black;
 display:none;
 justify-content:center;
 align-items:center;
@@ -86,12 +86,12 @@ flex-direction:column;
 z-index:99999;
 }
 
-#videoBox video{
+video{
 width:80%;
 border-radius:15px;
 }
 
-/* BACK */
+/* BACK BUTTON */
 #backBtn{
 position:fixed;
 bottom:20px;
@@ -109,18 +109,19 @@ z-index:100000;
 
 <body>
 
+<!-- BACK -->
 <a href="index.html" id="backBtn">⬅ Back</a>
 
 <!-- INTRO -->
 <div id="intro">
-<h1>🏹 EASY LOVE ARCHERY</h1>
-<p>💖 Just click targets for 10 seconds</p>
-<button onclick="startGame()">Start 💕</button>
+<h1>🏹 10s Love Archery 💖</h1>
+<p>💖 Just tap targets and enjoy 💕<br>⏱️ 10 seconds fun only</p>
+<button onclick="startGame()">Start 💖</button>
 </div>
 
 <!-- UI -->
 <div id="ui">
-🏆 Score: <span id="score">0</span><br>
+🏹 Score: <span id="score">0</span><br>
 ⏱️ Time: <span id="time">10</span>
 </div>
 
@@ -129,24 +130,17 @@ z-index:100000;
 <div id="bow">🏹</div>
 </div>
 
-<!-- VIDEO END -->
+<!-- VIDEO -->
 <div id="videoBox">
-<h2 style="color:white;">💖 Sayang You Finished 💖</h2>
+<h2 style="color:white;">💖 Sayang You Did It 💖</h2>
 
-<video id="endVideo" controls>
+<video id="endVideo" controls autoplay>
 <source src="1.mp4" type="video/mp4">
 </video>
 
 <br><br>
 
-<a href="archery.html" style="
-padding:12px 18px;
-background:#ff3f88;
-color:white;
-text-decoration:none;
-border-radius:20px;
-font-weight:bold;
-">🔁 Play Again</a>
+<button onclick="location.reload()">🔁 Play Again</button>
 </div>
 
 <script>
@@ -154,9 +148,9 @@ font-weight:bold;
 let score = 0;
 let time = 10;
 let game = false;
-let loop;
+let spawnLoop;
 
-/* START */
+/* START GAME */
 function startGame(){
 
 document.getElementById("intro").style.display="none";
@@ -168,7 +162,6 @@ time = 10;
 game = true;
 
 document.getElementById("score").innerText = score;
-document.getElementById("time").innerText = time;
 
 /* TIMER */
 let t = setInterval(()=>{
@@ -178,60 +171,64 @@ document.getElementById("time").innerText = time;
 
 if(time <= 0){
 clearInterval(t);
-endGame(); // ALWAYS WIN
+endGame();
 }
 
 },1000);
 
-/* SPAWN */
-spawn();
+/* SPAWN TARGETS */
+spawnTargets();
 }
 
-/* TARGETS */
-function spawn(){
+/* SPAWN TARGETS */
+function spawnTargets(){
 
 if(!game) return;
 
 let target = document.createElement("div");
-target.className="target";
-target.innerHTML="🎯";
+target.className = "target";
+target.innerHTML = "🎯";
 
 target.style.left = Math.random()*90 + "vw";
 target.style.top = Math.random()*70 + "vh";
 
 document.getElementById("game").appendChild(target);
 
-/* CLICK */
+/* HIT */
 target.onclick = ()=>{
-score += 10;
+score += 1;
 document.getElementById("score").innerText = score;
 target.remove();
 };
 
-setTimeout(()=>target.remove(),2000);
+/* AUTO REMOVE */
+setTimeout(()=>target.remove(),1500);
 
 /* LOOP */
-loop = setTimeout(spawn,600);
+spawnLoop = setTimeout(spawnTargets,500);
 }
 
-/* END GAME → ALWAYS SHOW VIDEO */
+/* END GAME (ALWAYS SAME RESULT) */
 function endGame(){
 
 game = false;
-clearTimeout(loop);
+clearTimeout(spawnLoop);
 
 document.getElementById("game").style.display="none";
 document.getElementById("ui").style.display="none";
 
+/* SHOW VIDEO */
 document.getElementById("videoBox").style.display="flex";
 
 let video = document.getElementById("endVideo");
 video.currentTime = 0;
 video.play();
-
 }
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
