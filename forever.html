@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>💌 An Open Letter to You</title>
+<title>💌 Forever My Sayang</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -11,17 +11,34 @@ margin:0;
 font-family:"Georgia", serif;
 background:linear-gradient(135deg,#0f0f0f,#2a0f1f,#1a1a2e);
 color:white;
-display:flex;
-justify-content:center;
-padding:40px 20px;
+overflow-x:hidden;
 }
 
+/* FLOATING HEARTS + CATS */
+.heart, .cat{
+position:fixed;
+bottom:-50px;
+font-size:24px;
+animation:floatUp 8s linear infinite;
+opacity:0.8;
+pointer-events:none;
+}
+
+.cat{ font-size:28px; }
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* LETTER BOX */
 .letter{
-max-width:750px;
+max-width:800px;
+margin:60px auto;
 background:rgba(255,255,255,0.06);
 padding:40px;
-border-radius:15px;
-backdrop-filter:blur(10px);
+border-radius:20px;
+backdrop-filter:blur(12px);
 box-shadow:0 0 25px rgba(255,255,255,0.1);
 animation:fadeIn 1.5s ease-in-out;
 }
@@ -29,26 +46,19 @@ animation:fadeIn 1.5s ease-in-out;
 h1{
 text-align:center;
 color:#ff4d6d;
-margin-bottom:30px;
-font-size:30px;
+font-size:32px;
 }
 
 p{
-font-size:17px;
-line-height:2;
+font-size:18px;
+line-height:2.1;
 white-space:pre-line;
 opacity:0.95;
 }
 
-.signature{
-margin-top:40px;
-text-align:right;
-font-style:italic;
-color:#ffb6c1;
-}
-
+/* BUTTON */
 button{
-margin-top:30px;
+margin-top:25px;
 padding:12px 20px;
 border:none;
 border-radius:25px;
@@ -64,83 +74,168 @@ transform:scale(1.05);
 background:#ff1f4b;
 }
 
+/* MUSIC */
+audio{
+display:none;
+}
+
+.signature{
+margin-top:30px;
+text-align:right;
+color:#ffb6c1;
+font-style:italic;
+}
+
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
+<!-- MUSIC -->
+<audio autoplay loop>
+<source src="2.mp3" type="audio/mpeg">
+</audio>
+
 <div class="letter">
 
-<h1>💌 An Open Letter to You, Sayang</h1>
+<h1>💌 To My Sayang, My Forever</h1>
 
 <p>
 My Sayang,
 
-I don’t really know how to start this perfectly, so I will just speak from my heart.
+If you are reading this right now, I just want you to pause for a moment… breathe… and smile a little.
 
-If you are reading this, I just want you to know that you mean more to me than I can ever explain with words.
+Because this letter is not just words.
+This is my heart speaking to you.
 
-You are not just someone I love.
-You are someone who became part of my thoughts, my daily feelings, and my quiet moments.
+I know your assignment sometimes feels heavy.
+I know there are moments you feel tired, stressed, or unsure.
 
-I think about you when I wake up.
-I think about you when I’m busy.
-And I think about you when everything becomes quiet at night.
+But listen carefully…
 
-Sometimes I don’t express myself well.
-Sometimes I make mistakes.
-Sometimes I get scared of losing you and I react in the wrong way.
+I believe in you more than you believe in yourself sometimes.
 
-But even in all of that…
-My feelings for you never change.
+You are not just “doing assignments”.
+You are building your future.
+Step by step.
+Page by page.
+Moment by moment.
 
-I don’t love you because life is easy.
-I love you because you are important to me even when life is hard.
+And I will always be here cheering for you.
 
-I love the way you care.
-I love the way you try.
-I love even the small things you do that you don’t even notice yourself.
+Even when you are stressed.
+Even when you feel like giving up.
+Even when everything feels too much.
 
-And I want you to know something very important:
+I am still here.
 
-You don’t have to be perfect for me.
-You just have to be you.
+---
 
-If I ever make you feel tired, I’m sorry.
-If I ever make you feel confused, I’m sorry.
-But please know I am always trying to be better for you.
+💖 About love…
 
-Not because I’m forced.
-But because I care.
+I don’t love you in a small way.
 
-I don’t know what our future will look like.
-But I know one thing clearly in my heart:
+I love you in a way where:
+- I think about you all the time
+- I worry about you even when I shouldn’t
+- I smile just seeing your name
+- I feel calm when you are okay
 
-If love is a choice…
-I will choose you again and again.
+And yes…
+Sometimes I spoil you.
+Sometimes I spend money on you.
+Sometimes I just want to make you feel special in my own little ways.
 
-Even in my weakest days.
-Even in my hardest moments.
-Even when I don’t know what to say.
+Not because I want anything back…
 
-Because you are my peace.
-And I don’t want to lose that.
+But because you are important to me.
 
-Always yours,
-Your sayang 💌
+---
+
+🐱 And also…
+
+Imagine little cats cheering you on while you study:
+“Meow meow you can do it! 📚✨”
+
+Even the cats believe in you already.
+
+---
+
+🎵 And when you feel tired…
+
+Just play your favorite song (2.mp3),
+close your eyes for a moment,
+and remember:
+
+You are not alone.
+
+---
+
+💫 I don’t know everything about the future.
+But I know this:
+
+If life is a journey,
+I want to walk it with you.
+
+Not rushing.
+Not forcing.
+Just growing together.
+
+---
+
+💌 Always remember:
+
+You are strong.
+You are loved.
+You are enough.
+
+And I will always choose you.
+
+Again and again.
+  Love you sayang so much 
+  Forever together 
+  Wo ai ni bao bei 
+
 </p>
 
 <div class="signature">
-— forever trying, forever yours
+— forever your husby , Justin 💖
 </div>
 
 <button onclick="location.href='index.html'">⬅ Back Home</button>
 
 </div>
+
+<script>
+
+/* FLOATING HEARTS */
+function createHeart(){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+}
+setInterval(createHeart,400);
+
+/* FLOATING CATS */
+function createCat(){
+let c=document.createElement("div");
+c.className="cat";
+c.innerHTML="🐱";
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),9000);
+}
+setInterval(createCat,1200);
+
+</script>
 
 </body>
 </html>
