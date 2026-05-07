@@ -226,6 +226,9 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 <div class="card">
 <h3>🎮 Menu</h3>
 
+<div class="card">
+<h3>🎮 Menu</h3>
+
 <button onclick="spawnFlower()">🌸 Flower</button>
 <button onclick="spawnHeart()">💖 Heart</button>
 <button onclick="openLetter()">💌 Motivation</button>
@@ -233,6 +236,8 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 <button onclick="window.location.href='school.html'">🏫 School</button>
 <button onclick="window.location.href='archery.html'">🏹 Archery</button>
 
+<button onclick="showQR()">📱 Scan Love QR</button>
+</div>
 </div>
 
 <!-- LETTER -->
@@ -360,6 +365,19 @@ typingInterval=setTimeout(typeWriter,25);
 function closeLetter(){
 document.getElementById("letterBox").style.display="none";
 clearTimeout(typingInterval);
+}
+  function showQR(){
+document.getElementById("qrBox").style.display="flex";
+
+/* CHANGE THIS LINK */
+let link = "https://yourwebsite.com/forever.html";
+
+document.getElementById("qrImg").src =
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + link;
+}
+
+function closeQR(){
+document.getElementById("qrBox").style.display="none";
 }
 </script>
 
