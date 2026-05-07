@@ -52,18 +52,6 @@ font-weight:bold;
 margin:5px;
 }
 
-button:hover{
-transform:scale(1.05);
-}
-
-/* INPUT */
-input{
-padding:10px;
-border-radius:10px;
-border:none;
-width:80%;
-}
-
 /* END SCREEN */
 #endScreen{
 display:none;
@@ -113,74 +101,68 @@ z-index:99999;
 <source src="video1.mp4" type="video/mp4">
 </video>
 
-<p style="margin-top:20px;font-size:18px;line-height:1.8;">
+<p style="margin-top:20px;line-height:1.8;">
+
 💌 My sayang…<br><br>
 
-I don’t know how to perfectly describe what you mean to me,  
-but I will try from my heart.
+You are my peace, my happiness, my home.<br><br>
 
-You are not just someone I love…  
-you are my peace, my happiness, and my safe place.
+Even when life is hard, I still choose you.<br><br>
 
-Every time you smile, my world becomes lighter.  
-Every time you are sad, I feel it too.  
+I may not be perfect,<br>
+but I will always try for you.<br><br>
 
-Even when we argue, even when things are hard…  
-I still choose you.
+💖 Forever you. Forever us. 💖
 
-Because loving you is not a habit —  
-it is a feeling that keeps growing every day.
-
-I may not be perfect,  
-but I promise to always try for you.  
-
-To support you.  
-To care for you.  
-To stand by you.  
-
-No matter what happens in life…
-
-💖 I will always choose you, sayang. 💖
 </p>
+
+<!-- QR BUTTONS -->
+<button onclick="showQR1()">📱 Forever Link QR</button>
+<button onclick="showQR2()">🎮 Quiz Link QR</button>
+
+<br><br>
 
 <button onclick="location.reload()">💖 Play Again</button>
 
 </div>
+</div>
 
+<!-- QR BOX -->
+<div id="qrBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:999999;">
+
+<div class="card">
+
+<h3>💌 Scan QR</h3>
+<img id="qrImg" width="220">
+
+<br><br>
+<button onclick="closeQR()">Close 💖</button>
+
+</div>
 </div>
 
 <script>
 
-let q = 0;
-let score = 0;
-let name = "";
+let q=0;
+let score=0;
+let name="";
 
-/* 20 QUESTIONS */
-let questions = [
+let questions=[
 "Did we meet at Billion Mall? 💖",
 "Do I call you sayang?",
 "Do I love you?",
 "Do I like spicy tomyam?",
-"Do I like pasta?",
+"Do I love pasta?",
 "Do I study Information Systems?",
 "Do I love tennis?",
 "Do I miss you?",
-"Do I think about you always?",
-"Do I care about your feelings?",
-"Do I support your studies?",
-"Do I want your happiness?",
-"Do I cook for you sometimes?",
-"Do I get jealous sometimes?",
-"Do I forgive you easily?",
-"Do I want a future with you?",
-"Do I love your smile?",
-"Do I love you more every day?",
-"Are you my forever person?",
-"Do I truly love you? 💖"
+"Do I care about you?",
+"Do I want you forever?"
 ];
 
 function startQuiz(){
-name = document.getElementById("name").value;
+name=document.getElementById("name").value;
 if(name==="") return alert("Enter name 💖");
 
 document.getElementById("start").style.display="none";
@@ -190,16 +172,15 @@ loadQ();
 }
 
 function loadQ(){
-if(q < questions.length){
-document.getElementById("question").innerText =
-name + ", " + questions[q];
+if(q<questions.length){
+document.getElementById("question").innerText=name+", "+questions[q];
 }else{
 end();
 }
 }
 
-function answer(val){
-if(val) score++;
+function answer(v){
+if(v) score++;
 q++;
 loadQ();
 }
@@ -210,16 +191,39 @@ document.getElementById("endScreen").style.display="flex";
 spawnHearts();
 }
 
-/* FLOAT HEARTS */
 function spawnHearts(){
 setInterval(()=>{
-let h = document.createElement("div");
+let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💖";
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},300);
+},200);
+}
+
+/* QR 1 */
+function showQR1(){
+document.getElementById("qrBox").style.display="flex";
+
+let link="https://justiong.github.io/Love/forever.html";
+
+document.getElementById("qrImg").src=
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
+}
+
+/* QR 2 */
+function showQR2(){
+document.getElementById("qrBox").style.display="flex";
+
+let link="https://justiong.github.io/Love/quiz.html";
+
+document.getElementById("qrImg").src=
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
+}
+
+function closeQR(){
+document.getElementById("qrBox").style.display="none";
 }
 
 </script>
