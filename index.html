@@ -403,7 +403,14 @@ document.getElementById("qrBox").style.display="flex";
 /* CHANGE THIS LINK */
 function showQR(){
 
-document.getElementById("qrBox").style.display="flex";
+let box = document.getElementById("qrBox");
+
+if(!box){
+alert("QR box not found in HTML");
+return;
+}
+
+box.style.display="flex";
 
 let link = window.location.origin + "/forever.html";
 
