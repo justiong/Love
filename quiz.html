@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Forever Love Quiz</title>
+<title>💖 Liya x Justin Anime Love Game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -16,7 +16,35 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* FLOAT HEARTS */
+/* ================= INTRO ================= */
+#introScreen{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999999;
+}
+
+.introText{
+animation:fadeInUp 3s ease forwards;
+}
+
+.introText h1{
+font-size:32px;
+color:#ff4d6d;
+text-shadow:0 0 20px pink;
+}
+
+@keyframes fadeInUp{
+0%{transform:translateY(30px);opacity:0;}
+100%{transform:translateY(0);opacity:1;}
+}
+
+/* ================= FLOAT HEARTS ================= */
 .heart{
 position:fixed;
 font-size:20px;
@@ -30,14 +58,13 @@ z-index:9999;
 100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* CARD */
+/* ================= CARD ================= */
 .card{
 background:rgba(255,255,255,0.08);
 padding:20px;
 margin:15px auto;
 border-radius:20px;
 max-width:700px;
-box-shadow:0 0 20px rgba(255,0,100,0.3);
 }
 
 /* BUTTON */
@@ -52,18 +79,28 @@ font-weight:bold;
 margin:5px;
 }
 
-/* END SCREEN */
+/* ================= END SCREEN ================= */
 #endScreen{
 display:none;
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:linear-gradient(135deg,#ff2e93,#1a1a2e);
 justify-content:center;
 align-items:center;
 z-index:99999;
+}
+
+/* ================= QR ================= */
+#qrBox{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:999999;
 }
 
 </style>
@@ -71,6 +108,20 @@ z-index:99999;
 
 <body>
 
+<!-- 🎬 INTRO -->
+<div id="introScreen">
+
+<div class="introText">
+<h1>💖 Liya x Justin</h1>
+<p>an anime love story…</p>
+<p>built with memories & destiny</p>
+</div>
+
+<button onclick="startIntro()">▶ Start Story</button>
+
+</div>
+
+<!-- QUIZ START -->
 <h1>💖 FOREVER LOVE QUIZ 💖</h1>
 
 <div id="start" class="card">
@@ -95,30 +146,21 @@ z-index:99999;
 
 <p>💖 You completed our love quiz 💖</p>
 
-<h3>🎬 Our Memory</h3>
+<h3>🎬 Memory Video</h3>
 
 <video width="90%" controls>
 <source src="video1.mp4" type="video/mp4">
 </video>
 
-<p style="margin-top:20px;line-height:1.8;">
-
+<p style="line-height:1.8;margin-top:20px;">
 💌 My sayang…<br><br>
-
 You are my peace, my happiness, my home.<br><br>
-
 Even when life is hard, I still choose you.<br><br>
-
-I may not be perfect,<br>
-but I will always try for you.<br><br>
-
 💖 Forever you. Forever us. 💖
-
 </p>
 
-<!-- QR BUTTONS -->
-<button onclick="showQR1()">📱 Forever Link QR</button>
-<button onclick="showQR2()">🎮 Quiz Link QR</button>
+<button onclick="showQR1()">📱 Forever QR</button>
+<button onclick="showQR2()">🎮 Quiz QR</button>
 
 <br><br>
 
@@ -128,24 +170,18 @@ but I will always try for you.<br><br>
 </div>
 
 <!-- QR BOX -->
-<div id="qrBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:999999;">
-
+<div id="qrBox">
 <div class="card">
-
 <h3>💌 Scan QR</h3>
 <img id="qrImg" width="220">
-
 <br><br>
 <button onclick="closeQR()">Close 💖</button>
-
 </div>
 </div>
 
 <script>
 
 let q=0;
-let score=0;
 let name="";
 
 let questions=[
@@ -161,13 +197,31 @@ let questions=[
 "Do I want you forever?"
 ];
 
+/* INTRO START */
+function startIntro(){
+document.getElementById("introScreen").style.display="none";
+spawnIntroHearts();
+}
+
+/* HEARTS */
+function spawnIntroHearts(){
+for(let i=0;i<25;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+}
+
+/* QUIZ */
 function startQuiz(){
 name=document.getElementById("name").value;
 if(name==="") return alert("Enter name 💖");
 
 document.getElementById("start").style.display="none";
 document.getElementById("quiz").style.display="block";
-
 loadQ();
 }
 
@@ -180,11 +234,11 @@ end();
 }
 
 function answer(v){
-if(v) score++;
 q++;
 loadQ();
 }
 
+/* END */
 function end(){
 document.getElementById("quiz").style.display="none";
 document.getElementById("endScreen").style.display="flex";
@@ -204,20 +258,17 @@ setTimeout(()=>h.remove(),6000);
 
 /* QR 1 */
 function showQR1(){
-document.getElementById("qrBox").style.display="flex";
-
-let link="https://justiong.github.io/Love/forever.html";
-
-document.getElementById("qrImg").src=
-"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
+openQR("https://justiong.github.io/Love/forever.html");
 }
 
 /* QR 2 */
 function showQR2(){
+openQR("https://justiong.github.io/Love/quiz.html");
+}
+
+/* QR ENGINE */
+function openQR(link){
 document.getElementById("qrBox").style.display="flex";
-
-let link="https://justiong.github.io/Love/quiz.html";
-
 document.getElementById("qrImg").src=
 "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
 }
