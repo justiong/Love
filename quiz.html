@@ -6,57 +6,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
-/* 🌌 BACKGROUND */
 body{
 margin:0;
 font-family:Arial;
-background: radial-gradient(circle at top, #ff4d6d33, #1a1a2e, #000);
+background:linear-gradient(135deg,#0f0f0f,#2a0f1f,#1a1a2e);
 color:white;
 text-align:center;
-overflow-x:hidden;
-animation:bgPulse 6s infinite alternate;
 }
 
-@keyframes bgPulse{
-0%{filter:brightness(1);}
-100%{filter:brightness(1.2);}
-}
-
-/* 💖 CARD */
 .card{
 background:rgba(255,255,255,0.08);
-backdrop-filter: blur(12px);
-border:1px solid rgba(255,255,255,0.2);
-padding:25px;
-margin:15px auto;
-border-radius:25px;
-max-width:700px;
-box-shadow:0 0 30px rgba(255,0,100,0.4);
-animation:popIn 0.5s ease;
+padding:20px;
+margin:20px auto;
+border-radius:20px;
+max-width:600px;
 }
 
-@keyframes popIn{
-from{transform:scale(0.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-/* 💖 BUTTON */
 button{
 padding:10px 15px;
 border:none;
 border-radius:20px;
 background:#ff4d6d;
 color:white;
-cursor:pointer;
 font-weight:bold;
 margin:5px;
-transition:0.2s;
+cursor:pointer;
 }
 
 button:hover{transform:scale(1.05);}
 
-/* 💖 INPUT */
 input{
 padding:10px;
 border-radius:10px;
@@ -64,56 +42,27 @@ border:none;
 width:80%;
 }
 
-/* 💥 HEART */
-.heart{
-position:fixed;
-font-size:20px;
-animation:floatUp 6s linear forwards;
-pointer-events:none;
-z-index:9999;
-}
-
-@keyframes floatUp{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-120vh);opacity:0;}
-}
-
-/* ✨ CONFETTI */
-.confetti{
-position:fixed;
-font-size:18px;
-animation:fall 4s linear forwards;
-pointer-events:none;
-}
-
-@keyframes fall{
-to{transform:translateY(120vh);opacity:0;}
-}
-
-/* 🎬 END SCREEN */
-#endScreen{
+/* SCREENS */
+.screen{
 display:none;
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:radial-gradient(circle,#ff2e93,#0f0f1a);
 justify-content:center;
 align-items:center;
-z-index:99999;
-text-align:center;
+flex-direction:column;
+background:linear-gradient(135deg,#ff2e93,#1a1a2e);
+z-index:9999;
 }
 
-/* 💍 MARRY ME */
-#marryMeBox{
-margin-top:20px;
-animation:fadeIn 1s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:scale(0.9);}
-to{opacity:1;transform:scale(1);}
+/* VIDEO */
+video{
+width:90%;
+max-width:500px;
+border-radius:15px;
+margin-top:10px;
 }
 
 </style>
@@ -123,76 +72,36 @@ to{opacity:1;transform:scale(1);}
 
 <h1>💖 FOREVER LOVE QUIZ 💖</h1>
 
-<!-- START -->
 <div id="start" class="card">
-<h2>Enter Your Name 💕</h2>
-<input id="name" placeholder="Sayang name">
+<h2>Enter Name 💕</h2>
+<input id="name">
 <br><br>
 <button onclick="startQuiz()">Start 💖</button>
 </div>
 
-<!-- QUIZ -->
 <div id="quiz" class="card" style="display:none;">
-<h2 id="question"></h2>
+<h2 id="qText"></h2>
 <button onclick="answer(true)">💖 Yes</button>
 <button onclick="answer(false)">💔 No</button>
 </div>
 
-<!-- END SCREEN -->
-<div id="endScreen">
+<!-- 💍 MARRY SCREEN -->
+<div id="marry" class="screen">
+<h1>💍 WILL YOU MARRY ME? 💍</h1>
 
-<div class="card">
+<button onclick="finalYes()">YES 💖</button>
+<button onclick="finalYes()">YES I LOVE YOU 💖</button>
+</div>
 
-<h1>🎉 CONGRATULATIONS SAYANG 🎉</h1>
+<!-- 🎬 FINAL VIDEO -->
+<div id="videoScreen" class="screen">
+<h1>💖 OUR LOVE STORY 💖</h1>
 
-<p>💖 You finished our love quiz 💖</p>
-
-<h3>🎬 Our Memory</h3>
-
-<video id="congratsVideo" width="90%" autoplay muted playsinline>
+<video id="endVideo" controls>
 <source src="1.mp4" type="video/mp4">
 </video>
 
-<p style="line-height:1.8;margin-top:20px;">
-💌 My sayang…<br><br>
-You are my peace 💖<br>
-You are my happiness 🌸<br>
-You are my forever 💍<br><br>
-I will always choose you 💖
-</p>
-
-<!-- 💍 MARRY ME SECTION -->
-<div id="marryMeBox" style="display:none;">
-<h1>💍 SAYANG…</h1>
-<h2>Will you marry me?</h2>
-
-<button onclick="acceptMarriage()">💖 YES</button>
-<button onclick="acceptMarriage()">💖 YES (FOREVER)</button>
-</div>
-
-<br>
-
-<button onclick="location.reload()">🔁 Play Again</button>
-
-<br><br>
-
-<button onclick="showQR('quiz')">📱 Quiz QR</button>
-<button onclick="showQR('forever')">💌 Forever QR</button>
-
-</div>
-</div>
-
-<!-- QR -->
-<div id="qrBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:99999;">
-
-<div class="card">
-<h3>💌 Scan Love</h3>
-<img id="qrImg" style="width:220px;border-radius:15px;">
-<br>
-<button onclick="closeQR()">Close 💖</button>
-</div>
-
+<h2>💌 Forever Yours, Sayang 💌</h2>
 </div>
 
 <script>
@@ -200,7 +109,7 @@ background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:999
 let q=0;
 let name="";
 
-/* QUESTIONS */
+/* 20 QUESTIONS */
 let questions=[
 "Did we meet at Billion Mall? 💖",
 "Do I call you sayang?",
@@ -210,11 +119,20 @@ let questions=[
 "Do I study Information Systems?",
 "Do I love tennis?",
 "Do I miss you?",
+"Do I think about you always?",
 "Do I care about you?",
-"Do I want you forever?"
+"Do I support you?",
+"Do I want your happiness?",
+"Do I cook for you?",
+"Do I get jealous sometimes?",
+"Do I forgive you?",
+"Do I want future with you?",
+"Do I love your smile?",
+"Do I love you more everyday?",
+"Are you my forever?",
+"Do I truly love you? 💖"
 ];
 
-/* START */
 function startQuiz(){
 name=document.getElementById("name").value;
 if(name==="") return alert("Enter name 💖");
@@ -227,110 +145,32 @@ loadQ();
 
 function loadQ(){
 if(q<questions.length){
-document.getElementById("question").innerText=name+", "+questions[q];
+document.getElementById("qText").innerText=
+name+", "+questions[q];
 }else{
-end();
+goMarry();
 }
 }
 
 function answer(val){
-if(val) q++;
+q++;
 loadQ();
 }
 
-/* END */
-function end(){
+/* AFTER 20 Q → MARRY SCREEN */
+function goMarry(){
 document.getElementById("quiz").style.display="none";
-document.getElementById("endScreen").style.display="flex";
-
-spawnHearts();
-spawnConfetti();
-
-setTimeout(()=>{
-document.getElementById("congratsVideo").play().catch(()=>{});
-},300);
-
-/* SHOW MARRY ME */
-setTimeout(()=>{
-document.getElementById("marryMeBox").style.display="block";
-},4000);
+document.getElementById("marry").style.display="flex";
 }
 
-/* HEARTS */
-function spawnHearts(){
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},300);
-}
+/* ONLY YES OPTIONS */
+function finalYes(){
+document.getElementById("marry").style.display="none";
+document.getElementById("videoScreen").style.display="flex";
 
-/* CONFETTI */
-function spawnConfetti(){
-for(let i=0;i<50;i++){
-let c=document.createElement("div");
-c.className="confetti";
-c.innerHTML="✨";
-c.style.left=Math.random()*100+"vw";
-c.style.top="-10px";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),4000);
-}
-}
-
-/* 💍 MARRY ME FINAL */
-function acceptMarriage(){
-
-document.body.innerHTML=`
-<div style="
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:radial-gradient(circle,#ff4d6d,#1a1a2e);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
-text-align:center;
-">
-
-<h1 style="font-size:45px;">💍 SHE SAID YES 💍</h1>
-<h2>Forever starts now 💖</h2>
-<p>I love you always, sayang</p>
-
-</div>
-`;
-
-spawnHearts();
-spawnConfetti();
-}
-
-/* QR */
-function showQR(type){
-
-document.getElementById("qrBox").style.display="flex";
-
-let link="";
-
-if(type==="quiz"){
-link="https://justiong.github.io/Love/quiz.html";
-}
-
-if(type==="forever"){
-link="https://justiong.github.io/Love/forever.html";
-}
-
-document.getElementById("qrImg").src=
-"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="
-+encodeURIComponent(link);
-}
-
-function closeQR(){
-document.getElementById("qrBox").style.display="none";
+/* PLAY VIDEO */
+let v=document.getElementById("endVideo");
+v.play().catch(()=>{});
 }
 
 </script>
