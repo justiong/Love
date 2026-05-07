@@ -250,25 +250,6 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
   </div>
 </div>
 
-
-  <div class="card" style="text-align:center;max-width:320px;">
-
-<h3>💌 Scan My Love</h3>
-
-<img id="qrImg"
-style="
-width:220px;
-border-radius:15px;
-margin:10px;
-box-shadow:0 0 20px pink;
-">
-
-<br>
-
-<button onclick="closeQR()">Close 💖</button>
-
-</div>
-</div>
   <!-- QR POPUP -->
 <div id="qrBox"
 style="
@@ -420,7 +401,7 @@ clearTimeout(typingInterval);
 document.getElementById("qrBox").style.display="flex";
 
 /* CHANGE THIS LINK */
-let link = "forever.html";
+let link = "https://yourusername.github.io/forever.html";
 
 document.getElementById("qrImg").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + link;
