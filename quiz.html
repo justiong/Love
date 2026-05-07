@@ -1,24 +1,228 @@
-<div id="endScreen" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-background:linear-gradient(135deg,#ff2e93,#1a1a2e);color:white;
-justify-content:center;align-items:center;z-index:99999;text-align:center;">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>💖 Forever Love Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div style="max-width:600px;padding:20px;">
+<style>
 
-    <h1>🎉 CONGRATULATIONS SAYANG 🎉</h1>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f0f0f,#2a0f1f,#1a1a2e);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
 
-    <p>💖 You completed our love quiz 💖</p>
-    <p>✨ You are my forever person ✨</p>
+/* FLOAT HEARTS */
+.heart{
+position:fixed;
+font-size:20px;
+animation:floatUp 6s linear forwards;
+pointer-events:none;
+z-index:9999;
+}
 
-    <h3>🎬 Our Memories</h3>
+@keyframes floatUp{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-120vh);opacity:0;}
+}
 
-   
-    <video width="90%" controls>
-      <source src = "1.Mp4" type="video/mp4">
-    </video>
+/* CARD */
+.card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+margin:15px auto;
+border-radius:20px;
+max-width:700px;
+box-shadow:0 0 20px rgba(255,0,100,0.3);
+}
 
-    <br><br>
+/* BUTTON */
+button{
+padding:10px 15px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-weight:bold;
+margin:5px;
+}
 
-    <button onclick="goHome()">💖 Go Home</button>
+button:hover{
+transform:scale(1.05);
+}
 
-  </div>
+/* INPUT */
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+width:80%;
+}
+
+/* END SCREEN */
+#endScreen{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff2e93,#1a1a2e);
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>💖 FOREVER LOVE QUIZ 💖</h1>
+
+<div id="start" class="card">
+<h2>Enter Your Name 💕</h2>
+<input id="name" placeholder="Sayang name">
+<br><br>
+<button onclick="startQuiz()">Start 💖</button>
 </div>
+
+<div id="quiz" class="card" style="display:none;">
+<h2 id="question"></h2>
+<button onclick="answer(true)">💖 Yes</button>
+<button onclick="answer(false)">💔 No</button>
+</div>
+
+<!-- END SCREEN -->
+<div id="endScreen">
+
+<div style="max-width:600px;padding:20px;">
+
+<h1>🎉 CONGRATULATIONS SAYANG 🎉</h1>
+
+<p>💖 You completed our love quiz 💖</p>
+
+<h3>🎬 Our Memory</h3>
+
+<video width="90%" controls>
+<source src="video1.mp4" type="video/mp4">
+</video>
+
+<p style="margin-top:20px;font-size:18px;line-height:1.8;">
+💌 My sayang…<br><br>
+
+I don’t know how to perfectly describe what you mean to me,  
+but I will try from my heart.
+
+You are not just someone I love…  
+you are my peace, my happiness, and my safe place.
+
+Every time you smile, my world becomes lighter.  
+Every time you are sad, I feel it too.  
+
+Even when we argue, even when things are hard…  
+I still choose you.
+
+Because loving you is not a habit —  
+it is a feeling that keeps growing every day.
+
+I may not be perfect,  
+but I promise to always try for you.  
+
+To support you.  
+To care for you.  
+To stand by you.  
+
+No matter what happens in life…
+
+💖 I will always choose you, sayang. 💖
+</p>
+
+<button onclick="location.reload()">💖 Play Again</button>
+
+</div>
+
+</div>
+
+<script>
+
+let q = 0;
+let score = 0;
+let name = "";
+
+/* 20 QUESTIONS */
+let questions = [
+"Did we meet at Billion Mall? 💖",
+"Do I call you sayang?",
+"Do I love you?",
+"Do I like spicy tomyam?",
+"Do I like pasta?",
+"Do I study Information Systems?",
+"Do I love tennis?",
+"Do I miss you?",
+"Do I think about you always?",
+"Do I care about your feelings?",
+"Do I support your studies?",
+"Do I want your happiness?",
+"Do I cook for you sometimes?",
+"Do I get jealous sometimes?",
+"Do I forgive you easily?",
+"Do I want a future with you?",
+"Do I love your smile?",
+"Do I love you more every day?",
+"Are you my forever person?",
+"Do I truly love you? 💖"
+];
+
+function startQuiz(){
+name = document.getElementById("name").value;
+if(name==="") return alert("Enter name 💖");
+
+document.getElementById("start").style.display="none";
+document.getElementById("quiz").style.display="block";
+
+loadQ();
+}
+
+function loadQ(){
+if(q < questions.length){
+document.getElementById("question").innerText =
+name + ", " + questions[q];
+}else{
+end();
+}
+}
+
+function answer(val){
+if(val) score++;
+q++;
+loadQ();
+}
+
+function end(){
+document.getElementById("quiz").style.display="none";
+document.getElementById("endScreen").style.display="flex";
+spawnHearts();
+}
+
+/* FLOAT HEARTS */
+function spawnHearts(){
+setInterval(()=>{
+let h = document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+}
+
+</script>
+
+</body>
+</html>
