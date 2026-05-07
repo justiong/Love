@@ -302,13 +302,14 @@ document.getElementById("letterBox").style.display="none";
 
 /* QR FIXED */
 function showQR(){
-document.getElementById("qrBox").style.display="flex";
+  document.getElementById("qrBox").style.display="flex";
 
-let link = "https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPO/forever.html";
-document.getElementById("qrImg").src=
-"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
+  let link = "https://justiong.github.io/Love/forever.html";
+
+  document.getElementById("qrImg").src =
+  "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" 
+  + encodeURIComponent(link);
 }
-
 function closeQR(){
 document.getElementById("qrBox").style.display="none";
 }
