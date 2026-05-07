@@ -2,49 +2,69 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin Anime Love Game</title>
+<title>💖 Forever Love Quiz</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
+/* 🌌 BACKGROUND */
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#0f0f0f,#2a0f1f,#1a1a2e);
+background: radial-gradient(circle at top, #ff4d6d33, #1a1a2e, #000);
 color:white;
 text-align:center;
 overflow-x:hidden;
+animation:bgPulse 6s infinite alternate;
 }
 
-/* ================= INTRO ================= */
-#introScreen{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:black;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:999999;
+@keyframes bgPulse{
+0%{filter:brightness(1);}
+100%{filter:brightness(1.2);}
 }
 
-.introText{
-animation:fadeInUp 3s ease forwards;
+/* 💖 CARD */
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter: blur(12px);
+border:1px solid rgba(255,255,255,0.2);
+padding:25px;
+margin:15px auto;
+border-radius:25px;
+max-width:700px;
+box-shadow:0 0 30px rgba(255,0,100,0.4);
+animation:popIn 0.5s ease;
 }
 
-.introText h1{
-font-size:32px;
-color:#ff4d6d;
-text-shadow:0 0 20px pink;
+@keyframes popIn{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
 }
 
-@keyframes fadeInUp{
-0%{transform:translateY(30px);opacity:0;}
-100%{transform:translateY(0);opacity:1;}
+/* 💖 BUTTON */
+button{
+padding:10px 15px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-weight:bold;
+margin:5px;
+transition:0.2s;
 }
 
-/* ================= FLOAT HEARTS ================= */
+button:hover{transform:scale(1.05);}
+
+/* 💖 INPUT */
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+width:80%;
+}
+
+/* 💥 HEART */
 .heart{
 position:fixed;
 font-size:20px;
@@ -58,49 +78,42 @@ z-index:9999;
 100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* ================= CARD ================= */
-.card{
-background:rgba(255,255,255,0.08);
-padding:20px;
-margin:15px auto;
-border-radius:20px;
-max-width:700px;
+/* ✨ CONFETTI */
+.confetti{
+position:fixed;
+font-size:18px;
+animation:fall 4s linear forwards;
+pointer-events:none;
 }
 
-/* BUTTON */
-button{
-padding:10px 15px;
-border:none;
-border-radius:20px;
-background:#ff4d6d;
-color:white;
-cursor:pointer;
-font-weight:bold;
-margin:5px;
+@keyframes fall{
+to{transform:translateY(120vh);opacity:0;}
 }
 
-/* ================= END SCREEN ================= */
+/* 🎬 END SCREEN */
 #endScreen{
 display:none;
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:linear-gradient(135deg,#ff2e93,#1a1a2e);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#ff2e93,#0f0f1a);
 justify-content:center;
 align-items:center;
 z-index:99999;
+text-align:center;
 }
 
-/* ================= QR ================= */
-#qrBox{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-z-index:999999;
+/* 💍 MARRY ME */
+#marryMeBox{
+margin-top:20px;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:scale(0.9);}
+to{opacity:1;transform:scale(1);}
 }
 
 </style>
@@ -108,22 +121,9 @@ z-index:999999;
 
 <body>
 
-<!-- 🎬 INTRO -->
-<div id="introScreen">
-
-<div class="introText">
-<h1>💖 Liya x Justin</h1>
-<p>an anime love story…</p>
-<p>built with memories & destiny</p>
-</div>
-
-<button onclick="startIntro()">▶ Start Story</button>
-
-</div>
-
-<!-- QUIZ START -->
 <h1>💖 FOREVER LOVE QUIZ 💖</h1>
 
+<!-- START -->
 <div id="start" class="card">
 <h2>Enter Your Name 💕</h2>
 <input id="name" placeholder="Sayang name">
@@ -131,6 +131,7 @@ z-index:999999;
 <button onclick="startQuiz()">Start 💖</button>
 </div>
 
+<!-- QUIZ -->
 <div id="quiz" class="card" style="display:none;">
 <h2 id="question"></h2>
 <button onclick="answer(true)">💖 Yes</button>
@@ -140,43 +141,58 @@ z-index:999999;
 <!-- END SCREEN -->
 <div id="endScreen">
 
-<div style="max-width:600px;padding:20px;">
+<div class="card">
 
 <h1>🎉 CONGRATULATIONS SAYANG 🎉</h1>
 
-<p>💖 You completed our love quiz 💖</p>
+<p>💖 You finished our love quiz 💖</p>
 
-<h3>🎬 Memory Video</h3>
+<h3>🎬 Our Memory</h3>
 
-<video width="90%" controls>
-<source src="video1.mp4" type="video/mp4">
+<video id="congratsVideo" width="90%" autoplay muted playsinline>
+<source src="1.mp4" type="video/mp4">
 </video>
 
 <p style="line-height:1.8;margin-top:20px;">
 💌 My sayang…<br><br>
-You are my peace, my happiness, my home.<br><br>
-Even when life is hard, I still choose you.<br><br>
-💖 Forever you. Forever us. 💖
+You are my peace 💖<br>
+You are my happiness 🌸<br>
+You are my forever 💍<br><br>
+I will always choose you 💖
 </p>
 
-<button onclick="showQR1()">📱 Forever QR</button>
-<button onclick="showQR2()">🎮 Quiz QR</button>
+<!-- 💍 MARRY ME SECTION -->
+<div id="marryMeBox" style="display:none;">
+<h1>💍 SAYANG…</h1>
+<h2>Will you marry me?</h2>
+
+<button onclick="acceptMarriage()">💖 YES</button>
+<button onclick="acceptMarriage()">💖 YES (FOREVER)</button>
+</div>
+
+<br>
+
+<button onclick="location.reload()">🔁 Play Again</button>
 
 <br><br>
 
-<button onclick="location.reload()">💖 Play Again</button>
+<button onclick="showQR('quiz')">📱 Quiz QR</button>
+<button onclick="showQR('forever')">💌 Forever QR</button>
 
 </div>
 </div>
 
-<!-- QR BOX -->
-<div id="qrBox">
+<!-- QR -->
+<div id="qrBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:99999;">
+
 <div class="card">
-<h3>💌 Scan QR</h3>
-<img id="qrImg" width="220">
-<br><br>
+<h3>💌 Scan Love</h3>
+<img id="qrImg" style="width:220px;border-radius:15px;">
+<br>
 <button onclick="closeQR()">Close 💖</button>
 </div>
+
 </div>
 
 <script>
@@ -184,12 +200,13 @@ Even when life is hard, I still choose you.<br><br>
 let q=0;
 let name="";
 
+/* QUESTIONS */
 let questions=[
 "Did we meet at Billion Mall? 💖",
 "Do I call you sayang?",
 "Do I love you?",
-"Do I like spicy tomyam?",
-"Do I love pasta?",
+"Do I like tomyam?",
+"Do I like pasta?",
 "Do I study Information Systems?",
 "Do I love tennis?",
 "Do I miss you?",
@@ -197,31 +214,14 @@ let questions=[
 "Do I want you forever?"
 ];
 
-/* INTRO START */
-function startIntro(){
-document.getElementById("introScreen").style.display="none";
-spawnIntroHearts();
-}
-
-/* HEARTS */
-function spawnIntroHearts(){
-for(let i=0;i<25;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-}
-}
-
-/* QUIZ */
+/* START */
 function startQuiz(){
 name=document.getElementById("name").value;
 if(name==="") return alert("Enter name 💖");
 
 document.getElementById("start").style.display="none";
 document.getElementById("quiz").style.display="block";
+
 loadQ();
 }
 
@@ -233,8 +233,8 @@ end();
 }
 }
 
-function answer(v){
-q++;
+function answer(val){
+if(val) q++;
 loadQ();
 }
 
@@ -242,9 +242,21 @@ loadQ();
 function end(){
 document.getElementById("quiz").style.display="none";
 document.getElementById("endScreen").style.display="flex";
+
 spawnHearts();
+spawnConfetti();
+
+setTimeout(()=>{
+document.getElementById("congratsVideo").play().catch(()=>{});
+},300);
+
+/* SHOW MARRY ME */
+setTimeout(()=>{
+document.getElementById("marryMeBox").style.display="block";
+},4000);
 }
 
+/* HEARTS */
 function spawnHearts(){
 setInterval(()=>{
 let h=document.createElement("div");
@@ -253,24 +265,68 @@ h.innerHTML="💖";
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},200);
+},300);
 }
 
-/* QR 1 */
-function showQR1(){
-openQR("https://justiong.github.io/Love/forever.html");
+/* CONFETTI */
+function spawnConfetti(){
+for(let i=0;i<50;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML="✨";
+c.style.left=Math.random()*100+"vw";
+c.style.top="-10px";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),4000);
+}
 }
 
-/* QR 2 */
-function showQR2(){
-openQR("https://justiong.github.io/Love/quiz.html");
+/* 💍 MARRY ME FINAL */
+function acceptMarriage(){
+
+document.body.innerHTML=`
+<div style="
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:radial-gradient(circle,#ff4d6d,#1a1a2e);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+">
+
+<h1 style="font-size:45px;">💍 SHE SAID YES 💍</h1>
+<h2>Forever starts now 💖</h2>
+<p>I love you always, sayang</p>
+
+</div>
+`;
+
+spawnHearts();
+spawnConfetti();
 }
 
-/* QR ENGINE */
-function openQR(link){
+/* QR */
+function showQR(type){
+
 document.getElementById("qrBox").style.display="flex";
+
+let link="";
+
+if(type==="quiz"){
+link="https://justiong.github.io/Love/quiz.html";
+}
+
+if(type==="forever"){
+link="https://justiong.github.io/Love/forever.html";
+}
+
 document.getElementById("qrImg").src=
-"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="
++encodeURIComponent(link);
 }
 
 function closeQR(){
