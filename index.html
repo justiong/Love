@@ -304,8 +304,7 @@ document.getElementById("letterBox").style.display="none";
 function showQR(){
   document.getElementById("qrBox").style.display="flex";
 
-  let link = "https://justiong.github.io/Love/forever.html";
-
+let link = "https://justiong.github.io/Love/forever.html";
   document.getElementById("qrImg").src =
   "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" 
   + encodeURIComponent(link);
