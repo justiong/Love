@@ -304,10 +304,18 @@ document.getElementById("letterBox").style.display="none";
 function showQR(){
   document.getElementById("qrBox").style.display="flex";
 
-let link = "https://justiong.github.io/Love/forever.html";
-  document.getElementById("qrImg").src =
-  "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" 
-  + encodeURIComponent(link);
+  let link = "https://justiong.github.io/Love/forever.html";
+
+  let qr = document.getElementById("qrImg");
+
+  // FORCE REFRESH (important trick)
+  qr.src = "";
+
+  setTimeout(()=>{
+    qr.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="
+    + encodeURIComponent(link + "?t=" + new Date().getTime());
+  },100);
 }
 function closeQR(){
 document.getElementById("qrBox").style.display="none";
