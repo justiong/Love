@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💖 Love Quiz for Sayang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f0f0f,#2a0f1f,#1a1a2e);
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+margin:15px auto;
+border-radius:20px;
+max-width:700px;
+box-shadow:0 0 20px rgba(255,0,100,0.3);
+}
+
+button{
+padding:10px 15px;
+margin-top:10px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+h1{
+color:#ff4d6d;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+width:80%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 LOVE QUIZ FOR SAYANG 💖</h1>
+
+<div id="start" class="card">
+<h2>Enter Your Name 💕</h2>
+<input id="name" placeholder="Sayang name">
+<br>
+<button onclick="startQuiz()">Start 💖</button>
+</div>
+
+<div id="quiz" class="card" style="display:none;">
+<h2 id="question"></h2>
+<button onclick="answer(true)">💖 Yes</button>
+<button onclick="answer(false)">💔 No</button>
+</div>
+
+<div id="result" class="card" style="display:none;">
+<h1>💌 Result</h1>
+<h2 id="scoreText"></h2>
+
+<p>
+No matter your score…  
+I still love you, sayang 💖  
+You are my forever person 🌸
+</p>
+
+<h3>🎥 Our Memory Videos</h3>
+
+<video width="90%" controls>
+<source src="video1.mp4" type="video/mp4">
+</video>
+
+<video width="90%" controls>
+<source src="video2.mp4" type="video/mp4">
+</video>
+
+</div>
+
+<script>
+
+let q = 0;
+let score = 0;
+let user = "";
+
+/* 20 QUESTIONS */
+let questions = [
+"Did we first meet at Billion Mall? 💖",
+"Do I love you more than anything?",
+"Do I call you sayang all the time?",
+"Do I like spicy tomyam? 🌶️",
+"Do I love pasta? 🍝",
+"Do I study Information Systems at UTP?",
+"Did I cook you lontong before?",
+"Did I cook you pasta before?",
+"Do I love tennis? 🎾",
+"Do I get jealous easily?",
+"Do I always think about you?",
+"Do I care about your assignment?",
+"Do I send you love messages?",
+"Do I miss you when you're busy?",
+"Do I love you more every day?",
+"Are you my sayang forever?",
+"Do I want to marry you one day? 💍",
+"Do I always forgive you?",
+"Do I enjoy making you happy?",
+"Do I truly love you? 💖"
+];
+
+function startQuiz(){
+user = document.getElementById("name").value;
+if(user===""){
+alert("Enter name sayang 💖");
+return;
+}
+
+document.getElementById("start").style.display="none";
+document.getElementById("quiz").style.display="block";
+
+loadQuestion();
+}
+
+function loadQuestion(){
+if(q < questions.length){
+document.getElementById("question").innerText =
+user + ", " + questions[q];
+} else {
+finish();
+}
+}
+
+function answer(val){
+if(val) score++;
+q++;
+loadQuestion();
+}
+
+function finish(){
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+
+document.getElementById("scoreText").innerText =
+"Your Love Score: " + score + " / " + questions.length + " 💖";
+}
+
+</script>
+
+</body>
+</html>
