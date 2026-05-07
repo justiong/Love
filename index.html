@@ -401,12 +401,16 @@ clearTimeout(typingInterval);
 document.getElementById("qrBox").style.display="flex";
 
 /* CHANGE THIS LINK */
-window.location.href='forever.html'
+function showQR(){
+
+document.getElementById("qrBox").style.display="flex";
+
+let link = window.location.origin + "/forever.html";
 
 document.getElementById("qrImg").src =
-"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + link;
-}
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(link);
 
+}
 function closeQR(){
 document.getElementById("qrBox").style.display="none";
 }
