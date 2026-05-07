@@ -249,24 +249,8 @@ src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"></iframe>
 
   </div>
 </div>
-  <div class="card" style="text-align:center;max-width:300px;">
 
-<h3>💌 Scan My Love</h3>
 
-<img id="qrImg"
-style="
-width:220px;
-border-radius:15px;
-margin:10px;
-box-shadow:0 0 20px pink;
-">
-
-<br>
-
-<button onclick="closeQR()">Close 💖</button>
-
-</div>
-</div>
   <div class="card" style="text-align:center;max-width:320px;">
 
 <h3>💌 Scan My Love</h3>
@@ -327,7 +311,7 @@ let typingInterval;
 
 /* START */
 function startGame(){
-let user=document.getElementById("name").value;
+user=document.getElementById("name").value;
 
 if(user.trim()===""){
 alert("Please enter name 💖");
@@ -358,7 +342,7 @@ audio.volume=0.5;
 audio.play().catch(()=>{});
 }
 
-/* CHAT */cument.get
+/* CHAT */
 function sendMsg(){
 let m=document.getElementById("msg").value;
 if(!m)return;
