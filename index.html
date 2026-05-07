@@ -401,7 +401,7 @@ clearTimeout(typingInterval);
 document.getElementById("qrBox").style.display="flex";
 
 /* CHANGE THIS LINK */
-let link = "forever.html";
+window.location.href='forever.html'
 
 document.getElementById("qrImg").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + link;
