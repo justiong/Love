@@ -397,32 +397,18 @@ function closeLetter(){
 document.getElementById("letterBox").style.display="none";
 clearTimeout(typingInterval);
 }
-  function showQR(){
-document.getElementById("qrBox").style.display="flex";
 
 /* CHANGE THIS LINK */
 function showQR(){
 
-let box = document.getElementById("qrBox");
+document.getElementById("qrBox").style.display="flex";
 
-if(!box){
-alert("QR box not found in HTML");
-return;
-}
-
-box.style.display="flex";
-
-let link = window.location.origin + "/forever.html";
+let link = "https://yourname.github.io/love-game/forever.html";
 
 document.getElementById("qrImg").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(link);
 
 }
-function closeQR(){
-document.getElementById("qrBox").style.display="none";
-}
-
-
 
 </script>
 
