@@ -6,6 +6,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2;}
+to{opacity:1;}
+}
 body{
 margin:0;
 font-family:Arial;
@@ -91,6 +115,7 @@ margin-top:10px;
 
 <button onclick="finalYes()">YES 💖</button>
 <button onclick="finalYes()">YES I LOVE YOU 💖</button>
+  <button onclick="openUniverse()">🌌 Ultimate Surprise</button>
 </div>
 
 <!-- 🎬 FINAL VIDEO -->
@@ -105,6 +130,200 @@ margin-top:10px;
 </div>
 
 <script>
+function openUniverse(){
+
+document.getElementById("universe").style.display="block";
+
+createStars();
+
+let load=0;
+
+let interval=setInterval(()=>{
+
+load+=5;
+
+document.getElementById("loveLoad").style.width=load+"%";
+
+spawnHeart();
+spawnFlower();
+
+if(load>=100){
+
+clearInterval(interval);
+
+document.getElementById("introBox").style.display="none";
+
+document.getElementById("finalLove").style.display="block";
+
+let vid=document.getElementById("ultimateVideo");
+
+vid.muted=false;
+
+vid.play();
+
+vid.onended=function(){
+
+document.getElementById("marryBox").style.display="block";
+
+};
+
+}
+
+},200);
+
+}
+
+function loveYes(){
+
+spawnHeart();
+spawnFlower();
+
+document.getElementById("yesScreen").style.display="block";
+
+let vid=document.getElementById("ultimateVideo");
+
+vid.currentTime=0;
+
+vid.play();
+
+}
+
+function closeUniverse(){
+
+document.getElementById("universe").style.display="none";
+
+document.getElementById("introBox").style.display="block";
+
+document.getElementById("finalLove").style.display="none";
+
+document.getElementById("marryBox").style.display="none";
+
+document.getElementById("yesScreen").style.display="none";
+
+document.getElementById("loveLoad").style.width="0%";
+
+}
+
+function createStars(){
+
+let stars=document.getElementById("stars");
+
+stars.innerHTML="";
+
+for(let i=0;i<120;i++){
+
+let s=document.createElement("div");
+
+s.className="star";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"vh";
+
+s.style.animationDuration=(Math.random()*3+1)+"s";
+
+stars.appendChild(s);
+
+}
+
+}
+function openUniverse(){
+
+document.getElementById("universe").style.display="block";
+
+createStars();
+
+let load=0;
+
+let interval=setInterval(()=>{
+
+load+=5;
+
+document.getElementById("loveLoad").style.width=load+"%";
+
+spawnHeart();
+spawnFlower();
+
+if(load>=100){
+
+clearInterval(interval);
+
+document.getElementById("introBox").style.display="none";
+
+document.getElementById("finalLove").style.display="block";
+
+let vid=document.getElementById("ultimateVideo");
+
+vid.muted=false;
+
+vid.play();
+
+vid.onended=function(){
+
+document.getElementById("marryBox").style.display="block";
+
+};
+
+}
+
+},200);
+
+}
+
+function loveYes(){
+
+spawnHeart();
+spawnFlower();
+
+document.getElementById("yesScreen").style.display="block";
+
+let vid=document.getElementById("ultimateVideo");
+
+vid.currentTime=0;
+
+vid.play();
+
+}
+
+function closeUniverse(){
+
+document.getElementById("universe").style.display="none";
+
+document.getElementById("introBox").style.display="block";
+
+document.getElementById("finalLove").style.display="none";
+
+document.getElementById("marryBox").style.display="none";
+
+document.getElementById("yesScreen").style.display="none";
+
+document.getElementById("loveLoad").style.width="0%";
+
+}
+
+function createStars(){
+
+let stars=document.getElementById("stars");
+
+stars.innerHTML="";
+
+for(let i=0;i<120;i++){
+
+let s=document.createElement("div");
+
+s.className="star";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"vh";
+
+s.style.animationDuration=(Math.random()*3+1)+"s";
+
+stars.appendChild(s);
+
+}
+
+}
 
 let q=0;
 let name="";
