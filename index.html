@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Love OS MAX Ultimate</title>
+<title>💖 GOD MODE LOVE RPG 2.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,102 +10,93 @@
 body{
 margin:0;
 font-family:Arial;
-background:black;
+background:linear-gradient(135deg,#0a0a1a,#2a0f2f,#000);
 color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
-#bgVideo{
-position:fixed;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
-opacity:0.25;
-}
-
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:radial-gradient(circle,transparent,#000);
-z-index:-1;
+/* HEADER */
+.header{
+text-align:center;
+padding:20px;
+font-size:22px;
+font-weight:bold;
 }
 
 /* CARD */
 .card{
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.08);
 margin:10px;
 padding:15px;
 border-radius:20px;
-box-shadow:0 0 20px pink;
+box-shadow:0 0 20px rgba(255,0,120,0.3);
 }
 
 /* BUTTON */
 button{
 padding:10px 14px;
+margin:5px;
 border:none;
 border-radius:20px;
-background:linear-gradient(45deg,#ff4d6d,#ff99cc);
+background:linear-gradient(135deg,#ff2e93,#ff66cc);
 color:white;
 font-weight:bold;
 cursor:pointer;
-margin:5px;
 }
+
 button:hover{transform:scale(1.05);}
 
 /* PROFILE */
-.profile{
-text-align:center;
-}
-
 .profile img{
-width:120px;
-height:120px;
+width:100px;
+height:100px;
 border-radius:50%;
-border:3px solid pink;
+border:3px solid hotpink;
 }
 
-/* LOGIN */
-#login{
-position:fixed;
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:linear-gradient(45deg,#ff4d6d,#1a1a2e);
-z-index:999;
-}
-
-/* HEART */
+/* HEARTS */
 .heart{
 position:fixed;
 animation:float 5s linear;
 pointer-events:none;
 }
+
 @keyframes float{
 0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-100vh);opacity:0;}
+100%{transform:translateY(-120vh);opacity:0;}
 }
 
 /* SURPRISE */
 #surprise{
 display:none;
 position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-background:linear-gradient(45deg,#ff4d6d,#1a1a2e);
-z-index:9999;
-justify-content:center;
-align-items:center;
-flex-direction:column;
+top:0;left:0;
+width:100%;height:100%;
+background:black;
+z-index:999;
 text-align:center;
+color:white;
+}
+
+video{
+width:90%;
+border-radius:20px;
+}
+
+/* CAT */
+#cat{
+font-size:60px;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* ARCHERY */
+.target{
+width:50px;
+height:50px;
+background:red;
+border-radius:50%;
+position:absolute;
 }
 
 </style>
@@ -113,180 +104,193 @@ text-align:center;
 
 <body>
 
-<video id="bgVideo" autoplay muted loop>
-<source src="bg.mp4">
-</video>
-<div class="overlay"></div>
-
-<audio id="music" loop>
-<source src="2.mp3">
-</audio>
-
-<!-- LOGIN -->
-<div id="login">
-<h2>💖 Enter Name</h2>
-<input id="name">
-<br><br>
-<button onclick="start()">Start 💕</button>
-</div>
-
-<!-- APP -->
-<div id="app" style="display:none;">
+<div class="header">💖 GOD MODE LOVE RPG 2.0 💖</div>
 
 <!-- PROFILE -->
 <div class="card profile">
 <img src="6.jpg">
-<h2>💞 Liya x Justin</h2>
+<h3>💞 Liya (20) & Justin (22)</h3>
+<p>📍 Kelantan ↔ Penang</p>
+<p>🎓 KPM ↔ UTP</p>
+<p>🏸 Archery Queen | 🎾 Tennis Boy</p>
+</div>
 
-<p id="status">💌 Love loading...</p>
-
-<p>
-💖 Love Level: <span id="love">0</span>/100<br>
-🎭 Mood: <span id="mood">Calm</span><br>
-📅 Days: <span id="days"></span><br>
-⚡ XP: <span id="xp"></span>
-</p>
-
-<button onclick="changeStatus()">Status</button>
-<button onclick="mood()">Mood</button>
-<button onclick="boost()">Boost 💖</button>
+<!-- STATUS -->
+<div class="card">
+<h3>💍 Relationship System</h3>
+<p id="days"></p>
+<p id="level"></p>
 </div>
 
 <!-- MENU -->
 <div class="card">
 <h3>🎮 Menu</h3>
 
-<button onclick="heart()">💖 Heart</button>
-<button onclick="cat()">🐱 Cat</button>
-<button onclick="gallery()">📸 Gallery</button>
-<button onclick="quiz()">🎮 Quiz</button>
-<button onclick="surprise()">💍 Marry Me</button>
+<button onclick="openQuiz()">💖 Quiz</button>
+<button onclick="openSurprise()">🌌 Surprise</button>
+<button onclick="spawnHearts()">💖 Hearts</button>
+<button onclick="startGallery()">📸 Gallery</button>
+<button onclick="openCat()">🐱 Cat</button>
+<button onclick="startArchery()">🏹 Archery</button>
+<button onclick="openSpotify()">🎧 Spotify</button>
 
 </div>
 
-<!-- CHAT -->
-<div class="card">
-<h3>💬 Chat</h3>
-<div id="chat"></div>
-<input id="msg">
-<button onclick="send()">Send</button>
+<!-- QUIZ -->
+<div id="quizBox" class="card" style="display:none;">
+<h3>💖 Love Quiz</h3>
+<p id="q"></p>
+<button onclick="answer(true)">YES</button>
+<button onclick="answer(false)">NO</button>
 </div>
 
-</div>
-
-<!-- SURPRISE END -->
+<!-- SURPRISE -->
 <div id="surprise">
-<h1>💍 WILL YOU MARRY ME? 💍</h1>
+<h1>💖 FOR LIYA 💖</h1>
+<div id="count">3</div>
 
-<button onclick="yes()">YES 💖</button>
-<button onclick="yes()">YES 💕</button>
+<div id="surContent" style="display:none;">
+<h2>💌 Forever Love</h2>
 
-<br><br>
-
-<video id="finalVideo" width="90%" controls>
-<source src="1.mp4">
+<video id="vid" controls>
+<source src="1.mp4" type="video/mp4">
 </video>
 
-<h2>💖 Forever Together 💖</h2>
+<h2>💍 MARRY ME?</h2>
+<button onclick="yes()">YES 💖</button>
+<button onclick="yes()">YES 💖</button>
+
+</div>
+</div>
+
+<!-- CAT -->
+<div class="card">
+<h3>🐱 Virtual Cat</h3>
+<div id="cat" onclick="petCat()">🐱</div>
+<p id="catText">Tap me!</p>
+</div>
+
+<!-- ARCHERY -->
+<div class="card">
+<h3>🏹 Mini Archery</h3>
+<button onclick="spawnTarget()">Spawn Target</button>
+<div id="gameArea"></div>
+</div>
+
+<!-- SPOTIFY -->
+<div class="card">
+<h3>🎧 Spotify</h3>
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/1cC0y0x"
+width="100%" height="152"></iframe>
 </div>
 
 <script>
 
-let name="";
-let love=0;
-
-/* START */
-function start(){
-name=document.getElementById("name").value;
-if(!name)return;
-
-document.getElementById("login").style.display="none";
-document.getElementById("app").style.display="block";
-
-document.getElementById("music").play();
-
-let start=new Date("2025-01-01");
+/* DAYS + LEVEL */
+let start=new Date("2025-10-21");
 let now=new Date();
-let d=Math.floor((now-start)/86400000);
+let days=Math.floor((now-start)/86400000);
 
-document.getElementById("days").innerText=d;
-document.getElementById("xp").innerText=d*5;
-}
+document.getElementById("days").innerText="💖 "+days+" days together";
 
-/* PROFILE ACTIONS */
-function changeStatus(){
-let texts=[
-"I love you 💖",
-"You are my world 🌸",
-"My forever person 💕"
-];
-document.getElementById("status").innerText =
-texts[Math.floor(Math.random()*texts.length)];
-}
+document.getElementById("level").innerText="💍 Level "+Math.floor(days/2);
 
-function mood(){
-let moods=["Happy 😊","Miss you 😢","In Love 💖","Crazy 😍"];
-document.getElementById("mood").innerText =
-moods[Math.floor(Math.random()*moods.length)];
-}
-
-function boost(){
-love+=10;
-if(love>100)love=100;
-document.getElementById("love").innerText=love;
-heart();
-}
-
-/* HEART */
-function heart(){
+/* HEARTS */
+function spawnHearts(){
 for(let i=0;i<10;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),5000);
+let d=document.createElement("div");
+d.className="heart";
+d.innerHTML="💖";
+d.style.left=Math.random()*100+"vw";
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),5000);
 }
-}
-
-/* CAT */
-function cat(){
-alert("🐱 Meow~ I love you sayang 💖");
-}
-
-/* GALLERY */
-function gallery(){
-let w=window.open("");
-let html="<h1>📸 Gallery</h1>";
-for(let i=1;i<=18;i++){
-html+=`<img src="${i}.jpg" width="100">`;
-}
-w.document.write(html);
 }
 
 /* QUIZ */
-function quiz(){
-alert("🎮 Quiz coming soon 💖");
+let qList=[
+"Do I love you?",
+"Are we forever?",
+"Do I care about you?",
+"Will I stay with you?",
+"Are you my happiness?"
+];
+
+let i=0,score=0;
+
+function openQuiz(){
+document.getElementById("quizBox").style.display="block";
+loadQ();
+}
+
+function loadQ(){
+document.getElementById("q").innerText=qList[i];
+}
+
+function answer(v){
+if(v)score++;
+i++;
+if(i>=qList.length){
+alert("💖 Score: "+score);
+document.getElementById("quizBox").style.display="none";
+}else loadQ();
 }
 
 /* SURPRISE */
-function surprise(){
-document.getElementById("surprise").style.display="flex";
-setTimeout(()=>document.getElementById("finalVideo").play(),2000);
+function openSurprise(){
+document.getElementById("surprise").style.display="block";
+let c=3;
+
+let t=setInterval(()=>{
+c--;
+document.getElementById("count").innerText=c;
+spawnHearts();
+
+if(c<=0){
+clearInterval(t);
+document.getElementById("count").style.display="none";
+document.getElementById("surContent").style.display="block";
+document.getElementById("vid").play();
+}
+},1000);
 }
 
-/* YES */
 function yes(){
-alert("💖 She said YES!! Forever Love 💖");
+alert("💖 SHE SAID YES 💖");
 }
 
-/* CHAT */
-function send(){
-let m=document.getElementById("msg").value;
-if(!m)return;
-let d=document.createElement("div");
-d.innerText=name+": "+m;
-document.getElementById("chat").appendChild(d);
+/* CAT */
+function petCat(){
+document.getElementById("catText").innerText="💖 Meow loves you!";
+spawnHearts();
+}
+
+/* ARCHERY */
+function spawnTarget(){
+let t=document.createElement("div");
+t.className="target";
+t.style.left=Math.random()*80+"vw";
+t.style.top=Math.random()*60+"vh";
+t.onclick=()=>{t.remove();alert("🎯 HIT!");};
+document.body.appendChild(t);
+}
+
+/* GALLERY */
+function startGallery(){
+let img=1;
+let g=setInterval(()=>{
+if(img>18){clearInterval(g);}
+else{
+console.log("Show "+img+".jpg");
+img++;
+}
+},800);
+}
+
+/* SPOTIFY */
+function openSpotify(){
+alert("🎧 Spotify already embedded below");
 }
 
 </script>
