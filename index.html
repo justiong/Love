@@ -15,12 +15,100 @@ padding:0;
 box-sizing:border-box;
 }
 
+
 body{
-font-family:'Poppins',sans-serif;
-background:radial-gradient(circle at top,#ff4fa3 0%,#140014 40%,#000 100%);
+margin:0;
+background:black;
+font-family:Arial;
+overflow:hidden;
+}
+
+/* MAIN TIKTOK STYLE */
+.container{
+height:100vh;
+overflow-y:scroll;
+scroll-snap-type:y mandatory;
+}
+
+/* VIDEO CARD */
+.video{
+height:100vh;
+scroll-snap-align:start;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+background:black;
+}
+
+video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* PROFILE INFO */
+.info{
+position:absolute;
+bottom:80px;
+left:15px;
 color:white;
-overflow-x:hidden;
-min-height:100vh;
+}
+
+.name{
+font-size:20px;
+font-weight:bold;
+}
+
+.bio{
+opacity:0.7;
+}
+
+/* BUTTONS */
+.actions{
+position:absolute;
+right:15px;
+bottom:120px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.btn{
+background:rgba(255,255,255,0.15);
+border:none;
+color:white;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
+font-size:18px;
+}
+
+/* HEARTS + FLOWERS */
+.heart,.flower{
+position:fixed;
+animation:float 5s linear forwards;
+font-size:20px;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* CAT POPUP */
+#catBox{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+}
+
+#catBox img{
+width:250px;
+border-radius:20px;
 }
 
 /* INTRO */
@@ -109,6 +197,42 @@ cursor:pointer;
 </head>
 
 <body>
+  <!-- MUSIC -->
+<audio id="bgm" autoplay loop>
+<source src = "2.mp3" type="audio/mp3">
+</audio>
+
+<div class="container">
+
+<!-- VIDEO 1 -->
+<div class="video">
+<video autoplay loop muted>
+<source src = "1.mp4">
+</video>
+
+<div class="info">
+<div class="name">💖 Liya × Justin</div>
+<div class="bio">Forever Love</div>
+</div>
+
+<div class="actions">
+<button class="btn" onclick="spawnHearts()">💖</button>
+<button class="btn" onclick="spawnFlowers()">🌸</button>
+<button class="btn" onclick="openCat()">🐱</button>
+</div>
+
+</div>
+
+<!-- VIDEO 2 -->
+<div class="video">
+<video autoplay loop muted>
+<source src = "2.mp4">
+</video>
+
+<div class="info">
+<div class="name">Our Memory 💍</div>
+<div class="bio">TikTok Love OS</div>
+</div>
 
 <!-- INTRO -->
 <div id="intro" onclick="enterApp()">
@@ -220,8 +344,52 @@ width="100%" height="152"></iframe>
 <button onclick="closeLetter()">Close</button>
 </div>
 </div>
+  <!-- CAT -->
+<div id="catBox" onclick="closeCat()">
+<img src="cat.gif">
+</div>
+
 
 <script>
+  function spawnHearts(){
+for(let i=0;i<20;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.top="100vh";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+}
+}
+
+/* FLOWERS */
+function spawnFlowers(){
+for(let i=0;i<20;i++){
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+f.style.top="100vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),5000);
+}
+}
+
+/* CAT */
+function openCat(){
+document.getElementById("catBox").style.display="flex";
+spawnHearts();
+}
+
+function closeCat(){
+document.getElementById("catBox").style.display="none";
+}
+
+/* MUSIC FIX AUTOPLAY */
+window.addEventListener("click",()=>{
+document.getElementById("bgm").play();
+});
 
 let xp = 0;
 let level = 1;
