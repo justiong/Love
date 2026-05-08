@@ -5,40 +5,42 @@
 <title>💖 Love OS Infinity Ultimate</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-margin:0;
 background:black;
 font-family:Arial;
 overflow:hidden;
+color:white;
 }
 
-/* MAIN TIKTOK STYLE */
+/* HEADER (iPhone style) */
+.header{
+position:fixed;
+top:0;
+width:100%;
+padding:12px;
+text-align:center;
+backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.05);
+z-index:10;
+font-weight:bold;
+}
+
+/* TIKTOK FEED */
 .container{
 height:100vh;
 overflow-y:scroll;
 scroll-snap-type:y mandatory;
 }
 
-/* VIDEO CARD */
+/* VIDEO */
 .video{
 height:100vh;
 scroll-snap-align:start;
 position:relative;
-display:flex;
-justify-content:center;
-align-items:center;
-background:black;
 }
 
 video{
@@ -47,44 +49,36 @@ height:100%;
 object-fit:cover;
 }
 
-/* PROFILE INFO */
+/* INFO */
 .info{
 position:absolute;
-bottom:80px;
+bottom:90px;
 left:15px;
-color:white;
 }
 
-.name{
-font-size:20px;
-font-weight:bold;
-}
+.name{font-size:20px;font-weight:bold;}
+.bio{opacity:0.7;}
 
-.bio{
-opacity:0.7;
-}
-
-/* BUTTONS */
+/* ACTIONS */
 .actions{
 position:absolute;
 right:15px;
 bottom:120px;
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:10px;
 }
 
 .btn{
-background:rgba(255,255,255,0.15);
-border:none;
-color:white;
-padding:10px;
+width:45px;
+height:45px;
 border-radius:50%;
-cursor:pointer;
-font-size:18px;
+border:none;
+background:rgba(255,255,255,0.2);
+color:white;
 }
 
-/* HEARTS + FLOWERS */
+/* HEARTS / FLOWERS */
 .heart,.flower{
 position:fixed;
 animation:float 5s linear forwards;
@@ -96,7 +90,36 @@ font-size:20px;
 100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* CAT POPUP */
+/* APP OVERLAY */
+#app{
+display:none;
+position:fixed;
+inset:0;
+overflow-y:auto;
+padding:15px;
+z-index:20;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+}
+
+/* CARD */
+.card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+/* BUTTON */
+button{
+padding:10px 15px;
+border:none;
+border-radius:15px;
+background:linear-gradient(135deg,#ff2e93,#ff7cc9);
+color:white;
+}
+
+/* CAT */
 #catBox{
 display:none;
 position:fixed;
@@ -104,110 +127,135 @@ inset:0;
 background:rgba(0,0,0,0.8);
 justify-content:center;
 align-items:center;
+z-index:30;
 }
 
 #catBox img{
 width:250px;
 border-radius:20px;
 }
-
-/* INTRO */
-#intro{
+#lockScreen{
 position:fixed;
 inset:0;
-background:linear-gradient(135deg,#ff2e93,#2d003d,#000);
+background:url("bg.jpg") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+align-items:center;
+z-index:999999;
+color:white;
+backdrop-filter:blur(10px);
+}
+
+/* TIME */
+.time{
+font-size:60px;
+margin-top:80px;
+font-weight:300;
+}
+
+/* PROFILE PIC */
+.profile{
+text-align:center;
+margin-top:-50px;
+}
+
+.pfp{
+width:120px;
+height:120px;
+border-radius:50%;
+border:3px solid white;
+box-shadow:0 0 20px hotpink;
+object-fit:cover;
+}
+
+/* FACE ID RING */
+.faceRing{
+width:140px;
+height:140px;
+border-radius:50%;
+border:2px solid rgba(255,255,255,0.3);
+position:absolute;
+top:45%;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* SWIPE */
+.swipeArea{
+width:100%;
 display:flex;
 justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:99999;
+padding-bottom:40px;
+}
+
+#swipeBar{
+width:200px;
+padding:10px;
+background:rgba(255,255,255,0.15);
+border-radius:30px;
 text-align:center;
+backdrop-filter:blur(10px);
 }
-
-#intro h1{
-font-size:3rem;
-animation:glow 2s infinite alternate;
-}
-
-#intro p{
-margin-top:10px;
-opacity:0.85;
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px hotpink;}
-to{text-shadow:0 0 40px hotpink;}
-}
-
-/* APP */
-#app{
-display:none;
-padding:15px;
-animation:fade 1s ease;
-}
-
-@keyframes fade{
-from{opacity:0;transform:translateY(15px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* CARD */
-.card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-padding:20px;
-border-radius:25px;
-margin-bottom:18px;
-}
-
-/* BUTTON */
-button{
+  .loveBtn{
 padding:12px 18px;
 border:none;
-border-radius:18px;
-background:linear-gradient(135deg,#ff2e93,#ff7cc9);
-color:white;
-font-weight:600;
-cursor:pointer;
+border-radius:20px;
 margin:5px;
-}
-
-/* HEARTS */
-.heart{
-position:fixed;
-pointer-events:none;
-animation:float 5s linear forwards;
-z-index:999;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-120vh);opacity:0;}
-}
-
-/* GAME HEART */
-.gameHeart{
-position:absolute;
-font-size:2rem;
+background:rgba(255,255,255,0.15);
+color:white;
+backdrop-filter:blur(10px);
 cursor:pointer;
+transition:0.3s;
 }
 
+.loveBtn:hover{
+transform:scale(1.1);
+background:rgba(255,255,255,0.25);
+}
 </style>
 </head>
 
 <body>
-  <!-- MUSIC -->
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+
+<div class="time">9:41</div>
+
+<div class="profile">
+<img src="profile.jpg" class="pfp">
+<h2>Liya 💖 Justin</h2>
+<p>Face ID is scanning...</p>
+</div>
+
+<div class="faceRing"></div>
+
+<!-- SWIPE -->
+<div class="swipeArea" onmousedown="startSwipe(event)" ontouchstart="startSwipe(event)">
+<div id="swipeBar">⬆ Swipe up to unlock</div>
+</div>
+
+</div>
+
+<div class="header">💖 Love OS iPhone TikTok</div>
+
+<!-- MUSIC -->
 <audio id="bgm" autoplay loop>
-<source src = "2.mp3" type="audio/mp3">
+<source src="2.mp3">
 </audio>
 
+<!-- FEED -->
 <div class="container">
 
 <!-- VIDEO 1 -->
 <div class="video">
 <video autoplay loop muted>
-<source src = "1.mp4">
+<source src="1.mp4">
 </video>
 
 <div class="info">
@@ -219,6 +267,7 @@ cursor:pointer;
 <button class="btn" onclick="spawnHearts()">💖</button>
 <button class="btn" onclick="spawnFlowers()">🌸</button>
 <button class="btn" onclick="openCat()">🐱</button>
+<button class="btn" onclick="openApp()">📱</button>
 </div>
 
 </div>
@@ -226,7 +275,7 @@ cursor:pointer;
 <!-- VIDEO 2 -->
 <div class="video">
 <video autoplay loop muted>
-<source src = "2.mp4">
+<source src="2.mp4">
 </video>
 
 <div class="info">
@@ -234,10 +283,8 @@ cursor:pointer;
 <div class="bio">TikTok Love OS</div>
 </div>
 
-<!-- INTRO -->
-<div id="intro" onclick="enterApp()">
-<h1>💖 LIYA × JUSTIN</h1>
-<p>Love OS Infinity Ultimate</p>
+</div>
+
 </div>
 
 <!-- APP -->
@@ -248,116 +295,83 @@ cursor:pointer;
 <p>Every memory with you is my favorite.</p>
 </div>
 
-<!-- LOVE GAMES -->
 <div class="card">
-<h3>🎮 Love Games</h3>
-
-<button onclick="location.href='quiz.html'">💖 Quiz</button>
-<button onclick="location.href='virtual_cat.html'">🐱 Cat</button>
-<button onclick="location.href='archery.html'">🏹 Archery</button>
-<button onclick="location.href='forever.html'">💍 Forever</button>
-
+<h3>🎮 Games</h3>
+<button onclick="location.href='quiz.html'">Quiz</button>
+<button onclick="location.href='virtual_cat.html'">Cat</button>
+<button onclick="location.href='archery.html'">Archery</button>
+<button onclick="location.href='forever.html'">Forever</button>
+<button onclick="spawnFlowers()" class="loveBtn">🌸 Flowers</button>
+<button onclick="openCat()" class="loveBtn">🐱 Cat</button>
 </div>
 
-<!-- PROFILE -->
-<div class="card">
-<h3>💍 Couple Profile</h3>
-
-<p>💖 Liya × Justin Forever</p>
-<p>🏹🎾 Archery Girl × Tennis Boy</p>
-
-</div>
-
-<!-- STATUS -->
-<div class="card">
-<h3>💞 Relationship Status</h3>
-<p>💍 Forever Together</p>
-<p>🔥 Love Streak: 128 Days</p>
-<p>🌎 Kelantan ↔ Penang</p>
-</div>
-
-<!-- PLAYLIST -->
-<div class="card">
-<h3>🎵 Playlist</h3>
-
-<iframe style="border-radius:18px"
-src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="152"></iframe>
-
-</div>
-
-<!-- VIDEO -->
-<div class="card">
-<h3>🎂 Birthday Memory</h3>
-
-<video id="birthdayVideo" controls width="100%" poster="1.jpg">
-<source src="liya.mp4" type="video/mp4">
-</video>
-
-<br><br>
-<button onclick="playMemory()">▶ Play Memory</button>
-</div>
-
-<!-- MINI GAME -->
-<div class="card">
-<h3>🎯 Catch The Hearts</h3>
-
-<p>Score: <span id="gameScore">0</span></p>
-
-<div id="gameArea" style="position:relative;width:100%;height:300px;background:rgba(255,255,255,0.05);border-radius:20px;"></div>
-
-<br>
-<button onclick="startGame()">Start Game</button>
-</div>
-
-<!-- DESTINY -->
-<div class="card">
-<h3>💘 Destiny Wheel</h3>
-
-<p id="destinyText">Spin to reveal destiny 💖</p>
-<button onclick="spinLove()">💞 Spin</button>
-</div>
-
-<!-- GALLERY -->
-<div class="card">
-<h3>📸 Memories</h3>
-
-<button onclick="openGallery()">Open Gallery</button>
-<div class="gallery" id="gallery"></div>
-
-</div>
-
-<!-- LETTER -->
 <div class="card">
 <h3>💌 Love Letter</h3>
-<button onclick="openLetter()">Read Letter</button>
+<button onclick="openLetter()">Read</button>
 </div>
 
 </div>
 
-<!-- LETTER BOX -->
-<div id="letterBox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;">
-<div style="background:rgba(255,255,255,0.08);padding:25px;border-radius:20px;max-width:600px;">
-<h2>💖 My Sayang</h2>
-<p id="text"></p>
-<br>
-<button onclick="closeLetter()">Close</button>
-</div>
-</div>
-  <!-- CAT -->
+<!-- CAT -->
 <div id="catBox" onclick="closeCat()">
 <img src="cat.gif">
 </div>
 
-
 <script>
-  function spawnHearts(){
+  
+let startY = 0;
+
+/* FAKE FACE ID SCAN */
+setTimeout(()=>{
+document.querySelector(".profile p").innerText = "Face Recognized ✔";
+},2000);
+
+/* SWIPE UP DETECTION */
+function startSwipe(e){
+startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+document.addEventListener("mouseup",endSwipe);
+document.addEventListener("touchend",endSwipe);
+}
+
+function endSwipe(e){
+
+let endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+
+if(startY - endY > 80){
+unlockScreen();
+}
+
+}
+
+/* UNLOCK ANIMATION */
+function unlockScreen(){
+
+document.getElementById("lockScreen").style.transition="1s";
+document.getElementById("lockScreen").style.opacity="0";
+document.getElementById("lockScreen").style.filter="blur(20px)";
+
+setTimeout(()=>{
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("app").style.display="block";
+spawnHearts();
+},1000);
+
+}
+
+/* OPEN APP */
+function openApp(){
+document.getElementById("app").style.display="block";
+spawnHearts();
+}
+
+/* HEARTS */
+function spawnHearts(){
 for(let i=0;i<20;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💖";
 h.style.left=Math.random()*100+"vw";
-h.style.top="100vh";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),5000);
 }
@@ -370,7 +384,6 @@ let f=document.createElement("div");
 f.className="flower";
 f.innerHTML="🌸";
 f.style.left=Math.random()*100+"vw";
-f.style.top="100vh";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),5000);
 }
@@ -386,95 +399,10 @@ function closeCat(){
 document.getElementById("catBox").style.display="none";
 }
 
-/* MUSIC FIX AUTOPLAY */
+/* MUSIC */
 window.addEventListener("click",()=>{
 document.getElementById("bgm").play();
 });
-
-let xp = 0;
-let level = 1;
-let score = 0;
-
-/* INTRO */
-function enterApp(){
-document.getElementById("intro").style.display="none";
-document.getElementById("app").style.display="block";
-spawnHearts();
-}
-
-/* HEARTS */
-function spawnHearts(){
-for(let i=0;i<25;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),5000);
-}
-}
-
-/* VIDEO */
-function playMemory(){
-document.getElementById("birthdayVideo").play();
-spawnHearts();
-}
-
-/* GAME */
-function startGame(){
-
-let area=document.getElementById("gameArea");
-area.innerHTML="";
-score=0;
-document.getElementById("gameScore").innerText=score;
-
-let game=setInterval(()=>{
-
-let heart=document.createElement("div");
-heart.className="gameHeart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*90+"%";
-heart.style.top=Math.random()*80+"%";
-
-heart.onclick=()=>{
-score++;
-document.getElementById("gameScore").innerText=score;
-heart.remove();
-spawnHearts();
-}
-
-area.appendChild(heart);
-setTimeout(()=>heart.remove(),1500);
-
-},600);
-
-setTimeout(()=>{
-clearInterval(game);
-alert("Game Over! Score: "+score);
-},15000);
-
-}
-
-/* DESTINY */
-function spinLove(){
-let list=["💍 Marriage Soon","💖 Soulmates","🌎 Forever","🏹 Perfect Match","✨ Endless Love"];
-document.getElementById("destinyText").innerText =
-list[Math.floor(Math.random()*list.length)];
-spawnHearts();
-}
-
-/* GALLERY */
-function openGallery(){
-let g=document.getElementById("gallery");
-g.innerHTML="";
-for(let i=1;i<=12;i++){
-let img=document.createElement("img");
-img.src=i+".jpg";
-img.style.width="100px";
-g.appendChild(img);
-}
-spawnHearts();
-}
 
 /* LETTER */
 let msg = `My Sayang 💖
@@ -493,23 +421,43 @@ your voice,
 your laugh,
 and the way you make my world brighter.
 
-Thank you for being in my life.
+Thank you for being in my life.\
+Forever love you sayang 
 
-💖 Forever yours,
+💖 Forever your husby,
 Justin`;
+
 function openLetter(){
-document.getElementById("letterBox").style.display="flex";
-let i=0;
-document.getElementById("text").innerHTML="";
-let t=setInterval(()=>{
-document.getElementById("text").innerHTML+=msg[i];
-i++;
-if(i>=msg.length) clearInterval(t);
-},20);
+alert(msg);
+spawnHearts();
+}
+function spawnFlowers(){
+
+for(let i=0;i<25;i++){
+
+let f = document.createElement("div");
+f.innerHTML = "🌸";
+f.style.position = "fixed";
+f.style.left = Math.random()*100 + "vw";
+f.style.top = "100vh";
+f.style.fontSize = (15 + Math.random()*20) + "px";
+f.style.zIndex = "9999";
+f.style.pointerEvents = "none";
+
+document.body.appendChild(f);
+
+f.animate([
+{ transform:"translateY(0)", opacity:1 },
+{ transform:"translateY(-120vh)", opacity:0 }
+],{
+duration:4000 + Math.random()*2000,
+easing:"linear"
+});
+
+setTimeout(()=>f.remove(),5000);
+
 }
 
-function closeLetter(){
-document.getElementById("letterBox").style.display="none";
 }
 
 </script>
