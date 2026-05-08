@@ -189,6 +189,7 @@ transition:0.5s;
 
 <button onclick="showQR('quiz')">📱 Quiz QR</button>
 <button onclick="showQR('forever')">💌 Forever QR</button>
+<button onclick="openUniverse()">🌌 Ultimate Surprise</button>
 </div>
 
 </div>
@@ -228,10 +229,140 @@ background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:999
 
 
 </div>
+<!-- SURPRISE BOX -->
+<div id="surpriseBox"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff2e93,#1a1a2e,#ff69b4);
+z-index:99999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+overflow:hidden;
+">
 
+<h1 style="font-size:40px;">💖 FOR MY SAYANG 💖</h1>
+
+<div id="countdown" style="font-size:70px;font-weight:bold;">
+3
+</div>
+
+<div id="surpriseContent" style="display:none;max-width:700px;padding:20px;">
+
+<h2>🐱 You unlocked Justin's heart 🐱</h2>
+
+<img src="cat.gif"
+style="
+width:220px;
+border-radius:20px;
+box-shadow:0 0 30px pink;
+">
+
+<p style="
+font-size:20px;
+line-height:1.8;
+margin-top:20px;
+">
+💌 My Sayang...
+
+Thank you for existing in my life 🌸
+
+You make my days happier,
+my heart calmer,
+and my world brighter 💖
+
+No matter how hard life gets,
+I will always support you,
+care for you,
+and love you.
+
+You are my favorite person forever ✨
+</p>
+
+<video id="loveVideo"
+width="90%"
+controls
+autoplay
+style="
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 0 25px hotpink;
+">
+<source src="1.mp4" type="video/mp4">
+</video>
+
+<h1 style="margin-top:20px;">
+💍 Forever Love You Liya 💍
+</h1>
+
+<button onclick="closeSurprise()">
+Close 💖
+</button>
+
+</div>
 </div>
 
 <script>
+function openSurprise(){
+
+document.getElementById("surpriseBox").style.display="flex";
+
+let num = 3;
+
+document.getElementById("countdown").innerText=num;
+
+let timer = setInterval(()=>{
+
+num--;
+
+document.getElementById("countdown").innerText=num;
+
+spawnHeart();
+spawnFlower();
+
+if(num<=0){
+
+clearInterval(timer);
+
+document.getElementById("countdown").style.display="none";
+
+document.getElementById("surpriseContent").style.display="block";
+
+let vid=document.getElementById("loveVideo");
+
+vid.muted=false;
+
+vid.play();
+
+}
+
+},1000);
+
+}
+
+function closeSurprise(){
+
+document.getElementById("surpriseBox").style.display="none";
+
+document.getElementById("surpriseContent").style.display="none";
+
+document.getElementById("countdown").style.display="block";
+
+document.getElementById("countdown").innerText="3";
+
+let vid=document.getElementById("loveVideo");
+
+vid.pause();
+vid.currentTime=0;
+
+}
+
 
 let user="";
 let i=0;
