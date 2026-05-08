@@ -1,12 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>💖 Love OS Infinity Ultimate</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -76,6 +75,13 @@ border-radius:50%;
 border:none;
 background:rgba(255,255,255,0.2);
 color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.2s;
+}
+.btn:hover{
+background:rgba(255,255,255,0.35);
+transform:scale(1.1);
 }
 
 /* HEARTS / FLOWERS */
@@ -83,6 +89,7 @@ color:white;
 position:fixed;
 animation:float 5s linear forwards;
 font-size:20px;
+pointer-events:none;
 }
 
 @keyframes float{
@@ -109,6 +116,10 @@ padding:20px;
 border-radius:20px;
 margin-bottom:15px;
 }
+.card h2,.card h3{
+margin-bottom:12px;
+color:#ffd6e8;
+}
 
 /* BUTTON */
 button{
@@ -117,6 +128,13 @@ border:none;
 border-radius:15px;
 background:linear-gradient(135deg,#ff2e93,#ff7cc9);
 color:white;
+cursor:pointer;
+transition:0.2s;
+margin:4px 2px;
+}
+button:hover{
+transform:scale(1.05);
+opacity:0.9;
 }
 
 /* CAT */
@@ -134,6 +152,8 @@ z-index:30;
 width:250px;
 border-radius:20px;
 }
+
+/* LOCK SCREEN */
 #lockScreen{
 position:fixed;
 inset:0;
@@ -145,6 +165,7 @@ align-items:center;
 z-index:999999;
 color:white;
 backdrop-filter:blur(10px);
+transition:opacity 0.8s ease;
 }
 
 /* TIME */
@@ -202,7 +223,8 @@ border-radius:30px;
 text-align:center;
 backdrop-filter:blur(10px);
 }
-  .loveBtn{
+
+.loveBtn{
 padding:12px 18px;
 border:none;
 border-radius:20px;
@@ -218,25 +240,9 @@ transition:0.3s;
 transform:scale(1.1);
 background:rgba(255,255,255,0.25);
 }
-  .gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-margin-top:10px;
-}
 
-.gallery img{
-width:100%;
-height:110px;
-object-fit:cover;
-border-radius:12px;
-transition:0.3s;
-}
-
-.gallery img:hover{
-transform:scale(1.05);
-}
-  .gallery{
+/* GALLERY */
+.gallery{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:8px;
@@ -252,6 +258,9 @@ cursor:pointer;
 transition:0.2s;
 }
 
+.gallery img:hover{
+transform:scale(1.05);
+}
 .gallery img:active{
 transform:scale(0.95);
 }
@@ -273,7 +282,9 @@ max-height:100%;
 object-fit:contain;
 transition:0.3s;
 }
-  .profileWrap{
+
+/* PROFILE WRAP */
+.profileWrap{
 display:flex;
 justify-content:space-between;
 gap:10px;
@@ -302,12 +313,19 @@ margin-bottom:8px;
 .profileBox h2{
 color:white;
 margin:5px 0;
+font-size:16px;
 }
 
 .profileBox p{
 font-size:12px;
 opacity:0.8;
 color:white;
+margin:2px 0;
+}
+
+/* SPOTIFY */
+iframe{
+margin-top:8px;
 }
 </style>
 </head>
@@ -315,148 +333,133 @@ color:white;
 <body>
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
+  <div class="time">9:41</div>
 
-<div class="time">9:41</div>
+  <div class="profile">
+    <img src="1.jpg" class="pfp" alt="Profile">
+    <h2>Liya 💖 Justin</h2>
+    <p>Face ID is scanning...</p>
+  </div>
 
-<div class="profile">
-<img src = "1.jpg" class="pfp">
-<h2>Liya 💖 Justin</h2>
-<p>Face ID is scanning...</p>
-</div>
+  <div class="faceRing"></div>
 
-<div class="faceRing"></div>
-
-<!-- SWIPE -->
-<div class="swipeArea" onmousedown="startSwipe(event)" ontouchstart="startSwipe(event)">
-<div id="swipeBar">⬆ Swipe up to unlock</div>
-</div>
-
+  <!-- SWIPE -->
+  <div class="swipeArea" onmousedown="startSwipe(event)" ontouchstart="startSwipe(event)">
+    <div id="swipeBar">⬆ Swipe up to unlock</div>
+  </div>
 </div>
 
 <div class="header">💖 Love OS iPhone TikTok</div>
 
 <!-- MUSIC -->
 <audio id="bgm" autoplay loop>
-<source src="2.mp3">
-</audio>
+  <source src="2.mp3">
+  Your browser does not support audio.
+
 
 <!-- FEED -->
 <div class="container">
+  <!-- VIDEO 1 -->
+  <div class="video">
+    <video autoplay loop muted playsinline>
+      <source src="1.mp4">
+      Your browser does not support video.
+    </video>
 
-<!-- VIDEO 1 -->
-<div class="video">
-<video autoplay loop muted>
-<source src="1.mp4">
-</video>
+    <div class="info">
+      <div class="name">💖 Liya × Justin</div>
+      <div class="bio">Forever Love</div>
+    </div>
 
-<div class="info">
-<div class="name">💖 Liya × Justin</div>
-<div class="bio">Forever Love</div>
-</div>
+    <div class="actions">
+      <button class="btn" onclick="spawnHearts()">💖</button>
+      <button class="btn" onclick="spawnFlowers()">🌸</button>
+      <button class="btn" onclick="openCat()">🐱</button>
+      <button class="btn" onclick="openApp()">📱</button>
+    </div>
+  </div>
 
-<div class="actions">
-<button class="btn" onclick="spawnHearts()">💖</button>
-<button class="btn" onclick="spawnFlowers()">🌸</button>
-<button class="btn" onclick="openCat()">🐱</button>
-<button class="btn" onclick="openApp()">📱</button>
-</div>
+  <!-- VIDEO 2 -->
+  <div class="video">
+    <video autoplay loop muted playsinline>
+      <source src="2.mp4">
+      Your browser does not support video.
+    </video>
 
-</div>
+    <div class="card" style="position:absolute;bottom:20px;left:15px;right:15px;">
+      <h3>💍 Couple Profile</h3>
+      <div class="profileWrap">
+        <!-- LIYA -->
+        <div class="profileBox">
+          <img src="liya-juton.jpg" onerror="this.src='1.jpg'" alt="Liya">
+          <h2>💖 Liya</h2>
+          <p>🏹 Archery KPM</p>
+          <p>📍 Kelantan</p>
+        </div>
 
-<!-- VIDEO 2 -->
-<div class="video">
-<video autoplay loop muted>
-<source src="2.mp4">
-</video>
-
-<div class="card">
-
-<h3>💍 Couple Profile</h3>
-
-<div class="profileWrap">
-
-<!-- LIYA -->
-<div class="profileBox">
-<img src="liya-juton.jpg" onerror="this.src='1.jpg'">
-<h2>💖 Liya</h2>
-<p>🏹 Archery KPM</p>
-<p>📍 Kelantan</p>
-</div>
-
-<!-- JUSTIN -->
-<div class="profileBox">
-<img src="justin.jpg" onerror="this.src='2.jpg'">
-<h2>🎾 Justin</h2>
-<p>🎾 Tennis UTP</p>
-<p>📍 Penang</p>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-
+        <!-- JUSTIN -->
+        <div class="profileBox">
+          <img src="justin.jpg" onerror="this.src='2.jpg'" alt="Justin">
+          <h2>🎾 Justin</h2>
+          <p>🎾 Tennis UTP</p>
+          <p>📍 Penang</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- APP -->
 <div id="app">
+  <div class="card">
+    <h2>💖 Welcome Back Sayang</h2>
+    <p>Every memory with you is my favorite.</p>
+  </div>
 
-<div class="card">
-<h2>💖 Welcome Back Sayang</h2>
-<p>Every memory with you is my favorite.</p>
-</div>
+  <div class="card">
+    <h3>🎮 Games</h3>
+    <button onclick="location.href='quiz.html'">Quiz</button>
+    <button onclick="location.href='virtual_cat.html'">Cat</button>
+    <button onclick="location.href='archery.html'">Archery</button>
+    <button onclick="location.href='forever.html'">Forever</button>
+    <button onclick="spawnFlowers()" class="loveBtn">🌸 Flowers</button>
+    <button onclick="openCat()" class="loveBtn">🐱 Cat</button>
+  </div>
 
-<div class="card">
-<h3>🎮 Games</h3>
-<button onclick="location.href='quiz.html'">Quiz</button>
-<button onclick="location.href='virtual_cat.html'">Cat</button>
-<button onclick="location.href='archery.html'">Archery</button>
-<button onclick="location.href='forever.html'">Forever</button>
-<button onclick="spawnFlowers()" class="loveBtn">🌸 Flowers</button>
-<button onclick="openCat()" class="loveBtn">🐱 Cat</button>
-</div>
+  <div class="card">
+    <h3>💌 Love Letter</h3>
+    <button onclick="openLetter()">Read</button>
+  </div>
 
-<div class="card">
-<h3>💌 Love Letter</h3>
-<button onclick="openLetter()">Read</button>
-</div>
+  <div class="card">
+    <h3>🎵 Our Spotify Playlist</h3>
+    <iframe
+      style="border-radius:18px"
+      src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
+      width="100%" height="160" frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media">
+    </iframe>
+  </div>
 
+  <div class="card">
+    <h3>📸 Memories Gallery</h3>
+    <div class="gallery" id="gallery"></div>
+  </div>
 </div>
 
 <!-- CAT -->
 <div id="catBox" onclick="closeCat()">
-<img src="cat.gif">
-</div>
-<div class="card">
-<h3>🎵 Our Spotify</h3>
-
-<iframe
-style="border-radius:18px"
-src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%" height="160" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media">
-</iframe>
-  
-<div class="card">
-<h3>📸 Memories Gallery</h3>
-
-<div class="gallery" id="gallery"></div>
-
+  <img src="cat.gif" alt="Cat">
 </div>
 
 <!-- FULLSCREEN VIEWER -->
 <div id="viewer" onclick="closeViewer(event)">
-<img id="viewerImg">
-</div>
-
+  <img id="viewerImg" alt="Full view">
 </div>
 
 <script>
 let startY = 0;
 let startX = 0;
-
 let images = [];
 let currentIndex = 0;
 
@@ -474,54 +477,46 @@ document.addEventListener("touchend",endSwipe);
 
 function endSwipe(e){
 let endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-
 if(startY - endY > 80){
-unlockScreen();
+  unlockScreen();
 }
 }
 
 /* UNLOCK */
 function unlockScreen(){
-document.getElementById("lockScreen").style.opacity="0";
-
+document.getElementById("lockScreen").style.opacity = "0";
 setTimeout(()=>{
-document.getElementById("lockScreen").style.display="none";
-document.getElementById("app").style.display="block";
-spawnHearts();
+  document.getElementById("lockScreen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  openGallery();
+  spawnHearts();
 },800);
 }
 
 /* HEARTS */
 function spawnHearts(){
 for(let i=0;i<20;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),5000);
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.top=(Math.random()*50 + 50)+"vh";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
 }
 }
 
 /* FLOWERS */
 function spawnFlowers(){
 for(let i=0;i<25;i++){
-let f=document.createElement("div");
-f.innerHTML="🌸";
-f.style.position="fixed";
-f.style.left=Math.random()*100+"vw";
-f.style.top="100vh";
-f.style.fontSize=(15+Math.random()*20)+"px";
-f.style.zIndex="9999";
-
-document.body.appendChild(f);
-
-f.animate([
-{transform:"translateY(0)",opacity:1},
-{transform:"translateY(-120vh)",opacity:0}
-],{duration:4000});
-
-setTimeout(()=>f.remove(),5000);
+  let f=document.createElement("div");
+  f.className="flower";
+  f.innerHTML="🌸";
+  f.style.left=Math.random()*100+"vw";
+  f.style.top="100vh";
+  f.style.fontSize=(15+Math.random()*20)+"px";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),5000);
 }
 }
 
@@ -536,15 +531,18 @@ document.getElementById("catBox").style.display="none";
 
 /* MUSIC */
 window.addEventListener("click",()=>{
-document.getElementById("bgm").play();
+const bgm = document.getElementById("bgm");
+if(bgm.paused) bgm.play();
 });
 
 /* LETTER */
 let msg = `My Sayang 💖
 
 Every moment with you feels special.
+Every day I love you more.
+I will always choose you, only you.
 
-I will always choose you.
+Thank you for being my happiness.
 
 💖 Forever yours,
 Justin`;
@@ -556,22 +554,17 @@ spawnHearts();
 
 /* GALLERY */
 function openGallery(){
-
 let g = document.getElementById("gallery");
 g.innerHTML="";
 images=[];
-
 for(let i=1;i<=18;i++){
-let img=document.createElement("img");
-img.src=i+".jpg";
-images.push(i+".jpg");
-
-img.onclick=()=>openViewer(i-1);
-
-g.appendChild(img);
+  let img=document.createElement("img");
+  img.src=i+".jpg";
+  img.alt="Memory "+i;
+  images.push(i+".jpg");
+  img.onclick=()=>openViewer(i-1);
+  g.appendChild(img);
 }
-
-spawnHearts();
 }
 
 /* VIEWER */
@@ -583,58 +576,19 @@ document.getElementById("viewerImg").src=images[currentIndex];
 
 function closeViewer(e){
 if(e.target.id==="viewer"){
-document.getElementById("viewer").style.display="none";
+  document.getElementById("viewer").style.display="none";
 }
 }
 
-/* SWIPE INSIDE VIEWER */
+/* SWIPE IMAGES */
 document.addEventListener("touchstart",e=>{
 startX=e.touches[0].clientX;
 });
 
 document.addEventListener("touchend",e=>{
 let endX=e.changedTouches[0].clientX;
-
 if(document.getElementById("viewer").style.display!=="flex") return;
-
-if(endX-startX>50) prevImage();
-else if(startX-endX>50) nextImage();
-});
-
-function nextImage(){
-if(currentIndex<images.length-1){
-currentIndex++;
-document.getElementById("viewerImg").src=images[currentIndex];
-}
-}
-
-function prevImage(){
-if(currentIndex>0){
-currentIndex--;
-document.getElementById("viewerImg").src=images[currentIndex];
-}
-}
-
-/* 💖 HEART TAP */
-document.addEventListener("click",(e)=>{
-if(e.target.id==="viewerImg"){
-for(let i=0;i<10;i++){
-let h=document.createElement("div");
-h.innerHTML="💖";
-h.style.position="fixed";
-h.style.left=e.clientX+"px";
-h.style.top=e.clientY+"px";
-document.body.appendChild(h);
-
-h.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:"translate(100px,-200px)",opacity:0}
-],{duration:1000});
-
-setTimeout(()=>h.remove(),1000);
-}
-}
-});
+if(endX-startX>50) prevImage
 
 </script>
 
