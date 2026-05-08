@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 GOD MODE LOVE RPG 2.0</title>
+<title>💖 Love OS 4.0 God Mode</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,53 +10,62 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#0a0a1a,#2a0f2f,#000);
+background:black;
 color:white;
 overflow-x:hidden;
 }
 
-/* HEADER */
-.header{
-text-align:center;
-padding:20px;
-font-size:22px;
-font-weight:bold;
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff2e93,#1a1a2e);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
-/* CARD */
+#swipe{
+position:absolute;
+bottom:40px;
+opacity:0.8;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+/* APP */
+#app{display:none;padding:15px;}
+
 .card{
 background:rgba(255,255,255,0.08);
 margin:10px;
 padding:15px;
 border-radius:20px;
-box-shadow:0 0 20px rgba(255,0,120,0.3);
 }
 
 /* BUTTON */
 button{
-padding:10px 14px;
+padding:10px;
 margin:5px;
 border:none;
 border-radius:20px;
-background:linear-gradient(135deg,#ff2e93,#ff66cc);
+background:hotpink;
 color:white;
 font-weight:bold;
 cursor:pointer;
 }
 
-button:hover{transform:scale(1.05);}
-
-/* PROFILE */
-.profile img{
-width:100px;
-height:100px;
-border-radius:50%;
-border:3px solid hotpink;
-}
-
 /* HEARTS */
 .heart{
 position:fixed;
+font-size:18px;
 animation:float 5s linear;
 pointer-events:none;
 }
@@ -66,37 +75,18 @@ pointer-events:none;
 100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* SURPRISE */
-#surprise{
+/* LETTER */
+#letterBox{
 display:none;
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:black;
-z-index:999;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
 text-align:center;
-color:white;
-}
-
-video{
-width:90%;
-border-radius:20px;
-}
-
-/* CAT */
-#cat{
-font-size:60px;
-cursor:pointer;
-transition:0.3s;
-}
-
-/* ARCHERY */
-.target{
-width:50px;
-height:50px;
-background:red;
-border-radius:50%;
-position:absolute;
+padding:20px;
+z-index:999;
 }
 
 </style>
@@ -104,194 +94,195 @@ position:absolute;
 
 <body>
 
-<div class="header">💖 GOD MODE LOVE RPG 2.0 💖</div>
-
-<!-- PROFILE -->
-<div class="card profile">
-<img src="6.jpg">
-<h3>💞 Liya (20) & Justin (22)</h3>
-<p>📍 Kelantan ↔ Penang</p>
-<p>🎓 KPM ↔ UTP</p>
-<p>🏸 Archery Queen | 🎾 Tennis Boy</p>
+<!-- INTRO -->
+<div id="intro" onpointerup="enterApp()">
+<h1>💖 LIYA × JUSTIN</h1>
+<p>Love OS 4.0 GOD MODE</p>
+<div id="swipe">⬆ Swipe Up to Enter</div>
 </div>
 
-<!-- STATUS -->
+<!-- MAIN APP -->
+<div id="app">
+
+<h2>💖 Welcome Sayang</h2>
+
+<!-- PROFILE + XP -->
 <div class="card">
-<h3>💍 Relationship System</h3>
-<p id="days"></p>
-<p id="level"></p>
+<h3>💍 Profile</h3>
+<p>Justin × Liya</p>
+
+<p id="levelText">Level 1 💖</p>
+<p id="xpText">XP: 0 / 100</p>
+</div>
+
+<!-- SPOTIFY -->
+<div class="card">
+<h3>🎵 Spotify</h3>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
+width="100%" height="152"
+allow="autoplay; clipboard-write; encrypted-media;">
+</iframe>
+
 </div>
 
 <!-- MENU -->
 <div class="card">
 <h3>🎮 Menu</h3>
 
-<button onclick="openQuiz()">💖 Quiz</button>
-<button onclick="openSurprise()">🌌 Surprise</button>
-<button onclick="spawnHearts()">💖 Hearts</button>
-<button onclick="startGallery()">📸 Gallery</button>
-<button onclick="openCat()">🐱 Cat</button>
-<button onclick="startArchery()">🏹 Archery</button>
-<button onclick="openSpotify()">🎧 Spotify</button>
+<button onclick="location.href='quiz.html'">💖 Quiz</button>
+<button onclick="location.href='virtual_cat.html'">🐱 Cat</button>
+<button onclick="location.href='archery.html'">🏹 Archery</button>
+<button onclick="location.href='forever.html'">💍 Forever</button>
 
 </div>
 
-<!-- QUIZ -->
-<div id="quizBox" class="card" style="display:none;">
-<h3>💖 Love Quiz</h3>
-<p id="q"></p>
-<button onclick="answer(true)">YES</button>
-<button onclick="answer(false)">NO</button>
+<!-- GALLERY -->
+<div class="card">
+<h3>📸 Gallery</h3>
+<button onclick="openGallery()">Open Memories</button>
+</div>
+
+<!-- LETTER -->
+<div class="card">
+<h3>💌 Love Letter</h3>
+<button onclick="openLetter()">Open Letter</button>
 </div>
 
 <!-- SURPRISE -->
-<div id="surprise">
-<h1>💖 FOR LIYA 💖</h1>
-<div id="count">3</div>
-
-<div id="surContent" style="display:none;">
-<h2>💌 Forever Love</h2>
-
-<video id="vid" controls>
-<source src="1.mp4" type="video/mp4">
-</video>
-
-<h2>💍 MARRY ME?</h2>
-<button onclick="yes()">YES 💖</button>
-<button onclick="yes()">YES 💖</button>
-
-</div>
-</div>
-
-<!-- CAT -->
 <div class="card">
-<h3>🐱 Virtual Cat</h3>
-<div id="cat" onclick="petCat()">🐱</div>
-<p id="catText">Tap me!</p>
+<h3>🌌 Secret</h3>
+<button onclick="surprise()">Unlock Surprise</button>
 </div>
 
-<!-- ARCHERY -->
-<div class="card">
-<h3>🏹 Mini Archery</h3>
-<button onclick="spawnTarget()">Spawn Target</button>
-<div id="gameArea"></div>
 </div>
 
-<!-- SPOTIFY -->
-<div class="card">
-<h3>🎧 Spotify</h3>
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/1cC0y0x"
-width="100%" height="152"></iframe>
+<!-- LETTER -->
+<div id="letterBox">
+<div>
+<h2>💖 My Sayang</h2>
+<p id="text"></p>
+<button onclick="closeLetter()">Close</button>
+</div>
 </div>
 
 <script>
 
-/* DAYS + LEVEL */
-let start=new Date("2025-10-21");
-let now=new Date();
-let days=Math.floor((now-start)/86400000);
+let xp = 0;
+let level = 1;
 
-document.getElementById("days").innerText="💖 "+days+" days together";
+/* ENTER */
+function enterApp(){
+document.getElementById("intro").style.display="none";
+document.getElementById("app").style.display="block";
+spawnHearts();
+gainXP(10);
+}
 
-document.getElementById("level").innerText="💍 Level "+Math.floor(days/2);
+/* XP SYSTEM */
+function gainXP(val){
+xp += val;
+if(xp >= 100){
+level++;
+xp = 0;
+alert("💖 LEVEL UP! Level " + level);
+}
+
+document.getElementById("levelText").innerText="Level "+level+" 💖";
+document.getElementById("xpText").innerText="XP: "+xp+" / 100";
+}
 
 /* HEARTS */
 function spawnHearts(){
-for(let i=0;i<10;i++){
-let d=document.createElement("div");
-d.className="heart";
-d.innerHTML="💖";
-d.style.left=Math.random()*100+"vw";
-document.body.appendChild(d);
-setTimeout(()=>d.remove(),5000);
+for(let i=0;i<15;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
 }
 }
-
-/* QUIZ */
-let qList=[
-"Do I love you?",
-"Are we forever?",
-"Do I care about you?",
-"Will I stay with you?",
-"Are you my happiness?"
-];
-
-let i=0,score=0;
-
-function openQuiz(){
-document.getElementById("quizBox").style.display="block";
-loadQ();
-}
-
-function loadQ(){
-document.getElementById("q").innerText=qList[i];
-}
-
-function answer(v){
-if(v)score++;
-i++;
-if(i>=qList.length){
-alert("💖 Score: "+score);
-document.getElementById("quizBox").style.display="none";
-}else loadQ();
-}
-
-/* SURPRISE */
-function openSurprise(){
-document.getElementById("surprise").style.display="block";
-let c=3;
+  function openLetter(){
+document.getElementById("letterBox").style.display="flex";
+let i=0;
+document.getElementById("text").innerHTML="";
 
 let t=setInterval(()=>{
-c--;
-document.getElementById("count").innerText=c;
-spawnHearts();
-
-if(c<=0){
-clearInterval(t);
-document.getElementById("count").style.display="none";
-document.getElementById("surContent").style.display="block";
-document.getElementById("vid").play();
-}
-},1000);
+document.getElementById("text").innerHTML+=msg[i];
+i++;
+if(i>=msg.length) clearInterval(t);
+},30);
 }
 
-function yes(){
-alert("💖 SHE SAID YES 💖");
-}
-
-/* CAT */
-function petCat(){
-document.getElementById("catText").innerText="💖 Meow loves you!";
-spawnHearts();
-}
-
-/* ARCHERY */
-function spawnTarget(){
-let t=document.createElement("div");
-t.className="target";
-t.style.left=Math.random()*80+"vw";
-t.style.top=Math.random()*60+"vh";
-t.onclick=()=>{t.remove();alert("🎯 HIT!");};
-document.body.appendChild(t);
+function closeLetter(){
+document.getElementById("letterBox").style.display="none";
 }
 
 /* GALLERY */
-function startGallery(){
-let img=1;
+function openGallery(){
+let i=1;
 let g=setInterval(()=>{
-if(img>18){clearInterval(g);}
-else{
-console.log("Show "+img+".jpg");
-img++;
-}
-},800);
+if(i>18) return clearInterval(g);
+
+let img=document.createElement("img");
+img.src=i+".jpg";
+img.style.width="85%";
+img.style.margin="10px";
+img.style.borderRadius="15px";
+
+document.body.appendChild(img);
+i++;
+},400);
 }
 
-/* SPOTIFY */
-function openSpotify(){
-alert("🎧 Spotify already embedded below");
+/* SURPRISE */
+function surprise(){
+alert("💖 You unlocked my heart...");
+spawnHearts();
+gainXP(30);
 }
+
+
+/* LETTER */
+let msg=`My Sayang 💖
+
+My Sayang 💖
+
+I don’t even know where to start, because every word I think of still feels too small for what you mean to me.
+
+From the moment you came into my life, everything slowly changed in a way I never expected. My days feel lighter when I talk to you, my nights feel calmer when I know you’re okay, and my heart feels happier just thinking about you.
+
+You are not just someone I love — you are someone I care for deeply, someone I respect, and someone I truly want to grow with.
+
+Even on days when things are not perfect, even when misunderstandings happen, my feelings for you don’t disappear. Instead, they remind me why I choose you again and again. Because love is not only about the good moments, but also about staying through the difficult ones.
+
+I love your smile, I love your presence, I love the way you exist in my life without even trying. You are special in a way that cannot be replaced.
+
+I may not always say the perfect things, and I may not always do everything right, but one thing I want you to always know is this:
+
+💖 I am always trying for you.
+💖 I am always choosing you.
+💖 I am always here for you.
+
+If the world ever feels heavy, I want to be the place where you can feel safe. If you ever feel tired, I want to be the person who gives you peace. If you ever feel unsure, I want to be the one who stays beside you and reminds you that you are never alone.
+
+I don’t promise a perfect life, but I promise a sincere heart. A heart that keeps choosing you every single day.
+
+No matter what happens in the future, no matter where life takes us, a part of me will always belong to you.
+
+And if I could choose one wish for my life, it would be this:
+
+💍 To stay with you, grow with you, and love you — for a very long time, maybe even forever.
+
+You are my sayang.
+You are my comfort.
+You are my person.
+
+And I will always, always cherish you.
+
+💖 Forever yours.
 
 </script>
 
