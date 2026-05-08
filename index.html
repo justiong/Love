@@ -218,17 +218,108 @@ transition:0.3s;
 transform:scale(1.1);
 background:rgba(255,255,255,0.25);
 }
+  .gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:10px;
+}
+
+.gallery img{
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:12px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+  .gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:10px;
+}
+
+.gallery img{
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:12px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.gallery img:active{
+transform:scale(0.95);
+}
+
+/* FULLSCREEN VIEWER */
+#viewer{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+z-index:999999;
+}
+
+#viewer img{
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+transition:0.3s;
+}
+  .profileWrap{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-top:10px;
+}
+
+.profileBox{
+flex:1;
+text-align:center;
+background:rgba(255,255,255,0.05);
+padding:15px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+.profileBox img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid hotpink;
+box-shadow:0 0 15px hotpink;
+margin-bottom:8px;
+}
+
+.profileBox h2{
+color:white;
+margin:5px 0;
+}
+
+.profileBox p{
+font-size:12px;
+opacity:0.8;
+color:white;
+}
 </style>
 </head>
-
-<body>
+  
+<body.>
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
 
 <div class="time">9:41</div>
 
 <div class="profile">
-<img src="profile.jpg" class="pfp">
+<img src = "1.jpg" class="pfp">
 <h2>Liya 💖 Justin</h2>
 <p>Face ID is scanning...</p>
 </div>
@@ -278,9 +369,31 @@ background:rgba(255,255,255,0.25);
 <source src="2.mp4">
 </video>
 
-<div class="info">
-<div class="name">Our Memory 💍</div>
-<div class="bio">TikTok Love OS</div>
+<div class="card">
+
+<h3>💍 Couple Profile</h3>
+
+<div class="profileWrap">
+
+<!-- LIYA -->
+<div class="profileBox">
+<img src="liya-juton.jpg" onerror="this.src='1.jpg'">
+<h2>💖 Liya</h2>
+<p>🏹 Archery KPM</p>
+<p>📍 Kelantan</p>
+</div>
+
+<!-- JUSTIN -->
+<div class="profileBox">
+<img src="justin.jpg" onerror="this.src='2.jpg'">
+<h2>🎾 Justin</h2>
+<p>🎾 Tennis UTP</p>
+<p>📍 Penang</p>
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
@@ -316,8 +429,62 @@ background:rgba(255,255,255,0.25);
 <div id="catBox" onclick="closeCat()">
 <img src="cat.gif">
 </div>
+<div class="card">
+<h3>🎵 Our Spotify</h3>
+
+<iframe
+style="border-radius:18px"
+src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
+width="100%" height="160" frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media">
+</iframe>
+  
+<div class="card">
+<h3>📸 Memories Gallery</h3>
+
+<div class="gallery" id="gallery"></div>
+
+</div>
+
+<!-- FULLSCREEN VIEWER -->
+<div id="viewer" onclick="closeViewer(event)">
+<img id="viewerImg">
+</div>
+
+</div>
 
 <script>
+function openGallery(){
+
+let g = document.getElementById("gallery");
+g.innerHTML = "";
+
+/* LOAD 1 → 18 */
+for(let i=1;i<=18;i++){
+
+let img = document.createElement("img");
+img.src = i + ".jpg";
+img.onerror = () => {
+img.style.display = "none"; // hides missing images safely
+};
+
+g.appendChild(img);
+
+}
+
+/* EXTRA OPTIONAL IMAGES */
+let extra = ["19.jpg","20.jpg","21.jpg"];
+
+extra.forEach(src=>{
+let img = document.createElement("img");
+img.src = src;
+img.onerror = ()=>img.remove();
+g.appendChild(img);
+});
+
+spawnHearts();
+
+}
   
 let startY = 0;
 
@@ -455,6 +622,129 @@ easing:"linear"
 });
 
 setTimeout(()=>f.remove(),5000);
+
+}
+
+
+let images = [];
+let currentIndex = 0;
+
+/* LOAD GALLERY */
+function openGallery(){
+
+let g = document.getElementById("gallery");
+g.innerHTML = "";
+
+images = [];
+
+for(let i=1;i<=18;i++){
+
+let img = document.createElement("img");
+img.src = i + ".jpg";
+
+images.push(i + ".jpg");
+
+img.onclick = () => openViewer(i-1);
+
+g.appendChild(img);
+
+}
+
+spawnHearts();
+
+}
+
+/* OPEN VIEWER */
+function openViewer(index){
+
+currentIndex = index;
+
+document.getElementById("viewer").style.display = "flex";
+document.getElementById("viewerImg").src = images[currentIndex];
+
+}
+
+/* CLOSE */
+function closeViewer(e){
+
+if(e.target.id === "viewer"){
+document.getElementById("viewer").style.display = "none";
+}
+
+}
+
+/* SWIPE SUPPORT */
+let startX = 0;
+
+document.addEventListener("touchstart",e=>{
+startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend",e=>{
+let endX = e.changedTouches[0].clientX;
+
+if(!document.getElementById("viewer").style.display || document.getElementById("viewer").style.display==="none") return;
+
+if(endX - startX > 50){
+prevImage();
+}
+else if(startX - endX > 50){
+nextImage();
+}
+
+});
+
+/* NEXT / PREV */
+function nextImage(){
+if(currentIndex < images.length-1){
+currentIndex++;
+updateViewer();
+}
+}
+
+function prevImage(){
+if(currentIndex > 0){
+currentIndex--;
+updateViewer();
+}
+}
+
+function updateViewer(){
+document.getElementById("viewerImg").src = images[currentIndex];
+}
+
+/* 💖 HEART REACTION */
+document.addEventListener("click",function(e){
+
+if(e.target.id === "viewerImg"){
+heartBurst(e.clientX, e.clientY);
+}
+
+});
+
+function heartBurst(x,y){
+
+for(let i=0;i<15;i++){
+
+let h = document.createElement("div");
+h.innerHTML = "💖";
+h.style.position = "fixed";
+h.style.left = x + "px";
+h.style.top = y + "px";
+h.style.fontSize = (15 + Math.random()*20) + "px";
+h.style.pointerEvents = "none";
+h.style.zIndex = "999999";
+
+document.body.appendChild(h);
+
+h.animate([
+{ transform:"translate(0,0)", opacity:1 },
+{ transform:`translate(${(Math.random()-0.5)*300}px, ${(Math.random()-0.5)*300}px)`, opacity:0 }
+],{
+duration:1000
+});
+
+setTimeout(()=>h.remove(),1000);
 
 }
 
