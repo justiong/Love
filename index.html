@@ -2,16 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>💖 Liya x Justin Love Game</title>
+<title>💖 Love OS MAX Ultimate</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
-/* BACKGROUND VIDEO */
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND */
 #bgVideo{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
 object-fit:cover;
@@ -21,110 +27,85 @@ opacity:0.25;
 
 .overlay{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:radial-gradient(circle,rgba(0,0,0,0.2),rgba(0,0,0,0.85));
+background:radial-gradient(circle,transparent,#000);
 z-index:-1;
 }
 
 /* CARD */
 .card{
-background:rgba(255,255,255,0.92);
-color:black;
-padding:15px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
 margin:10px;
+padding:15px;
 border-radius:20px;
-box-shadow:0 0 20px rgba(255,63,136,0.3);
+box-shadow:0 0 20px pink;
 }
 
 /* BUTTON */
 button{
-padding:12px 16px;
-margin:6px;
+padding:10px 14px;
 border:none;
-border-radius:25px;
-background:linear-gradient(135deg,#ff2e93,#ff6bd6,#ffb3e6);
+border-radius:20px;
+background:linear-gradient(45deg,#ff4d6d,#ff99cc);
 color:white;
 font-weight:bold;
 cursor:pointer;
-transition:0.25s;
+margin:5px;
 }
-
-button:hover{transform:scale(1.08);}
+button:hover{transform:scale(1.05);}
 
 /* PROFILE */
-.profile{text-align:center;}
+.profile{
+text-align:center;
+}
+
 .profile img{
-width:110px;height:110px;border-radius:50%;
-border:3px solid #ff3f88;
-object-fit:cover;
-}
-
-/* CHAT */
-#chatBox{
-height:150px;
-overflow-y:auto;
-background:#fff;
-color:black;
-padding:10px;
-border-radius:10px;
-}
-
-.msg{
-padding:6px;
-margin:5px;
-background:#eee;
-border-radius:10px;
-}
-
-/* FLOAT */
-@keyframes floatUp{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-120vh);opacity:0;}
-}
-
-.heart,.flower{
-position:fixed;
-z-index:9999;
-pointer-events:none;
-animation:floatUp 6s linear forwards;
+width:120px;
+height:120px;
+border-radius:50%;
+border:3px solid pink;
 }
 
 /* LOGIN */
 #login{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:linear-gradient(135deg,#ff3f88,#ffb6e6);
+width:100%;
+height:100%;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+background:linear-gradient(45deg,#ff4d6d,#1a1a2e);
 z-index:999;
 }
 
-input{
-padding:10px;
-border-radius:10px;
-border:none;
-outline:none;
+/* HEART */
+.heart{
+position:fixed;
+animation:float 5s linear;
+pointer-events:none;
+}
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
 }
 
-.levelBar{
+/* SURPRISE */
+#surprise{
+display:none;
+position:fixed;
 width:100%;
-height:12px;
-background:#ddd;
-border-radius:20px;
-overflow:hidden;
-}
-
-.levelFill{
 height:100%;
-width:0%;
-background:linear-gradient(90deg,#ff3f88,#ff69b4);
-transition:0.5s;
+top:0;
+left:0;
+background:linear-gradient(45deg,#ff4d6d,#1a1a2e);
+z-index:9999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
 }
 
 </style>
@@ -133,330 +114,181 @@ transition:0.5s;
 <body>
 
 <video id="bgVideo" autoplay muted loop>
-<source src="bg.mp4" type="video/mp4">
+<source src="bg.mp4">
 </video>
 <div class="overlay"></div>
 
-<audio id="bgMusic" loop>
-<source src="2.mp3" type="audio/mpeg">
+<audio id="music" loop>
+<source src="2.mp3">
 </audio>
 
 <!-- LOGIN -->
 <div id="login">
 <h2>💖 Enter Name</h2>
-<input id="name" placeholder="Justin / Liya">
+<input id="name">
 <br><br>
-<button onclick="startGame()">Start Game 💕</button>
+<button onclick="start()">Start 💕</button>
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none;">
 
+<!-- PROFILE -->
 <div class="card profile">
 <img src="6.jpg">
-<h3>💞 Liya x Justin</h3>
+<h2>💞 Liya x Justin</h2>
+
+<p id="status">💌 Love loading...</p>
+
+<p>
+💖 Love Level: <span id="love">0</span>/100<br>
+🎭 Mood: <span id="mood">Calm</span><br>
+📅 Days: <span id="days"></span><br>
+⚡ XP: <span id="xp"></span>
+</p>
+
+<button onclick="changeStatus()">Status</button>
+<button onclick="mood()">Mood</button>
+<button onclick="boost()">Boost 💖</button>
 </div>
 
-<div class="card">
-<h3>💍 Level</h3>
-<div id="levelText">Level 1</div>
-<div class="levelBar"><div id="bar" class="levelFill"></div></div>
-</div>
-
-<div class="card">
-<h3>📅 Days Together</h3>
-<div id="days"></div>
-</div>
-
-<div class="card">
-<h3>⚡ XP</h3>
-<div id="xp"></div>
-</div>
-
-<div class="card">
-<h3>💬 Chat</h3>
-<div id="chatBox"></div>
-<input id="msg">
-<button onclick="sendMsg()">Send</button>
-</div>
-
+<!-- MENU -->
 <div class="card">
 <h3>🎮 Menu</h3>
 
-<button onclick="spawnFlower()">🌸 Flower</button>
-<button onclick="spawnHeart()">💖 Heart</button>
-<button onclick="openLetter()">💌 Letter</button>
+<button onclick="heart()">💖 Heart</button>
+<button onclick="cat()">🐱 Cat</button>
+<button onclick="gallery()">📸 Gallery</button>
+<button onclick="quiz()">🎮 Quiz</button>
+<button onclick="surprise()">💍 Marry Me</button>
 
-<button onclick="showQR('quiz')">📱 Quiz QR</button>
-<button onclick="showQR('forever')">💌 Forever QR</button>
-<button onclick="openSurprise()">🌌 Ultimate Surprise</button>
+</div>
+
+<!-- CHAT -->
+<div class="card">
+<h3>💬 Chat</h3>
+<div id="chat"></div>
+<input id="msg">
+<button onclick="send()">Send</button>
 </div>
 
 </div>
 
-<!-- LETTER -->
-<div id="letterBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:9999;">
-<div class="card" style="max-width:400px;text-align:center;">
-<h3>💌 Love Letter</h3>
-<p id="typedText"></p>
-<button onclick="closeLetter()">Close</button>
-</div>
-</div>
+<!-- SURPRISE END -->
+<div id="surprise">
+<h1>💍 WILL YOU MARRY ME? 💍</h1>
 
-<!-- QR POPUP (FIXED) -->
-<div id="qrBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;">
-<div class="card" style="text-align:center;max-width:320px;">
-<h3>💌 Scan My Love</h3>
-<img id="qrImg" style="width:220px;border-radius:15px;">
-<br>
-<button onclick="closeQR()">Close 💖</button>
-</div>
+<button onclick="yes()">YES 💖</button>
+<button onclick="yes()">YES 💕</button>
 
+<br><br>
 
-</div>
-<!-- SURPRISE BOX -->
-<div id="surpriseBox"
-style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#ff2e93,#1a1a2e,#ff69b4);
-z-index:99999;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-overflow:hidden;
-">
-
-<h1 style="font-size:40px;">💖 FOR MY SAYANG 💖</h1>
-
-<div id="countdown" style="font-size:70px;font-weight:bold;">
-3
-</div>
-
-<div id="surpriseContent" style="display:none;max-width:700px;padding:20px;">
-
-<h2>🐱 You unlocked Justin's heart 🐱</h2>
-
-<img src="cat.gif"
-style="
-width:220px;
-border-radius:20px;
-box-shadow:0 0 30px pink;
-">
-
-<p style="
-font-size:20px;
-line-height:1.8;
-margin-top:20px;
-">
-💌 My Sayang...
-
-Thank you for existing in my life 🌸
-
-You make my days happier,
-my heart calmer,
-and my world brighter 💖
-
-No matter how hard life gets,
-I will always support you,
-care for you,
-and love you.
-
-You are my favorite person forever ✨
-</p>
-
-<video id="loveVideo"
-width="90%"
-controls
-autoplay
-style="
-margin-top:20px;
-border-radius:20px;
-box-shadow:0 0 25px hotpink;
-">
-<source src="1.mp4" type="video/mp4">
+<video id="finalVideo" width="90%" controls>
+<source src="1.mp4">
 </video>
 
-<h1 style="margin-top:20px;">
-💍 Forever Love You Liya 💍
-</h1>
-
-<button onclick="closeSurprise()">
-Close 💖
-</button>
-
-</div>
+<h2>💖 Forever Together 💖</h2>
 </div>
 
 <script>
-function openSurprise(){
 
-document.getElementById("surpriseBox").style.display="flex";
-
-let num = 3;
-
-document.getElementById("countdown").innerText=num;
-
-let timer = setInterval(()=>{
-
-num--;
-
-document.getElementById("countdown").innerText=num;
-
-spawnHeart();
-spawnFlower();
-
-if(num<=0){
-
-clearInterval(timer);
-
-document.getElementById("countdown").style.display="none";
-
-document.getElementById("surpriseContent").style.display="block";
-
-let vid=document.getElementById("loveVideo");
-
-vid.muted=false;
-
-vid.play();
-
-}
-
-},1000);
-
-}
-
-function closeSurprise(){
-
-document.getElementById("surpriseBox").style.display="none";
-
-document.getElementById("surpriseContent").style.display="none";
-
-document.getElementById("countdown").style.display="block";
-
-document.getElementById("countdown").innerText="3";
-
-let vid=document.getElementById("loveVideo");
-
-vid.pause();
-vid.currentTime=0;
-
-}
-
-
-let user="";
-let i=0;
-let typingInterval;
+let name="";
+let love=0;
 
 /* START */
-function startGame(){
-user=document.getElementById("name").value;
-if(user.trim()==="") return alert("Enter name 💖");
+function start(){
+name=document.getElementById("name").value;
+if(!name)return;
 
 document.getElementById("login").style.display="none";
 document.getElementById("app").style.display="block";
 
-let start=new Date("2025-10-21");
+document.getElementById("music").play();
+
+let start=new Date("2025-01-01");
 let now=new Date();
-let days=Math.floor((now-start)/86400000);
+let d=Math.floor((now-start)/86400000);
 
-document.getElementById("days").innerText=days+" days 💖";
-
-let level=Math.min(100,Math.floor(days/2)+1);
-document.getElementById("levelText").innerText="Level "+level;
-document.getElementById("bar").style.width=level+"%";
-
-document.getElementById("xp").innerText=days*3+"/100 XP";
-
-document.getElementById("bgMusic").play().catch(()=>{});
+document.getElementById("days").innerText=d;
+document.getElementById("xp").innerText=d*5;
 }
 
-/* CHAT */
-function sendMsg(){
-let m=document.getElementById("msg").value;
-if(!m)return;
+/* PROFILE ACTIONS */
+function changeStatus(){
+let texts=[
+"I love you 💖",
+"You are my world 🌸",
+"My forever person 💕"
+];
+document.getElementById("status").innerText =
+texts[Math.floor(Math.random()*texts.length)];
+}
 
-let d=document.createElement("div");
-d.className="msg";
-d.innerText=user+": "+m;
-document.getElementById("chatBox").appendChild(d);
-document.getElementById("msg").value="";
+function mood(){
+let moods=["Happy 😊","Miss you 😢","In Love 💖","Crazy 😍"];
+document.getElementById("mood").innerText =
+moods[Math.floor(Math.random()*moods.length)];
+}
+
+function boost(){
+love+=10;
+if(love>100)love=100;
+document.getElementById("love").innerText=love;
+heart();
 }
 
 /* HEART */
-function spawnHeart(){
+function heart(){
 for(let i=0;i<10;i++){
-let e=document.createElement("div");
-e.className="heart";
-e.innerHTML="💖";
-e.style.left=Math.random()*100+"vw";
-e.style.top="100vh";
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),6000);
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
 }
 }
 
-/* FLOWER */
-function spawnFlower(){
-for(let i=0;i<10;i++){
-let e=document.createElement("div");
-e.className="flower";
-e.innerHTML="🌸";
-e.style.left=Math.random()*100+"vw";
-e.style.top="100vh";
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),6000);
-}
+/* CAT */
+function cat(){
+alert("🐱 Meow~ I love you sayang 💖");
 }
 
-/* LETTER */
-let letterText=`💌 My sayang,\nYou are strong 💖\nI believe in you 🏹`;
-
-function openLetter(){
-document.getElementById("letterBox").style.display="flex";
-document.getElementById("typedText").innerText="";
-i=0;
-typeWriter();
+/* GALLERY */
+function gallery(){
+let w=window.open("");
+let html="<h1>📸 Gallery</h1>";
+for(let i=1;i<=18;i++){
+html+=`<img src="${i}.jpg" width="100">`;
+}
+w.document.write(html);
 }
 
-function typeWriter(){
-if(i<letterText.length){
-document.getElementById("typedText").innerHTML+=letterText.charAt(i);
-i++;
-setTimeout(typeWriter,25);
-}
+/* QUIZ */
+function quiz(){
+alert("🎮 Quiz coming soon 💖");
 }
 
-function closeLetter(){
-document.getElementById("letterBox").style.display="none";
+/* SURPRISE */
+function surprise(){
+document.getElementById("surprise").style.display="flex";
+setTimeout(()=>document.getElementById("finalVideo").play(),2000);
 }
 
-function showQR(type){
-
-  document.getElementById("qrBox").style.display="flex";
-
-  let link = "https://justiong.github.io/Love/";
-
-  if(type === "quiz"){
-    link += "quiz.html";
-  }
-
-  if(type === "forever"){
-    link += "forever.html";
-  }
-
-  document.getElementById("qrImg").src =
-  "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="
-  + encodeURIComponent(link);
+/* YES */
+function yes(){
+alert("💖 She said YES!! Forever Love 💖");
 }
-function closeQR(){
-  document.getElementById("qrBox").style.display="none";
+
+/* CHAT */
+function send(){
+let m=document.getElementById("msg").value;
+if(!m)return;
+let d=document.createElement("div");
+d.innerText=name+": "+m;
+document.getElementById("chat").appendChild(d);
 }
+
 </script>
 
 </body>
