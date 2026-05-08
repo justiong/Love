@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>💖 Love OS Infinity Edition</title>
+<title>💖 Love OS Infinity Ultimate</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -17,27 +17,23 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:
-radial-gradient(circle at top,#ff4fa3 0%,#140014 40%,#000 100%);
+background:radial-gradient(circle at top,#ff4fa3 0%,#140014 40%,#000 100%);
 color:white;
 overflow-x:hidden;
 min-height:100vh;
 }
 
 /* INTRO */
-
 #intro{
 position:fixed;
 inset:0;
-background:
-linear-gradient(135deg,#ff2e93,#2d003d,#000);
+background:linear-gradient(135deg,#ff2e93,#2d003d,#000);
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 z-index:99999;
 text-align:center;
-overflow:hidden;
 }
 
 #intro h1{
@@ -50,66 +46,12 @@ margin-top:10px;
 opacity:0.85;
 }
 
-/* INTRO SLIDER */
-
-.introSlider{
-margin-top:25px;
-width:270px;
-height:380px;
-border-radius:28px;
-overflow:hidden;
-border:2px solid rgba(255,255,255,0.15);
-box-shadow:
-0 0 30px rgba(255,105,180,0.45);
-}
-
-.introSlider img{
-width:100%;
-height:100%;
-object-fit:cover;
-animation:zoom 6s infinite alternate;
-}
-
-@keyframes zoom{
-from{
-transform:scale(1);
-}
-to{
-transform:scale(1.08);
-}
-}
-
-#swipe{
-position:absolute;
-bottom:40px;
-animation:bounce 1.5s infinite;
-font-size:1rem;
-opacity:0.8;
-}
-
-@keyframes bounce{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-12px);
-}
-}
-
 @keyframes glow{
-from{
-text-shadow:0 0 10px hotpink;
-}
-to{
-text-shadow:
-0 0 20px hotpink,
-0 0 40px #ff6fcf,
-0 0 60px #ff6fcf;
-}
+from{text-shadow:0 0 10px hotpink;}
+to{text-shadow:0 0 40px hotpink;}
 }
 
 /* APP */
-
 #app{
 display:none;
 padding:15px;
@@ -117,30 +59,11 @@ animation:fade 1s ease;
 }
 
 @keyframes fade{
-from{
-opacity:0;
-transform:translateY(15px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* HERO */
-
-.hero{
-text-align:center;
-padding:20px;
-}
-
-.hero h2{
-font-size:2rem;
-margin-bottom:10px;
+from{opacity:0;transform:translateY(15px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 /* CARD */
-
 .card{
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(15px);
@@ -148,54 +71,9 @@ border:1px solid rgba(255,255,255,0.1);
 padding:20px;
 border-radius:25px;
 margin-bottom:18px;
-box-shadow:0 8px 30px rgba(0,0,0,0.4);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-3px);
-}
-
-/* PROFILE */
-
-.profile{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.avatar{
-width:80px;
-height:80px;
-border-radius:50%;
-background:linear-gradient(135deg,#ff2e93,#ffc0e7);
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:2rem;
-box-shadow:0 0 20px hotpink;
-}
-
-/* XP */
-
-.xpBar{
-width:100%;
-height:18px;
-background:rgba(255,255,255,0.1);
-border-radius:20px;
-overflow:hidden;
-margin-top:12px;
-}
-
-#xpFill{
-width:0%;
-height:100%;
-background:linear-gradient(90deg,#ff2e93,#ffd1e8);
-transition:0.5s;
 }
 
 /* BUTTON */
-
 button{
 padding:12px 18px;
 border:none;
@@ -205,24 +83,9 @@ color:white;
 font-weight:600;
 cursor:pointer;
 margin:5px;
-transition:0.3s;
 }
 
-button:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px hotpink;
-}
-
-/* MENU GRID */
-
-.menuGrid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:10px;
-}
-
-/* HEART */
-
+/* HEARTS */
 .heart{
 position:fixed;
 pointer-events:none;
@@ -231,121 +94,15 @@ z-index:999;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh) scale(1);
-opacity:1;
-}
-100%{
-transform:translateY(-120vh) scale(2);
-opacity:0;
-}
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* LETTER */
-
-#letterBox{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.92);
-justify-content:center;
-align-items:center;
-padding:20px;
-z-index:999999;
-}
-
-.letterContent{
-background:rgba(255,255,255,0.08);
-padding:25px;
-border-radius:25px;
-max-width:700px;
-max-height:85vh;
-overflow:auto;
-line-height:1.8;
-box-shadow:0 0 25px rgba(255,105,180,0.3);
-}
-
-/* GALLERY */
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:10px;
-margin-top:15px;
-}
-
-.gallery img{
-width:100%;
-border-radius:15px;
-transition:0.3s;
-}
-
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-/* VIDEO */
-
-video{
-width:100%;
-border-radius:20px;
-transition:0.4s;
-box-shadow:0 0 20px rgba(255,105,180,0.3);
-}
-
-video:hover{
-transform:scale(1.01);
-box-shadow:
-0 0 20px hotpink,
-0 0 40px rgba(255,105,180,0.5);
-}
-
-/* MUSIC BAR */
-
-.musicBar{
-display:flex;
-gap:5px;
-height:35px;
-align-items:flex-end;
-margin-top:15px;
-}
-
-.musicBar span{
-width:8px;
-background:hotpink;
-border-radius:20px;
-animation:music 1s infinite ease-in-out;
-}
-
-.musicBar span:nth-child(2){animation-delay:0.2s;}
-.musicBar span:nth-child(3){animation-delay:0.4s;}
-.musicBar span:nth-child(4){animation-delay:0.1s;}
-.musicBar span:nth-child(5){animation-delay:0.3s;}
-
-@keyframes music{
-0%,100%{
-height:10px;
-}
-50%{
-height:35px;
-}
-}
-
-/* QUOTE */
-
-.quote{
-text-align:center;
-line-height:1.8;
-opacity:0.85;
-}
-
-/* FOOTER */
-
-.footer{
-text-align:center;
-padding:25px;
-opacity:0.6;
-font-size:0.9rem;
+/* GAME HEART */
+.gameHeart{
+position:absolute;
+font-size:2rem;
+cursor:pointer;
 }
 
 </style>
@@ -354,485 +111,211 @@ font-size:0.9rem;
 <body>
 
 <!-- INTRO -->
-
 <div id="intro" onclick="enterApp()">
-
 <h1>💖 LIYA × JUSTIN</h1>
-
-<p>Love OS Infinity Edition</p>
-
-<!-- SLIDER -->
-
-<div class="introSlider">
-
-<img id="slideImage" src="1.jpg">
-
-</div>
-
-<div id="swipe">
-⬆ Tap Anywhere To Enter
-</div>
-
+<p>Love OS Infinity Ultimate</p>
 </div>
 
 <!-- APP -->
-
 <div id="app">
 
-<div class="hero">
-
+<div class="card">
 <h2>💖 Welcome Back Sayang</h2>
-
 <p>Every memory with you is my favorite.</p>
+</div>
+
+<!-- LOVE GAMES -->
+<div class="card">
+<h3>🎮 Love Games</h3>
+
+<button onclick="location.href='quiz.html'">💖 Quiz</button>
+<button onclick="location.href='virtual_cat.html'">🐱 Cat</button>
+<button onclick="location.href='archery.html'">🏹 Archery</button>
+<button onclick="location.href='forever.html'">💍 Forever</button>
 
 </div>
 
 <!-- PROFILE -->
-
 <div class="card">
+<h3>💍 Couple Profile</h3>
 
-<div class="profile">
-
-<div class="avatar">
-💍
-</div>
-
-<div>
-
-<h3>Justin × Liya</h3>
-
-<p id="levelText">
-Level 1 💖
-</p>
-
-<p id="xpText">
-XP: 0 / 100
-</p>
+<p>💖 Liya × Justin Forever</p>
+<p>🏹🎾 Archery Girl × Tennis Boy</p>
 
 </div>
 
-</div>
-
-<div class="xpBar">
-<div id="xpFill"></div>
-</div>
-
-</div>
-
-<!-- SPOTIFY -->
-
+<!-- STATUS -->
 <div class="card">
+<h3>💞 Relationship Status</h3>
+<p>💍 Forever Together</p>
+<p>🔥 Love Streak: 128 Days</p>
+<p>🌎 Kelantan ↔ Penang</p>
+</div>
 
-<h3>🎵 Our Playlist</h3>
+<!-- PLAYLIST -->
+<div class="card">
+<h3>🎵 Playlist</h3>
 
-<iframe
-style="border-radius:18px"
+<iframe style="border-radius:18px"
 src="https://open.spotify.com/embed/playlist/6AnczgR8DnY1mSPGAIb2aJ"
-width="100%"
-height="152"
-frameBorder="0"
-allowfullscreen=""
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-
-<div class="musicBar">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-</div>
+width="100%" height="152"></iframe>
 
 </div>
 
 <!-- VIDEO -->
-
 <div class="card">
-
 <h3>🎂 Birthday Memory</h3>
 
-<p style="opacity:0.8;margin-bottom:12px;">
-A special memory with my sayang 💖
-</p>
-
-<video
-id="birthdayVideo"
-controls
-poster="1.jpg">
-
+<video id="birthdayVideo" controls width="100%" poster="1.jpg">
 <source src="liya.mp4" type="video/mp4">
-
 </video>
 
 <br><br>
-
-<button onclick="playMemory()">
-▶ Play Memory
-</button>
-
+<button onclick="playMemory()">▶ Play Memory</button>
 </div>
 
-<!-- MENU -->
-
+<!-- MINI GAME -->
 <div class="card">
+<h3>🎯 Catch The Hearts</h3>
 
-<h3>🎮 Love Games</h3>
+<p>Score: <span id="gameScore">0</span></p>
 
-<div class="menuGrid">
+<div id="gameArea" style="position:relative;width:100%;height:300px;background:rgba(255,255,255,0.05);border-radius:20px;"></div>
 
-<button onclick="location.href='quiz.html'">
-💖 Quiz
-</button>
-
-<button onclick="location.href='virtual_cat.html'">
-🐱 Cat
-</button>
-
-<button onclick="location.href='archery.html'">
-🏹 Archery
-</button>
-
-<button onclick="location.href='forever.html'">
-💍 Forever
-</button>
-
+<br>
+<button onclick="startGame()">Start Game</button>
 </div>
 
+<!-- DESTINY -->
+<div class="card">
+<h3>💘 Destiny Wheel</h3>
+
+<p id="destinyText">Spin to reveal destiny 💖</p>
+<button onclick="spinLove()">💞 Spin</button>
 </div>
 
 <!-- GALLERY -->
-
 <div class="card">
-
 <h3>📸 Memories</h3>
 
-<button onclick="openGallery()">
-Open Memories
-</button>
-
+<button onclick="openGallery()">Open Gallery</button>
 <div class="gallery" id="gallery"></div>
 
 </div>
 
 <!-- LETTER -->
-
 <div class="card">
-
 <h3>💌 Love Letter</h3>
-
-<button onclick="openLetter()">
-Read Letter
-</button>
-
-</div>
-
-<!-- SECRET -->
-
-<div class="card">
-
-<h3>🌌 Secret Heart</h3>
-
-<button onclick="surprise()">
-Unlock Secret
-</button>
-
-</div>
-
-<!-- TIMER -->
-
-<div class="card">
-
-<h3>⏳ Forever Counter</h3>
-
-<p id="loveDays"></p>
-
-</div>
-
-<!-- QUOTE -->
-
-<div class="card">
-
-<h3>💖 Daily Love Quote</h3>
-
-<p class="quote" id="quote">
-"You are my today and all of my tomorrows."
-</p>
-
+<button onclick="openLetter()">Read Letter</button>
 </div>
 
 </div>
 
 <!-- LETTER BOX -->
-
-<div id="letterBox">
-
-<div class="letterContent">
-
-<h2 style="margin-bottom:15px;">
-💖 My Sayang
-</h2>
-
+<div id="letterBox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;">
+<div style="background:rgba(255,255,255,0.08);padding:25px;border-radius:20px;max-width:600px;">
+<h2>💖 My Sayang</h2>
 <p id="text"></p>
-
 <br>
-
-<button onclick="closeLetter()">
-Close
-</button>
-
+<button onclick="closeLetter()">Close</button>
 </div>
-
-</div>
-
-<div class="footer">
-Made with endless love for Liya 💖
 </div>
 
 <script>
 
-/* XP */
-
 let xp = 0;
 let level = 1;
+let score = 0;
 
-/* INTRO SLIDER */
-
-let slide = 1;
-
-setInterval(()=>{
-
-slide++;
-
-if(slide > 8){
-slide = 1;
-}
-
-document.getElementById("slideImage").src =
-slide + ".jpg";
-
-},2500);
-
-/* ENTER */
-
+/* INTRO */
 function enterApp(){
-
 document.getElementById("intro").style.display="none";
-
 document.getElementById("app").style.display="block";
-
 spawnHearts();
-
-gainXP(15);
-
-}
-
-/* XP SYSTEM */
-
-function gainXP(val){
-
-xp += val;
-
-if(xp >= 100){
-
-level++;
-
-xp = 0;
-
-alert("💖 LEVEL UP! Level " + level);
-
-spawnHearts();
-
-}
-
-document.getElementById("levelText").innerText =
-"Level " + level + " 💖";
-
-document.getElementById("xpText").innerText =
-"XP: " + xp + " / 100";
-
-document.getElementById("xpFill").style.width =
-xp + "%";
-
 }
 
 /* HEARTS */
-
 function spawnHearts(){
-
 for(let i=0;i<25;i++){
-
-let h = document.createElement("div");
-
-h.className = "heart";
-
-h.innerHTML = "💖";
-
-h.style.left = Math.random()*100 + "vw";
-
-h.style.fontSize =
-(18 + Math.random()*20) + "px";
-
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
-
-setTimeout(()=>{
-h.remove();
-},5000);
-
+setTimeout(()=>h.remove(),5000);
 }
-
 }
 
 /* VIDEO */
-
 function playMemory(){
-
-let v =
-document.getElementById("birthdayVideo");
-
-v.play();
-
+document.getElementById("birthdayVideo").play();
 spawnHearts();
+}
 
-gainXP(25);
+/* GAME */
+function startGame(){
+
+let area=document.getElementById("gameArea");
+area.innerHTML="";
+score=0;
+document.getElementById("gameScore").innerText=score;
+
+let game=setInterval(()=>{
+
+let heart=document.createElement("div");
+heart.className="gameHeart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*90+"%";
+heart.style.top=Math.random()*80+"%";
+
+heart.onclick=()=>{
+score++;
+document.getElementById("gameScore").innerText=score;
+heart.remove();
+spawnHearts();
+}
+
+area.appendChild(heart);
+setTimeout(()=>heart.remove(),1500);
+
+},600);
+
+setTimeout(()=>{
+clearInterval(game);
+alert("Game Over! Score: "+score);
+},15000);
 
 }
 
-/* LETTER */
-
-function openLetter(){
-
-document.getElementById("letterBox").style.display =
-"flex";
-
-let i = 0;
-
-document.getElementById("text").innerHTML = "";
-
-let t = setInterval(()=>{
-
-document.getElementById("text").innerHTML +=
-msg[i];
-
-i++;
-
-if(i >= msg.length){
-
-clearInterval(t);
-
-}
-
-},20);
-
-gainXP(20);
-
-}
-
-/* CLOSE */
-
-function closeLetter(){
-
-document.getElementById("letterBox").style.display =
-"none";
-
+/* DESTINY */
+function spinLove(){
+let list=["💍 Marriage Soon","💖 Soulmates","🌎 Forever","🏹 Perfect Match","✨ Endless Love"];
+document.getElementById("destinyText").innerText =
+list[Math.floor(Math.random()*list.length)];
+spawnHearts();
 }
 
 /* GALLERY */
-
 function openGallery(){
-
-let gallery =
-document.getElementById("gallery");
-
-gallery.innerHTML = "";
-
+let g=document.getElementById("gallery");
+g.innerHTML="";
 for(let i=1;i<=12;i++){
-
-let img = document.createElement("img");
-
-img.src = i + ".jpg";
-
-gallery.appendChild(img);
-
+let img=document.createElement("img");
+img.src=i+".jpg";
+img.style.width="100px";
+g.appendChild(img);
 }
-
 spawnHearts();
-
-gainXP(10);
-
 }
 
-/* SECRET */
-
-function surprise(){
-
-spawnHearts();
-
-gainXP(35);
-
-document.body.style.background =
-"linear-gradient(135deg,#ff2e93,#2d003d,#000)";
-
-alert("💖 You unlocked my forever heart.");
-
-}
-
-/* LOVE COUNTER */
-
-let startDate =
-new Date("2025-10-21");
-
-function updateLoveDays(){
-
-let now = new Date();
-
-let diff = now - startDate;
-
-let days =
-Math.floor(diff / (1000*60*60*24));
-
-document.getElementById("loveDays").innerHTML =
-"💖 Together for " + days + " days";
-
-}
-
-setInterval(updateLoveDays,1000);
-
-updateLoveDays();
-
-/* QUOTES */
-
-let quotes = [
-
-"You are my today and all of my tomorrows.",
-
-"Every moment with you is my favorite memory.",
-
-"You are my safe place.",
-
-"I still fall for you every single day.",
-
-"My heart chose you forever."
-
-];
-
-setInterval(()=>{
-
-let q =
-quotes[Math.floor(Math.random()*quotes.length)];
-
-document.getElementById("quote").innerText = q;
-
-},4000);
-
-/* LOVE LETTER */
-
+/* LETTER */
 let msg = `My Sayang 💖
 
 Every moment with you feels special.
 
 You are the peace in my chaos,
 the happiness in my heart,
-and the person I always want beside me.
+and the one I always want beside me.
 
 No matter how hard life gets,
 I will always choose you.
@@ -842,10 +325,24 @@ your voice,
 your laugh,
 and the way you make my world brighter.
 
-Thank you for existing in my life.
+Thank you for being in my life.
 
 💖 Forever yours,
 Justin`;
+function openLetter(){
+document.getElementById("letterBox").style.display="flex";
+let i=0;
+document.getElementById("text").innerHTML="";
+let t=setInterval(()=>{
+document.getElementById("text").innerHTML+=msg[i];
+i++;
+if(i>=msg.length) clearInterval(t);
+},20);
+}
+
+function closeLetter(){
+document.getElementById("letterBox").style.display="none";
+}
 
 </script>
 
